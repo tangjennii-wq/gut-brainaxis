@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gut–Brain Axis & GLP-1 RAs — In-Depth Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f6f7;--ink:#17181b;--body:#2c2e33;--muted:#71757e;--line:#e6e7ea;
+    --rust:#4f46e5;--rust-dark:#4338ca;--teal:#0e7c73;--teal-dark:#0e6f66;
+    --gold:#b7791f;--plum:#6f4361;--green:#0e7c52;--card:#ffffff;
+    --sans:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--body);
+    font-family:var(--sans);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased;letter-spacing:.005em}
+  .sans{font-family:var(--sans)}
+  a{color:var(--rust-dark)}
+  /* layout */
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  header.hero{background:#241f1b;color:#fbf8f3;padding:70px 0 54px;margin-bottom:10px}
+  header.hero .wrap{max-width:820px}
+  .hero .kick{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .hero h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:14px 0 8px}
+  .hero p{color:#d9cfc1;font-size:18px;max-width:680px}
+  .hero .tag{display:inline-block;margin-top:16px;font-size:13px;color:#b8ada0;border:1px solid #443e37;border-radius:20px;padding:5px 14px}
+  /* toc */
+  nav.toc{position:sticky;top:0;z-index:30;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:9px 0}
+  nav.toc .wrap{display:flex;gap:5px;flex-wrap:wrap;align-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  nav.toc b{color:var(--rust-dark);font-size:13px;margin-right:6px}
+  nav.toc a{font-size:12.5px;text-decoration:none;color:var(--muted);padding:3px 8px;border-radius:14px;white-space:nowrap}
+  nav.toc a:hover{background:#efe5d6;color:var(--ink)}
+  main{padding:26px 0 80px}
+  h2{font-size:22px;margin:38px 0 5px;color:var(--ink);line-height:1.2;padding-top:16px;border-top:1px solid var(--line);font-weight:750;letter-spacing:-.015em}
+  h2 .pre{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);font-weight:500;font-family:var(--mono);margin-bottom:4px}
+  h3{font-size:16px;margin:24px 0 3px;color:var(--ink);font-weight:700;letter-spacing:-.01em}
+  h4{font-size:12.5px;margin:16px 0 1px;color:var(--rust-dark);font-family:var(--mono);text-transform:none}
+  p{margin:10px 0}
+  sup.cit{font-size:9.5px;color:var(--rust);font-weight:500;font-family:var(--mono);cursor:help;padding:0 1px;vertical-align:super}
+  strong{color:var(--ink);font-weight:650}
+  em.term{font-style:normal;font-weight:600;color:var(--teal-dark)}
+  .lead{font-size:16.5px;color:#3a3d44}
+  ul,ol{margin:11px 0;padding-left:24px}
+  li{margin:5px 0}
+  /* tables */
+  .tbl{overflow-x:auto;margin:20px 0}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;font-family:var(--sans);background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-bottom:7px;font-style:italic}
+  th,td{padding:7px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:#1f2024;color:#f4f4f5;font-size:11.5px;font-weight:600;font-family:var(--mono);letter-spacing:.01em}
+  tbody tr:nth-child(even){background:#faf5ee}
+  td:first-child,th:first-child{font-weight:600}
+  .pos{color:var(--green);font-weight:700}.neg{color:var(--rust-dark);font-weight:700}
+  /* callouts */
+  .study{border:1px solid var(--line);border-left:3px solid var(--teal);background:#e9f5f3;border-radius:8px;padding:10px 15px;margin:14px 0;font-size:13.5px}
+  .study .h{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-dark)}
+  .gap{border:1px solid var(--line);border-left:3px solid var(--gold);background:#fbf3df;border-radius:8px;padding:10px 15px;margin:14px 0;font-size:13.5px}
+  .gap .h{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#a07820}
+  .quote{background:#f1ece5;border-radius:10px;padding:18px 22px;margin:20px 0;font-style:italic;font-size:18px;color:#3a342d}
+  .quote cite{display:block;margin-top:8px;font-size:13px;font-style:normal;color:var(--muted);font-family:-apple-system,sans-serif}
+  .def{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:15.5px}
+  .def b{color:var(--rust-dark)}
+  hr.sec{border:0;border-top:1px solid var(--line);margin:38px 0}
+  footer{border-top:2px solid var(--line);padding:26px 0 60px;color:var(--muted);font-size:13.5px;font-family:-apple-system,sans-serif}
+  .refnote{font-size:13px;color:var(--muted);font-family:-apple-system,sans-serif}
+  @media(max-width:600px){body{font-size:16px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">In-Depth Technical Reference</div>
+    <h1>The Gut–Brain Axis &amp; GLP-1 Receptor Agonists</h1>
+    <p>Architecture, signaling, pathophysiology, neuropsychiatric pharmacology, and the behavioral-economics interface — full mechanistic and clinical detail with effect sizes and trial data.</p>
+    <div class="tag">Compiled for a scientifically literate audience · companion to the family teaching deck</div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <b>Jump to</b>
+    <a href="#hardware">1 · Hardware</a>
+    <a href="#neuropod">Neuropods</a>
+    <a href="#software">2 · Signaling</a>
+    <a href="#pathophys">3 · Pathophysiology</a>
+    <a href="#therapeutics">4 · Therapeutics</a>
+    <a href="#behecon">5 · Behavioral econ</a>
+    <a href="#glp1-access">GLP-1: Access</a>
+    <a href="#glp1-reward">Reward</a>
+    <a href="#glp1-neuropsych">Neuropsych</a>
+    <a href="#glp1-sud">SUD</a>
+    <a href="#glp1-neurodeg">Neurodegen</a>
+    <a href="#glp1-decision">Decision-making</a>
+    <a href="#gaps">Gaps</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<p class="lead">This reference synthesizes the evidence on the bidirectional communication system between the gastrointestinal tract and the central nervous system — the <em class="term">gut–brain axis (GBA)</em> — and then examines how GLP-1 receptor agonists exploit that system. It covers the fundamental hardware (neuroanatomy, the enteric nervous system, vagal circuitry), the signaling software (microbial metabolites, neuroendocrine pathways, immune mediators), the pathophysiology of axis dysfunction across disease states, the translational/therapeutic landscape, and — uniquely — the behavioral-economics implications. The evidence base spans preclinical neuroscience, clinical gastroenterology, psychiatry, and behavioral economics. Bracketed superscripts preserve the source citation indices.</p>
+
+<!-- ===================== PART 1 ===================== -->
+<h2 id="hardware"><span class="pre">Part 1 — Fundamental Architecture · The Hardware</span>The enteric nervous system, vagus, and neuropod circuits</h2>
+
+<h3>The Enteric Nervous System: a "second brain"</h3>
+<p>The gastrointestinal tract contains its own autonomous nervous system — the <em class="term">enteric nervous system (ENS)</em> — comprising <strong>200–600 million neurons</strong> organized into thousands of small ganglia across two principal plexuses.<sup class="cit" title="Source refs 2–3">[2-3]</sup> The <em class="term">myenteric (Auerbach's) plexus</em>, situated between the longitudinal and circular muscle layers, forms a continuous network from esophagus to internal anal sphincter and primarily governs motility.<sup class="cit">[2]</sup> The <em class="term">submucosal (Meissner's) plexus</em>, present in the small and large intestines, regulates mucosal secretion, blood flow, and epithelial function.<sup class="cit">[2]</sup></p>
+<p>The ENS deploys a neurotransmitter repertoire that rivals the CNS in complexity: <strong>over 20 candidate neurotransmitters</strong> have been identified, with most neurons being <em class="term">plurichemical</em> (co-expressing multiple transmitters).<sup class="cit">[2]</sup> Key systems include acetylcholine (the principal excitatory transmitter), nitric oxide (inhibitory motor transmission), serotonin (5-HT), VIP, substance P, ATP, GABA, and dopamine.<sup class="cit">[2][4]</sup> Critically, <strong>~95% of the body's serotonin resides in the GI tract</strong>, produced by two distinct pools: mucosal enterochromaffin (EC) cells expressing <em class="term">TPH1</em>, and a smaller neuronal pool expressing <em class="term">TPH2</em>.<sup class="cit">[2][4]</sup></p>
+<p><em class="term">Enteric glial cells</em> outnumber enteric neurons and function analogously to CNS astrocytes — participating in bidirectional neuron–glia signaling, regulating intestinal barrier function, mucosal immunity, and ENS neurogenesis.<sup class="cit">[2]</sup></p>
+
+<h3>The Vagus Nerve: the information superhighway</h3>
+<p>The vagus nerve (cranial nerve X) is the principal conduit connecting gut to brain. It is a mixed nerve composed of approximately <strong>80% afferent (sensory) and 20% efferent (motor) fibers</strong> — a ratio underscoring the gut's role as a massive sensory organ reporting to the brain, not merely an effector organ receiving commands.<sup class="cit">[2-3]</sup></p>
+<h4>Afferent (bottom-up) pathways</h4>
+<p>Vagal afferent cell bodies reside in the <em class="term">nodose ganglia</em>. Their terminals in the gut wall are distributed across muscle layers (mechanosensitive, encoding distension and peristalsis) and mucosa (chemosensitive, responding to nutrients, pH, osmolarity, and microbial products).<sup class="cit">[2][5]</sup> These afferents project centrally to the <em class="term">nucleus tractus solitarius (NTS)</em> in the medulla, the primary integration hub for visceral sensory information. From the NTS, second-order neurons relay to the hypothalamus (including the paraventricular nucleus), amygdala, hippocampus, parabrachial nucleus, and insular/prefrontal cortex.<sup class="cit">[2-3]</sup> A key multi-order pathway — <strong>NTS → medial septum → dorsal hippocampus</strong> — links gut vagal signaling to episodic and spatial memory.<sup class="cit">[2]</sup></p>
+<h4>Efferent (top-down) pathways</h4>
+<p>Vagal motor neurons originate from the <em class="term">dorsal motor nucleus of the vagus (DMV)</em> and the nucleus ambiguus. The DMV provides parasympathetic preganglionic innervation to the GI tract, but vagal efferents do not directly contact the gut wall — they synapse onto enteric neurons in the myenteric plexus, which execute motor commands.<sup class="cit">[2-3]</sup> The NTS modulates DMV activity through both glutamatergic (excitatory) and GABAergic (inhibitory) inputs, with tonic GABAergic inhibition critical for setting basal gastric motility tone.<sup class="cit">[2]</sup></p>
+<h4>Spinal afferents (a parallel pathway)</h4>
+<p>Splanchnic (thoracolumbar) and pelvic (lumbosacral) afferents, with cell bodies in dorsal root ganglia, encode supraphysiological/noxious stimuli and are the primary mediators of <strong>visceral pain</strong> — in contrast to vagal afferents, which encode physiological information.<sup class="cit">[2]</sup></p>
+
+<h3 id="neuropod">Neuropod Cells: the discovery that changed the field</h3>
+<p>Canonically, <em class="term">enteroendocrine cells (EECs)</em> — ~1% of gut epithelial cells but collectively the body's largest endocrine organ, secreting over 20 hormones — were thought to communicate with the nervous system exclusively through slow, paracrine hormone release.<sup class="cit">[5-6]</sup> A series of landmark discoveries revised this model.</p>
+<p><strong>Bohórquez et al. (2015)</strong> identified that a subset of EECs possess basal cytoplasmic extensions — termed <em class="term">neuropods</em> — that form direct synaptic connections with vagal afferent neurons.<sup class="cit">[7]</sup> <strong>Kaelberer et al. (2018)</strong> demonstrated that these neuropod cells use <strong>glutamate as a fast neurotransmitter</strong> to relay gut luminal signals to the brainstem in milliseconds, creating a one-synapse neuroepithelial circuit from intestinal lumen to brainstem.<sup class="cit">[8]</sup></p>
+<div class="quote">"Some enteroendocrine cells have long, basal extensions, called neuropods, which synapse with vagal afferent fibers to directly convey sugar-sensing information to the brain within milliseconds."
+<cite>— Josephine M. Egan, M.D., National Institute on Aging. <em>Physiological Integration of Taste and Metabolism.</em> N Engl J Med, May 8, 2024. Used under license from NEJM.</cite></div>
+<p>Neuropod cells <strong>distinguish nutritive sugars from non-nutritive sweeteners</strong>: glucose activates glutamatergic neurotransmission via an <em class="term">SGLT1</em>-dependent pathway, whereas non-nutritive sweeteners stimulate only purinergic neurotransmission through taste receptors (<em class="term">TAS1Rs</em>).<sup class="cit">[9]</sup> This distinction drives the preference for nutritive sugars through dopaminergic reward circuits in the basal ganglia.<sup class="cit">[9]</sup> However, the extent to which neuropod synapses generalize across the entire GI tract remains under investigation — morphological studies in the colon suggest EC cell–vagal afferent communication may be predominantly <strong>paracrine (~25–30 μm)</strong> rather than synaptic.<sup class="cit">[6]</sup></p>
+
+<!-- ===================== PART 2 ===================== -->
+<h2 id="software"><span class="pre">Part 2 — The Signaling Software</span>Four parallel channels of gut–brain communication</h2>
+
+<h3>Route 1 — Microbial metabolites</h3>
+<h4>Short-chain fatty acids (SCFAs)</h4>
+<p>SCFAs — <strong>butyrate, propionate, acetate</strong> — are produced by anaerobic bacterial fermentation of dietary fiber and represent a major signaling currency.<sup class="cit">[2-3]</sup> They activate three principal G-protein-coupled receptors:</p>
+<ul>
+  <li><em class="term">FFAR2 (GPR43)</em> — on enteroendocrine and immune cells; triggers GLP-1 and PYY release.</li>
+  <li><em class="term">FFAR3 (GPR41)</em> — on enteric neurons, vagal ganglion neurons, dorsal root ganglion neurons, and sympathetic ganglia, positioning FFAR3 as a <strong>direct neural sensor of microbial activity</strong>.</li>
+  <li><em class="term">GPR109a</em> — on colonic epithelium and immune cells.<sup class="cit">[2][4]</sup></li>
+</ul>
+<p>Butyrate also acts as a potent <strong>histone deacetylase (HDAC) inhibitor</strong>, modulating gene expression, neuroinflammation, and microglial function in the CNS.<sup class="cit">[2-3]</sup> SCFAs maintain blood–brain barrier integrity — germ-free mice exhibit increased BBB permeability, rescued by SCFA supplementation.<sup class="cit">[2-3]</sup></p>
+
+<h4>Tryptophan metabolism — three microbiota-influenced pathways</h4>
+<div class="tbl">
+<table>
+  <caption>Tryptophan metabolism operates through three pathways shaped by the microbiota.<sup class="cit">[2-4]</sup></caption>
+  <thead><tr><th>Pathway</th><th>Key enzymes / mediators</th><th>Products</th><th>CNS relevance</th></tr></thead>
+  <tbody>
+    <tr><td>Serotonin</td><td>TPH1 (EC cells), TPH2 (neurons)</td><td>5-HT</td><td>~95% of body 5-HT is gut-derived; does not cross BBB but modulates vagal afferents and ENS; microbiota regulates TPH1 expression</td></tr>
+    <tr><td>Kynurenine</td><td>IDO (inflammation-induced), TDO (glucocorticoid-induced)</td><td>Kynurenic acid (neuroprotective, NMDA antagonist) vs. quinolinic acid (neurotoxic, NMDA agonist)</td><td>Dysbiosis-driven inflammation shifts the balance toward neurotoxic metabolites</td></tr>
+    <tr><td>Indole</td><td>Bacterial tryptophanases (<em>Lactobacillus</em>, <em>Clostridium sporogenes</em>)</td><td>Indole-3-aldehyde, indole-3-acetic acid, tryptamine</td><td>Activate aryl hydrocarbon receptor (AhR) → IL-22 production, barrier integrity, BBB maintenance</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h4>Direct microbial neurotransmitter production</h4>
+<p>Certain gut bacteria synthesize neurotransmitters directly: <strong>GABA</strong> (<em>Lactobacillus</em>, <em>Bifidobacterium</em>, <em>Bacteroides</em>), <strong>dopamine and norepinephrine</strong> (<em>Bacillus</em>, <em>Escherichia</em>, <em>Enterococcus</em>), <strong>serotonin</strong> (<em>Enterococcus</em>, <em>Streptococcus</em>), and <strong>acetylcholine</strong> (<em>Lactobacillus</em>).<sup class="cit">[2][4]</sup></p>
+<div class="study"><span class="h">Landmark study · Bravo et al. (2011)</span>
+<p style="margin:6px 0 0">Chronic <em>L. rhamnosus</em> JB-1 induced region-dependent alterations in GABA receptor expression across cortical, hippocampal, and amygdalar regions. The neurochemical and behavioral effects were <strong>abolished by vagotomy</strong>, establishing the vagus nerve as the constitutive communication pathway.<sup class="cit">[2]</sup></p></div>
+
+<h4>Bile acid signaling</h4>
+<p>Primary bile acids are converted to secondary bile acids by gut bacteria, signaling to the brain via three routes: (1) direct BBB crossing to activate central <em class="term">FXR</em> and <em class="term">TGR5</em> receptors; (2) intestinal FXR activation stimulating FGF15/19 release into circulation; and (3) intestinal TGR5 activation on L-cells stimulating <strong>GLP-1 secretion</strong>, which signals to the brain via vagal afferents.<sup class="cit">[2-3]</sup></p>
+
+<h3>Route 2 — The HPA axis and stress signaling</h3>
+<p>The <em class="term">hypothalamic-pituitary-adrenal (HPA) axis</em> is the principal neuroendocrine pathway through which the brain modulates gut function.<sup class="cit">[2-3]</sup> Perceived stress activates the paraventricular nucleus (PVN), releasing <em class="term">corticotropin-releasing factor (CRF)</em>. CRF has direct gut effects: it disrupts intestinal permeability, promotes dysbiosis, triggers mast cell activation, and affects intestinal stem cell differentiation.<sup class="cit">[2]</sup> Two CRF receptor subtypes mediate distinct visceral effects — <strong>CRF-R1 increases colonic motor activity</strong>, while <strong>CRF-R2 slows gastric emptying</strong>.<sup class="cit">[2]</sup></p>
+<p>Germ-free animal studies show the gut microbiota is essential for normal HPA development — germ-free mice show exaggerated HPA responses to stress, normalizable by microbial colonization.<sup class="cit">[2-3]</sup> Chronic stress creates a positive feedback loop: sustained HPA activation → immune dysregulation (elevated IL-1, IL-6, TNF-α) → increased intestinal permeability → dysbiosis → further HPA stimulation.<sup class="cit">[2-3]</sup></p>
+
+<h3>Route 3 — The cholinergic anti-inflammatory pathway (CAP)</h3>
+<p>The vagus nerve operates a neuroimmune circuit through which it modulates peripheral inflammation.<sup class="cit">[2-3]</sup> Vagal efferents synapse onto enteric neurons that release acetylcholine at the junction with tissue macrophages. ACh binds <strong>α7 nicotinic acetylcholine receptors (α7nAChR)</strong> on macrophages, inhibiting pro-inflammatory cytokine release, particularly TNF-α.<sup class="cit">[2]</sup> A parallel splenic pathway involves vagal stimulation of the splenic sympathetic nerve → norepinephrine → β2-adrenergic receptor activation on cholinergic T cells → ACh release → macrophage TNF-α suppression via α7nAChR.<sup class="cit">[2]</sup> Low vagal tone has been described in IBD and IBS, favoring peripheral inflammation.<sup class="cit">[2-3]</sup></p>
+
+<h3>Route 4 — Immune signaling and the "leaky gut" hypothesis</h3>
+<p>Dysbiosis-associated increased intestinal permeability allows bacterial products (LPS, peptidoglycan) to enter systemic circulation, activating <strong>TLR4/NF-κB signaling</strong> and triggering pro-inflammatory cytokine release (IL-1β, IL-6, TNF-α) that propagates to the CNS via a compromised BBB or vagal afferents.<sup class="cit">[2-3]</sup> The microbiota shapes <strong>microglial maturation</strong> — germ-free mice have microglia with an immature phenotype that fail to respond effectively to immune challenges.<sup class="cit">[2-3]</sup> Microbial indole metabolites counterbalance this by activating AhR on innate lymphoid cells (ILC3s), driving IL-22 production that maintains epithelial barrier integrity and mucosal tolerance.<sup class="cit">[2]</sup></p>
+
+<!-- ===================== PART 3 ===================== -->
+<h2 id="pathophys"><span class="pre">Part 3 — Pathophysiological Manifestations</span>Axis dysfunction across disease states</h2>
+
+<h3>Irritable Bowel Syndrome (IBS)</h3>
+<p>IBS affects <strong>5–10% of the global population</strong> (up to 14.1% by some meta-analyses), with higher prevalence in women (OR 1.46).<sup class="cit">[2]</sup> Now classified as a <em class="term">disorder of gut–brain interaction</em>, IBS exemplifies bidirectional dysfunction.<sup class="cit">[2-3]</sup> Approximately <strong>60% of patients exhibit visceral hypersensitivity</strong>, with central abnormalities in sensory, emotional-arousal, and prefrontal cortical regions.<sup class="cit">[2]</sup> Subtle mucosal immune activation — mast cell and eosinophil degranulation releasing nociceptive mediators — activates sensitized enteric neurons.<sup class="cit">[2]</sup></p>
+<p>The bidirectionality is striking: in ~50% of cases psychological distress precedes GI symptoms; in the other ~50% gut dysfunction occurs first.<sup class="cit">[2]</sup> IBS confers a <strong>~2–3-fold risk</strong> for developing anxiety (HR 2.89) and depression (HR 2.71); conversely, anxiety/depression double the risk of IBS onset.<sup class="cit">[2]</sup> IBS patients exhibit sustained HPA activity with greater total cortisol output during psychosocial stress.<sup class="cit">[2]</sup></p>
+
+<h3>Inflammatory Bowel Disease (IBD) and psychiatric comorbidity</h3>
+<p>A <strong>2025 meta-analysis (193 studies)</strong> found significantly elevated psychiatric comorbidities in IBD: depression OR 1.42 (95% CI 1.33–1.52), anxiety OR 1.30 (1.22–1.44), bipolar disorder OR 1.64 (1.20–2.24).<sup class="cit">[2]</sup> Disease activity is the dominant predictor: active IBD patients are <strong>&gt;2× more likely to have anxiety (OR 2.5)</strong> and <strong>3× more likely to have depression (OR 3.1)</strong> than those in remission.<sup class="cit">[2]</sup></p>
+<p>The relationship is bidirectional and clinically consequential: baseline depression increases risks of flare (RR 1.60), therapy escalation (RR 1.41), hospitalization (RR 1.35), and surgery (RR 1.63).<sup class="cit">[2]</sup> Depression at baseline predicts lower infliximab remission and decreased time to re-treatment (HR 2.27).<sup class="cit">[2]</sup> Mechanistically: increased peripheral and intracerebral pro-inflammatory cytokines, impaired nitric oxide pathways, altered vagal signaling, and gut dysbiosis.<sup class="cit">[2]</sup></p>
+
+<h3>Depression and the gut microbiome</h3>
+<p>A large gut microbiome-wide association study (n = 1,054, validated in n = 1,539) identified <strong>13 microbial taxa</strong> associated with depressive symptoms, including <em>Eggerthella</em>, <em>Coprococcus</em>, and <em>Sellimonas</em> — bacteria involved in glutamate, butyrate, serotonin, and GABA synthesis.<sup class="cit">[2]</sup> A <strong>JAMA Psychiatry meta-analysis</strong> (59 case-control studies, n = 1,519) revealed a transdiagnostic pattern: depleted <em>Faecalibacterium</em> and <em>Coprococcus</em> (anti-inflammatory butyrate producers) and enriched <em>Eggerthella</em> (pro-inflammatory) were consistently shared across MDD, bipolar disorder, schizophrenia, and anxiety<sup class="cit">[2]</sup> — suggesting common pathophysiology rather than disorder-specific signatures.</p>
+<p>The mechanistic chain runs through <strong>tryptophan/kynurenine diversion</strong> (inflammation activates IDO, shunting tryptophan toward neurotoxic quinolinic acid rather than serotonin), <strong>SCFA depletion</strong> (reduced HDAC inhibition and microglial regulation), and <strong>immune activation</strong> (LPS translocation → systemic cytokines → neuroinflammation).<sup class="cit">[2-3]</sup></p>
+
+<h3>Parkinson's disease: the gut-origin hypothesis</h3>
+<p>Perhaps the most dramatic demonstration of GBA pathology is the <em class="term">Braak hypothesis</em>. α-Synuclein, the hallmark aggregate of PD, has been identified in mucosal and submucosal nerve fibers and ganglia of patients with parkinsonism.<sup class="cit">[10]</sup> The <strong>"body-first" hypothesis</strong> proposes that α-synuclein pathology originates in the ENS and spreads to the brain via the vagus nerve in a prion-like manner.<sup class="cit">[10-11]</sup></p>
+<div class="study"><span class="h">Preclinical · Kim et al. (2019)</span>
+<p style="margin:6px 0 0">Injection of α-synuclein preformed fibrils into the duodenal/pyloric muscularis produced sequential spread — dorsal motor nucleus → locus coeruleus → basolateral amygdala, dorsal raphe, and substantia nigra pars compacta — with corresponding dopaminergic neuron loss and motor/non-motor symptoms. <strong>Truncal vagotomy and α-synuclein deficiency prevented this gut-to-brain spread.</strong><sup class="cit">[11]</sup></p></div>
+<p>Epidemiological data support the model. A <strong>Swedish registry study</strong> (9,430 vagotomized patients, 377,200 controls) found truncal vagotomy ≥5 years before PD diagnosis was significantly protective (<span class="pos">HR 0.59, 95% CI 0.37–0.93</span>), while selective vagotomy showed no effect.<sup class="cit">[10]</sup> <strong>Danish registry data</strong> confirmed the pattern: truncal vagotomy with &gt;20 years follow-up yielded <span class="pos">HR 0.53 (0.28–0.99)</span>.<sup class="cit">[10]</sup> Functional gut symptoms, particularly constipation, often precede motor onset by years, consistent with a gut-first sequence.<sup class="cit">[10][12]</sup></p>
+
+<h3>Autism Spectrum Disorder (ASD)</h3>
+<p>GI problems are estimated in up to <strong>47–80% of ASD children</strong>, with higher rates of diarrhea (OR 3.63), constipation (OR 3.86), and abdominal pain (OR 2.45) vs. controls.<sup class="cit">[2]</sup> ASD patients show reduced microbiota diversity and imbalanced Bacteroidetes/Firmicutes ratios.<sup class="cit">[2]</sup> Germ-free mice show social deficits and increased repetitive behavior; <strong>transplantation of microbiota from ASD donors into germ-free mice induces autistic behaviors.</strong><sup class="cit">[10]</sup> Abnormal microbial metabolites (SCFAs, phenolic compounds, bile acids) exacerbate symptoms by affecting BBB permeability, neuroinflammation, and GABA/glutamate balance.<sup class="cit">[2]</sup></p>
+
+<!-- ===================== PART 4 ===================== -->
+<h2 id="therapeutics"><span class="pre">Part 4 — Therapeutic &amp; Translational Implications</span>Probiotics, VNS, diet, and FMT</h2>
+
+<h3>Probiotics / psychobiotics</h3>
+<p>A <strong>2025 meta-analysis of 23 RCTs</strong> (n = 1,401 clinically diagnosed patients) found probiotics significantly reduced depression symptoms (<span class="pos">SMD −0.96; 95% CI −1.31 to −0.61</span>) and moderately reduced anxiety (SMD −0.59; −0.98 to −0.19).<sup class="cit">[2]</sup> A pilot RCT in <strong>JAMA Psychiatry</strong> (n = 49 adults with MDD on antidepressants) found adjunctive multistrain probiotics (8 billion CFU/day × 8 weeks) produced moderate effect sizes for depression (SES 0.70) and anxiety (SES 0.79).<sup class="cit">[2]</sup> However, <strong>CANMAT (2026)</strong> recommends probiotics only as "cautiously considered third-line adjunctive treatments for MDD," citing inconsistent findings across high-quality trials.<sup class="cit">[2]</sup></p>
+
+<h3>Vagus nerve stimulation (VNS)</h3>
+<p>Invasive VNS is FDA-approved for treatment-resistant depression (TRD). The <strong>RECOVER trial</strong> — the largest sham-controlled psychiatric neuromodulation trial (n = 493, median 11 lifetime failed antidepressant trials) — found the primary outcome (MADRS response) did not separate active from sham, but secondary measures showed significant benefits for quality of life (p = 0.029) and daily function (p = 0.039).<sup class="cit">[2]</sup> Long-term data: ~80% of 12-month responders maintained benefit at 24 months, and 30–38% of initial non-responders gained meaningful benefit by 18–24 months.<sup class="cit">[2]</sup> <strong>Transcutaneous auricular VNS (taVNS)</strong> showed comparable improvement to citalopram in a comparative-effectiveness RCT (n = 107).<sup class="cit">[2]</sup></p>
+
+<h3>Dietary interventions</h3>
+<p>The <strong>SMILES trial (2017)</strong> was the first RCT of dietary improvement for MDD: a modified Mediterranean diet produced significantly greater MADRS improvement vs. social-support control (<span class="pos">Cohen's d = −1.16; remission 32.3% vs. 8.0%; NNT = 4.1</span>).<sup class="cit">[2]</sup> High Mediterranean-diet adherence associates with reduced depression risk (RR 0.67; 95% CI 0.55–0.82) in longitudinal meta-analyses.<sup class="cit">[2]</sup> <em>The Lancet</em> (2026) states a Mediterranean diet "significantly benefits mood and diminishes the risk of depression."<sup class="cit">[2]</sup></p>
+
+<h3>Fecal microbiota transplantation (FMT)</h3>
+<p>A <strong>2025 meta-analysis of 12 RCTs</strong> (n = 681) found FMT significantly reduced depressive symptoms (<span class="pos">SMD −1.21; 95% CI −1.87 to −0.55; p = 0.0003</span>), with stronger effects via direct GI delivery than oral capsules.<sup class="cit">[2]</sup> In ASD, the landmark <strong>Microbiota Transfer Therapy</strong> open-label trial (n = 18 children) showed significant improvements in both GI and autism symptoms persisting at 2-year follow-up.<sup class="cit">[2]</sup> However, no large RCTs exist for either indication, and CANMAT finds insufficient evidence to recommend FMT clinically for MDD.<sup class="cit">[2]</sup></p>
+
+<!-- ===================== PART 5 ===================== -->
+<h2 id="behecon"><span class="pre">Part 5 — The Behavioral Economics Angle</span>Gut signals and decision-making</h2>
+<div class="study"><span class="h">First-in-kind · Dantas et al. (2022)</span>
+<p style="margin:6px 0 0">The first placebo-controlled experiment demonstrating that probiotics influence <strong>economic decision-making</strong>. In a between-subjects double-blind design over 28 days, the probiotic group showed significantly <strong>decreased risk-taking</strong> and <strong>increased future-oriented (patient) choices</strong> vs. placebo on incentivized economic tasks.<sup class="cit">[13]</sup></p></div>
+<p>The proposed mechanism runs through microbiota-mediated modulation of prefrontal cortex, amygdala, and striatal circuits governing reward valuation and temporal discounting — the same circuits influenced by gut-derived serotonin, GABA, and dopamine.<sup class="cit">[2][13]</sup> If gut microbial composition can shift <strong>risk preferences and intertemporal choice</strong> — two foundational constructs in behavioral economics — the microbiome becomes a previously unrecognized variable in models of human decision-making. Gut hormones including GLP-1, ghrelin, CCK, and PYY modulate not only appetite and metabolism but also mood, learning, and cognition.<sup class="cit">[4]</sup> In the <strong>CARDIA study</strong>, gut microbial diversity was positively associated with cognitive function in midlife.<sup class="cit">[2]</sup></p>
+
+<hr class="sec">
+
+<!-- ===================== GLP-1 REVIEW ===================== -->
+<h2 id="glp1-access"><span class="pre">GLP-1 Receptor Agonists · Part 1 — Access &amp; Modulation</span>How GLP-1 RAs reach and reshape the brain</h2>
+<p>This section examines how GLP-1 receptor agonists (semaglutide, liraglutide, tirzepatide, lixisenatide) interact with the gut–brain axis, building directly on the architecture above.</p>
+
+<h3>Endogenous GLP-1: two sources, two modes</h3>
+<p><strong>Peripheral GLP-1</strong> is secreted by enteroendocrine L-cells in the distal small intestine and colon in response to nutrient ingestion, but native GLP-1 has a half-life of only <strong>~1–2 minutes</strong> due to rapid DPP-4 degradation.<sup class="cit">[1]</sup> Most endogenous GLP-1 never reaches systemic circulation — it acts primarily via paracrine signaling on adjacent vagal afferent terminals expressing GLP-1R.<sup class="cit">[2-3]</sup> <strong>Central GLP-1</strong> is produced by ~2,000–3,000 <em class="term">preproglucagon (PPG) neurons</em> in the caudal NTS, projecting to the hypothalamus (PVN, DMH, ARC), VTA, nucleus accumbens, amygdala, and bed nucleus of the stria terminalis.<sup class="cit">[4-5]</sup> These PPG neurons form a secondary satiation circuit activated by large meals and psychogenic stress, not tonic daily feeding.<sup class="cit">[6]</sup></p>
+
+<h3>Pharmacological GLP-1 RAs: a different access route</h3>
+<p>A critical insight: acylated compounds (semaglutide, liraglutide) <strong>do not cross the classical blood–brain barrier</strong>. Radiolabeled studies show semaglutide's brain tissue-to-plasma partition coefficient is &lt;0.01.<sup class="cit">[7]</sup> Instead, semaglutide accesses the brain through <em class="term">circumventricular organs (CVOs)</em> — regions lacking a conventional BBB. Fluorescently labeled semaglutide was detected in the area postrema, NTS, septal nucleus, and hypothalamus (particularly the arcuate nucleus and median eminence).<sup class="cit">[8]</sup> Among brain regions, semaglutide concentrations were highest in the hypothalamus.<sup class="cit">[7]</sup></p>
+<p>This CVO-mediated access, combined with the <strong>~5–7 day half-life</strong> of semaglutide, means pharmacological GLP-1 RAs achieve sustained supraphysiological activation of central GLP-1R populations that endogenous GLP-1 cannot reach.<sup class="cit">[1][8]</sup> Semaglutide's effects on energy balance are mediated specifically by <em class="term">Adcyap1+ neurons</em> in the area postrema and NTS — ablation of these neurons largely reversed effects on food intake, body weight, and fat utilization.<sup class="cit">[9]</sup></p>
+
+<div class="tbl">
+<table>
+  <caption>Endogenous GLP-1 vs. pharmacological GLP-1 RAs — recreation of the OpenEvidence comparison.<sup class="cit">[1-3][7-8]</sup></caption>
+  <thead><tr><th>Feature</th><th>Endogenous GLP-1</th><th>Pharmacological GLP-1 RAs (semaglutide)</th></tr></thead>
+  <tbody>
+    <tr><td>Half-life</td><td>1–2 minutes</td><td>~5–7 days</td></tr>
+    <tr><td>Primary mechanism</td><td>Paracrine on vagal afferents</td><td>Endocrine + direct CVO access</td></tr>
+    <tr><td>Brain access</td><td>Vagal afferents + PPG neurons</td><td>CVOs (area postrema, median eminence)</td></tr>
+    <tr><td>Vagal dependence</td><td>Required for acute effects</td><td>Not required for chronic treatment</td></tr>
+    <tr><td>Receptor populations engaged</td><td>Local vagal + brainstem</td><td>Distributed: brainstem, hypothalamus, mesolimbic, amygdala</td></tr>
+    <tr><td>Plasma levels</td><td>2–4× postprandial rise</td><td>Sustained supraphysiological</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Central GLP-1R distribution and circuit engagement</h3>
+<p>GLP-1R is broadly distributed across the CNS, with highest density in the area postrema, NTS, and arcuate nucleus — all CVO-adjacent regions directly accessible to circulating GLP-1 RAs.<sup class="cit">[8][10]</sup> Critically, GLP-1R is present not only on neuronal cell bodies but also on <strong>axon terminals</strong>, enabling presynaptic modulation of neurotransmitter release distant from the receptor-expressing soma.<sup class="cit">[10]</sup> Semaglutide and tirzepatide both rapidly inhibit AgRP neurons in the arcuate nucleus; dual GIP/GLP-1 agonism (tirzepatide) more potently inhibits AgRP neurons than either agonist alone.<sup class="cit">[11]</sup></p>
+
+<h2 id="glp1-reward"><span class="pre">GLP-1 · Part 2 — Reward Circuitry</span>Mesolimbic dopamine modulation</h2>
+<h3>The VTA–NAc axis</h3>
+<p>The mechanistic foundation for GLP-1 RA effects on addiction, hedonic eating, and decision-making is an elegant indirect inhibitory circuit:</p>
+<div class="def"><b>The circuit:</b> GLP-1R activation on <b>VTA GABA neurons</b> → increased GABA activity → <b>decreased VTA dopamine neuron firing</b> → reduced dopamine release in the nucleus accumbens.</div>
+<p>A <strong>2025 Science Advances</strong> study using single-nuclei transcriptomics revealed that VTA GLP-1Rs are expressed primarily on GABA neurons, not dopamine neurons directly. This GABA-mediated suppression of dopaminergic activity attenuated cocaine seeking in preclinical models.<sup class="cit">[12]</sup> A <strong>2026 Nature</strong> study identified a discrete population of GLP-1R-expressing neurons in the <strong>central amygdala</strong> that selectively suppress consumption of palatable foods by reducing NAc dopamine; targeted GLP-1R deletion there diminished the anorectic efficacy of GLP-1 RAs for reward-driven (but not homeostatic) intake.<sup class="cit">[13]</sup></p>
+<div class="study"><span class="h">Tolerance signal · Zhu et al. (2025, Science)</span>
+<p style="margin:6px 0 0">VTA dopamine neurons encode palatability and bidirectionally regulate hedonic consumption; semaglutide suppressed VTA dopamine responsiveness during food consumption. However, mice <strong>recovered palatable-food appetite and VTA dopamine activity during repeated treatment</strong> — raising questions about long-term efficacy of reward suppression.<sup class="cit">[14]</sup></p></div>
+<h3>Human neuroimaging</h3>
+<p>In a crossover RCT (n = 48), IV exenatide vs. placebo decreased food-related brain responses in the insula, amygdala, putamen, and orbitofrontal cortex in obese patients.<sup class="cit">[15]</sup> A meta-analysis of <strong>80 RCTs (n = 107,860)</strong> found GLP-1 RA treatment improved restrained eating (Hedges g = 0.35, P = .002) and emotional eating (g = 0.32, P = .003), with improvements in mental-health quality of life (g = 0.15, P &lt; .001) <strong>not correlated with magnitude of weight loss</strong> — suggesting a direct brain effect independent of metabolic improvement.<sup class="cit">[15]</sup></p>
+
+<h2 id="glp1-neuropsych"><span class="pre">GLP-1 · Part 3 — Neuropsychiatric Clinical Evidence</span>Mood and suicidality</h2>
+<h3>Depression and mood</h3>
+<p>The largest RCT meta-analysis (80 trials, N = 107,860) found <strong>no significant difference</strong> in depressive symptom change between GLP-1 RAs and placebo (Hedges g = 0.02; P = .94), though baseline depression scores were low due to exclusion of psychiatric populations.<sup class="cit">[15]</sup> Post-hoc analyses of the <strong>STEP trials</strong> (semaglutide 2.4 mg) showed a statistically significant but small PHQ-9 advantage (treatment difference −0.56; 95% CI −0.81 to −0.32; P &lt; .001), with semaglutide patients less likely to shift to more severe depression categories (OR 0.63; 0.50–0.79).<sup class="cit">[16]</sup></p>
+<div class="study"><span class="h">Strongest signal · Taipale et al., Lancet Psychiatry 2026</span>
+<p style="margin:6px 0 0">A Swedish national cohort using within-individual design found semaglutide associated with <strong>42% lower risk of worsening mental illness</strong> (<span class="pos">aHR 0.62; 95% CI 0.54–0.71</span>), including reduced worsening of depression (aHR 0.56) and anxiety (aHR 0.62). Liraglutide showed a smaller effect (aHR 0.74 for depression), while exenatide and dulaglutide showed no significant associations — suggesting an <strong>agent-specific, not uniform class, effect</strong>.<sup class="cit">[17]</sup></p></div>
+<h3>Suicidality: a resolved concern</h3>
+<p>Both the EMA and FDA concluded available evidence does <strong>not support a causal association</strong> between GLP-1 RAs and suicidal thoughts or actions.<sup class="cit">[18]</sup> A meta-analysis of 144 RCTs found very low and equivalent incidence of suicide-related events (RR 0.76; 95% CI 0.48–1.21).<sup class="cit">[18]</sup> A Danish nationwide cohort found lower risk of suicide/attempts vs. DPP-4 inhibitors (HR 0.58; 0.37–0.91).<sup class="cit">[19]</sup> Pharmacovigilance temporal analyses showed disproportionate semaglutide-suicidality reporting appeared only after media attention (post-Q3 2023), consistent with notoriety/stimulated reporting bias rather than a true signal.<sup class="cit">[18]</sup></p>
+
+<h2 id="glp1-sud"><span class="pre">GLP-1 · Part 4 — Substance Use Disorders</span>The most striking signal</h2>
+<h3>Alcohol use disorder</h3>
+<div class="study"><span class="h">First RCT in treatment-seeking AUD · Klausen et al., Lancet 2026</span>
+<p style="margin:6px 0 0">In treatment-seeking AUD patients with comorbid obesity (n = 108, BMI ≥30), semaglutide 2.4 mg for 26 weeks significantly reduced <strong>heavy drinking days</strong> (−41.1 vs. −26.4 percentage points; difference −13.7 pp; P = .0015), total alcohol consumption (−467.5 g/30 days), drinks per drinking day, AUDIT scores, and craving (PACS). Medium effect sizes, with an <strong>NNT of 4.3</strong> for a 2-level WHO risk-drinking reduction — favorable vs. approved AUD medications (NNT ≥7 for naltrexone/acamprosate).<sup class="cit">[20]</sup></p></div>
+<div class="study"><span class="h">Phase 2 · Hendershot et al., JAMA Psychiatry 2025</span>
+<p style="margin:6px 0 0">In 48 non-treatment-seeking AUD participants, low-dose semaglutide (up to 1.0 mg) reduced laboratory alcohol self-administration (β = −0.48; P = .01), drinks per drinking day (β = −0.41; P = .04), and weekly craving (β = −0.39; P = .01), with substantially larger effects emerging during the higher-dose period.<sup class="cit">[21]</sup></p></div>
+<p>A <strong>Swedish nationwide cohort</strong> (n = 227,866 with AUD) found semaglutide associated with the lowest risk of AUD hospitalization (<span class="pos">aHR 0.64; 0.50–0.83</span>) — outperforming officially approved AUD medications (aHR 0.98).<sup class="cit">[23]</sup> A <strong>US Veterans cohort</strong> (n = 606,434) found GLP-1 RAs vs. SGLT2 inhibitors associated with reduced incident AUD (HR 0.82) and, among those with pre-existing SUDs, reduced SUD-related mortality (HR 0.50; 0.32–0.79).<sup class="cit">[24]</sup></p>
+<div class="def"><b>Mechanistic distinction:</b> DPP-4 inhibitors (which boost endogenous GLP-1) do <b>not</b> reduce alcohol outcomes in human cohorts or rodent experiments — confirming that <b>pharmacological GLP-1R activation at supraphysiological levels</b>, not merely enhanced endogenous signaling, is required for addiction-related effects.<sup class="cit">[23][25]</sup></div>
+<h3>Other substances</h3>
+<p>The US Veterans cohort found GLP-1 RAs associated with reduced risk across multiple classes: cannabis (HR 0.86), cocaine (HR 0.80), nicotine (HR 0.80), opioids (HR 0.75).<sup class="cit">[24]</sup> Nicotine RCT results are mixed — dulaglutide added to varenicline showed no effect on cessation, but semaglutide significantly reduced nicotine craving in a monotherapy trial.<sup class="cit">[26]</sup> Opioid evidence is preliminary, with one small liraglutide trial showing ~40% craving reduction.<sup class="cit">[26]</sup></p>
+
+<h2 id="glp1-neurodeg"><span class="pre">GLP-1 · Part 5 — Neurodegenerative Diseases</span>Promise tempered by phase 3 failure</h2>
+<h3>Parkinson's disease</h3>
+<div class="study"><span class="h">LIXIPARK · Meissner et al., NEJM 2024</span>
+<p style="margin:6px 0 0">Lixisenatide 20 μg/day × 12 months in 156 early PD patients: MDS-UPDRS part III changed by −0.04 (improvement) vs. +3.04 (worsening) with placebo (difference 3.08; 95% CI 0.86–5.30; P = .007). However, this did not quite reach the MCID of 3.25 points, secondary endpoints were unsupportive, and GI side effects were substantial (nausea 46%).<sup class="cit">[27-28]</sup></p></div>
+<div class="study"><span class="h">Exenatide-PD3 · Vijiaratnam et al., Lancet 2025 (definitive trial)</span>
+<p style="margin:6px 0 0">194 patients, 96 weeks — the largest and longest GLP-1 RA trial in PD — was <span class="neg">entirely negative</span>. MDS-UPDRS III OFF-medication worsened 5.7 points with exenatide vs. 4.5 with placebo (adjusted coefficient 0.92; 95% CI −1.56 to 3.39; P = .47). No subgroup benefited, and DaT-SPECT showed no difference in striatal binding ratios.<sup class="cit">[29]</sup></p></div>
+<div class="tbl">
+<table>
+  <caption>GLP-1 RA trials in Parkinson's disease.<sup class="cit">[27-31]</sup></caption>
+  <thead><tr><th>Trial</th><th>Agent</th><th>N</th><th>Duration</th><th>Primary result</th><th>Outcome</th></tr></thead>
+  <tbody>
+    <tr><td>Aviles-Olmos 2013</td><td>Exenatide (open-label)</td><td>45</td><td>12 mo + 12 mo washout</td><td>MD −4.9 pts (P = .037)</td><td class="pos">Positive</td></tr>
+    <tr><td>Exenatide-PD (Athauda 2017)</td><td>Exenatide (RCT)</td><td>62</td><td>48 wk + 12 wk washout</td><td>Adj MD −3.5 pts (P = .032)</td><td class="pos">Positive</td></tr>
+    <tr><td>LIXIPARK (Meissner 2024)</td><td>Lixisenatide (RCT)</td><td>156</td><td>12 mo + 2 mo washout</td><td>Difference 3.08 pts (P = .007)</td><td class="pos">Positive (borderline)</td></tr>
+    <tr><td>NLY01 / PRISM-PD (2024)</td><td>PEGylated exenatide (RCT)</td><td>255</td><td>36 wk</td><td>No difference</td><td class="neg">Negative</td></tr>
+    <tr><td>Exenatide-PD3 (2025)</td><td>Exenatide (Phase 3 RCT)</td><td>194</td><td>96 wk</td><td>Adj coeff 0.92 (P = .47)</td><td class="neg">Negative</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The pattern — positive results with short-acting agents (exenatide twice-daily, lixisenatide) in small, short trials but negative results with long-acting/modified agents in larger, longer trials — raises whether <strong>pulsatile vs. continuous GLP-1R stimulation</strong> matters for CNS effects, or whether earlier positives reflected symptomatic rather than disease-modifying effects that washed out.<sup class="cit">[29][31]</sup></p>
+<h3>Alzheimer's disease</h3>
+<p>Epidemiological data are encouraging: a meta-analysis of 26 RCTs (N = 164,531) found GLP-1 RAs associated with reduced dementia (OR 0.55; 95% CI 0.35–0.86).<sup class="cit">[32]</sup> However, the <strong>EVOKE trial</strong> of oral semaglutide 14 mg in early AD did not meet its primary cognitive endpoint (CDR-SB) despite favorable biomarker modulation (reduced CSF p-tau, t-tau, neurogranin, and the neuroinflammation marker YKL-40) — mirroring the broader biomarker–clinical disconnect in AD therapeutics.<sup class="cit">[33]</sup></p>
+
+<h2 id="glp1-decision"><span class="pre">GLP-1 · Part 6 — Decision-Making</span>The behavioral-economics interface</h2>
+<div class="study"><span class="h">First RCT on reward behavior in psychiatry · Gill et al., JAMA Psychiatry 2026</span>
+<p style="margin:6px 0 0">In a 16-week double-blind trial of oral semaglutide in MDD patients (BMI ≥25), semaglutide modulated effort-based decision-making on the <strong>Effort-Expenditure for Rewards Task (EEfRT)</strong>. It significantly reduced parameter <strong>k</strong> — the effort-cost discount parameter (β = −1.737; P = .03) — meaning participants perceived lower cost of effort relative to reward, increasing willingness to exert effort for higher expected-value rewards. There was <strong>no effect on parameter h</strong> (probability weighting; P = .51), and effects were <strong>independent of changes in depressive symptom severity</strong>.<sup class="cit">[34]</sup></p></div>
+<div class="tbl">
+<table>
+  <caption>Connecting probiotics and GLP-1 RAs to economic decision parameters.<sup class="cit">[34][36]</sup></caption>
+  <thead><tr><th>Parameter</th><th>Probiotics (Dantas 2022)</th><th>Semaglutide (Gill 2026)</th></tr></thead>
+  <tbody>
+    <tr><td>Risk preferences</td><td>Decreased risk-taking</td><td>Not measured</td></tr>
+    <tr><td>Temporal discounting</td><td>Increased patience (future-oriented)</td><td>Not measured</td></tr>
+    <tr><td>Effort discounting</td><td>Not measured</td><td>Decreased effort cost (parameter k)</td></tr>
+    <tr><td>Probability weighting</td><td>Not measured</td><td>No effect (parameter h)</td></tr>
+    <tr><td>Mechanism</td><td>Microbiota → SCFA/serotonin/GABA → prefrontal/striatal modulation</td><td>GLP-1R → VTA GABA → reduced mesolimbic DA → altered reward valuation</td></tr>
+    <tr><td>Independence from mood</td><td>Not assessed</td><td>Yes — independent of depression severity</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Both interventions modulate the gut–brain axis and alter economic decision parameters in complementary ways, sharing a mesolimbic dopamine pathway: gut microbiota influence GLP-1 production from intestinal L-cells, and GLP-1 modulates VTA–NAc dopamine signaling.<sup class="cit">[4-5]</sup> Both appear to shift the balance from impulsive/hedonic toward deliberative/future-oriented decision-making — with implications for behavioral-economics models that treat preferences as stable endowments rather than biologically modifiable states. No studies have yet directly measured <strong>temporal discounting or risk-preference parameters under GLP-1 RA treatment</strong> — a critical gap given the mechanistic rationale and the probiotic precedent.<sup class="cit">[34]</sup></p>
+
+<!-- ===================== GAPS ===================== -->
+<h2 id="gaps"><span class="pre">Evidence Gaps &amp; Key Uncertainties</span>What remains unresolved</h2>
+<h4>Gut–brain axis</h4>
+<ul>
+  <li><strong>Causality</strong> remains the central challenge — most human microbiota–brain associations are correlational; fecal-transplant animal models give the strongest causal evidence, but human translation is limited.<sup class="cit">[2-3][14]</sup></li>
+  <li>The <strong>transdiagnostic</strong> nature of microbiome perturbations (shared depletion of butyrate producers across depression, bipolar, schizophrenia, anxiety) suggests common vulnerability rather than disease-specific biomarkers.<sup class="cit">[2]</sup></li>
+  <li>High <strong>heterogeneity</strong> across probiotic meta-analyses (I² often &gt;90%) reflects strain, dosing, and population variability.<sup class="cit">[2]</sup></li>
+  <li>Whether physiological SCFA concentrations achieve the same CNS effects as supraphysiological sodium-butyrate doses used preclinically is unclear.<sup class="cit">[2]</sup></li>
+  <li>Relative contributions of neural vs. humoral vs. immune pathways are hard to disentangle due to cross-talk and redundancy.<sup class="cit">[2][14]</sup></li>
+  <li>"Body-first" vs. "brain-first" PD subtypes remain a hypothesis requiring prospective longitudinal validation.<sup class="cit">[10]</sup></li>
+  <li>Decision-making evidence is limited to a single probiotic RCT — replication and mechanistic studies are urgently needed.<sup class="cit">[13]</sup></li>
+</ul>
+<h4>GLP-1 receptor agonists</h4>
+<ul>
+  <li><strong>Agent specificity vs. class effect:</strong> semaglutide and liraglutide (but not exenatide or dulaglutide) associated with psychiatric benefit — possibly relating to PK properties, binding kinetics, or CVO access.<sup class="cit">[17]</sup></li>
+  <li><strong>Exclusion of psychiatric populations</strong> from nearly all metabolic RCTs limits generalizability to those most likely to benefit.<sup class="cit">[15-16]</sup></li>
+  <li><strong>Tolerance/durability:</strong> VTA dopamine recovery during chronic semaglutide in mice questions long-term reward modulation; persistence after discontinuation is unknown.<sup class="cit">[14]</sup></li>
+  <li><strong>Anhedonia risk:</strong> broad mesolimbic dopamine suppression is biologically plausible as a mechanism, though meta-analytic data show no increased psychiatric adverse events vs. placebo.<sup class="cit">[15]</sup></li>
+  <li><strong>Neurodegenerative disconnect:</strong> strong observational 20–70% risk reductions not confirmed in dedicated RCTs (negative Exenatide-PD3, negative EVOKE).<sup class="cit">[29][33]</sup></li>
+  <li><strong>Decision-making evidence</strong> limited to one effort-discounting RCT in MDD and one probiotic study in healthy volunteers; no GLP-1 RA studies have measured temporal discounting, risk, or gambling parameters.<sup class="cit">[34][36]</sup></li>
+</ul>
+
+<h2 style="border-top:2px solid var(--line)"><span class="pre">Synthesis</span>Summary</h2>
+<p>The gut–brain axis is a bidirectional communication system operating through at least four parallel channels: <strong>neural</strong> (vagal and spinal afferents/efferents, neuropod synapses), <strong>neuroendocrine</strong> (HPA axis, enteroendocrine hormones), <strong>immune</strong> (cholinergic anti-inflammatory pathway, cytokine signaling), and <strong>metabolic</strong> (SCFAs, tryptophan metabolites, bile acids, direct microbial neurotransmitter production). The gut microbiome — ~38 trillion organisms — functions as a metabolic organ that produces neuroactive compounds, regulates immune tone, maintains barrier integrity, and shapes brain development from birth through aging. Dysfunction spans functional GI disorders (IBS), inflammatory conditions (IBD), neuropsychiatric disease (depression, anxiety, ASD), and neurodegeneration (Parkinson's, Alzheimer's), with the Parkinson's gut-origin hypothesis the most dramatic example of pathological gut-to-brain propagation.</p>
+<p>GLP-1 receptor agonists, by design metabolic drugs, by consequence profoundly modulate this axis and central reward circuitry. Semaglutide accesses the brain not through the BBB but through circumventricular organs, achieving sustained supraphysiological activation of GLP-1R populations across hypothalamus, brainstem, VTA, nucleus accumbens, and central amygdala.<sup class="cit">[8][13]</sup> The downstream effect — mediated primarily through VTA GABA neuron activation and consequent dopamine suppression — reduces hedonic eating, alcohol consumption, and potentially other reward-seeking behaviors.<sup class="cit">[12][20-21]</sup> Evidence is most mature for alcohol use disorder (two positive RCTs, NNT ~4.3) and most provocative for decision-making (reduced effort discounting in MDD, independent of mood).<sup class="cit">[20][34]</sup> The neurodegenerative story remains unresolved — strong epidemiological signals have not translated to positive phase 3 trials.<sup class="cit">[29][33]</sup> For behavioral economics, evidence that a gut-hormone analog can measurably shift computational reward parameters suggests the microbiome–incretin–mesolimbic axis may be a previously unrecognized biological substrate of economic preferences.</p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>About this reference.</strong> Faithful in-depth synthesis of two research reviews on the gut–brain axis and GLP-1 receptor agonists, compiled for a scientifically literate audience. Bracketed superscripts preserve the source citation indices; primary sources (via OpenEvidence) include NEJM, JAMA / JAMA Psychiatry, The Lancet / Lancet Psychiatry, Nature, Science / Science Advances, Microbial Biotechnology (Wiley), and others. The NEJM neuropod passage is quoted under license with attribution. Educational synthesis — not medical advice, and not a substitute for the primary literature.</p>
+  </div>
+</footer>
+
+</body>
+</html>

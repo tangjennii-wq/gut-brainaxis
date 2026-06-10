@@ -1,0 +1,11 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.tmp
+*~
+.vscode/
+.idea/
+
+# Codex working backups (uncomment to exclude from the repo)
+# *.before-diagram-refresh.pptx
+# *.diagram-refresh.pptx

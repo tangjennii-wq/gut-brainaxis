@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gut–Brain Axis · For Sam & Family</title>
+<style>
+  :root{
+    --bg:#fbf7f2; --ink:#241f1b; --muted:#6b625a; --line:#e7ddd1;
+    --rust:#d2603a; --rust-dark:#a8431f; --teal:#2f7d77; --teal-dark:#1f5651;
+    --gold:#d9a441; --plum:#7a4b6b; --green:#5b8a4f; --card:#fffdfa;
+    --shadow:0 6px 26px rgba(60,40,20,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  a{color:var(--rust-dark)}
+  /* mode switcher */
+  #modebar{position:sticky;top:0;z-index:100;display:flex;gap:6px;justify-content:center;align-items:center;
+    background:#241f1b;padding:8px 12px;flex-wrap:wrap}
+  #modebar .mlabel{color:#b8ada0;font-size:11px;font-weight:700;letter-spacing:2px;margin-right:6px}
+  #modebar button{font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1px solid #5a4f45;
+    background:transparent;color:#e7ddd1;padding:6px 15px;border-radius:30px;transition:.15s;white-space:nowrap}
+  #modebar button:hover{background:#3a322c;color:#fff}
+  #modebar button.active{background:var(--rust);border-color:var(--rust);color:#fff}
+  #frameView{display:none}
+  #frameView iframe{width:100%;height:calc(100vh - 52px);border:0;display:block;background:var(--bg)}
+  @media(max-width:560px){#modebar .mlabel{display:none} #modebar button{font-size:12px;padding:5px 11px}}
+  /* nav */
+  nav{position:sticky;top:50px;z-index:50;background:rgba(251,247,242,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:10px 18px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  nav .brand{font-weight:800;color:var(--rust-dark);margin-right:10px;letter-spacing:.3px}
+  nav a{font-size:13px;text-decoration:none;color:var(--muted);padding:4px 9px;border-radius:20px;white-space:nowrap}
+  nav a:hover{background:#f0e7da;color:var(--ink)}
+  /* layout */
+  header{max-width:920px;margin:0 auto;padding:64px 24px 28px;text-align:center}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--rust);font-weight:700}
+  h1{font-size:clamp(30px,5vw,52px);line-height:1.08;margin:14px 0 10px;font-family:Georgia,serif}
+  .sub{font-size:18px;color:var(--muted);max-width:680px;margin:0 auto}
+  .for{display:inline-block;margin-top:18px;background:#f1e7d8;color:var(--rust-dark);font-weight:600;
+    padding:6px 16px;border-radius:30px;font-size:14px}
+  section{max-width:920px;margin:0 auto;padding:46px 24px;border-top:1px solid var(--line)}
+  .sec-num{font-family:Georgia,serif;font-style:italic;color:var(--rust);font-size:16px}
+  h2{font-size:clamp(24px,3.4vw,34px);margin:6px 0 14px;font-family:Georgia,serif;line-height:1.15}
+  h3{font-size:20px;margin:30px 0 8px;color:var(--teal-dark)}
+  p{margin:12px 0}
+  .lead{font-size:19px}
+  strong{color:var(--rust-dark)}
+  .muted{color:var(--muted)}
+  /* cards & callouts */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:680px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .card h4{margin:0 0 6px;font-size:17px}
+  a.reslink{display:block;text-decoration:none;color:var(--ink);transition:.18s ease}
+  a.reslink h4{color:var(--rust-dark);margin:0 0 6px;font-size:17px}
+  a.reslink:hover{border-color:var(--rust);box-shadow:0 10px 30px rgba(60,40,20,.16);transform:translateY(-3px)}
+  a.reslink .pillk{display:inline-block;font-size:11px;font-weight:700;color:var(--teal-dark);background:#e3efee;border-radius:20px;padding:2px 9px;margin-top:8px}
+  .stat{font-family:Georgia,serif;font-weight:700;font-size:30px;line-height:1;color:var(--rust)}
+  .callout{border-left:4px solid var(--gold);background:#fcf4e3;border-radius:0 12px 12px 0;padding:14px 18px;margin:20px 0}
+  .callout .tag{font-weight:700;color:var(--gold);text-transform:uppercase;font-size:12px;letter-spacing:1px}
+  .quote{background:#f3f0ec;border-radius:14px;padding:22px 26px;margin:22px 0;font-family:Georgia,serif;font-size:19px;font-style:italic;color:#3a322c;position:relative}
+  .quote cite{display:block;margin-top:10px;font-size:14px;font-style:normal;color:var(--muted)}
+  /* interactive svg helpers */
+  figure{margin:24px 0;text-align:center}
+  figcaption{font-size:13px;color:var(--muted);margin-top:8px;max-width:640px;margin-left:auto;margin-right:auto}
+  .hint{font-size:13px;color:var(--rust);font-weight:600}
+  .hot{cursor:pointer;transition:.15s}
+  .hot:hover{opacity:.85}
+  .tip{font-size:13px;color:var(--muted);min-height:42px;margin-top:8px;padding:10px 14px;background:#f3f0ec;border-radius:10px;transition:.2s}
+  .art-figure{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow)}
+  .art-figure img{display:block;width:100%;height:auto;border-radius:10px}
+  .art-figure figcaption{font-size:12.5px}
+  /* table */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:#3a322c;color:#fbf7f2;font-size:14px}
+  thead th:first-child{background:#2a2420}
+  tbody tr:nth-child(even){background:#faf6f0}
+  td:first-child{font-weight:600;color:var(--teal-dark)}
+  .pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px}
+  .endo{background:#e3efee;color:var(--teal-dark)}
+  .drug{background:#f7e3da;color:var(--rust-dark)}
+  /* disease chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;flex:1 1 150px;min-width:150px;box-shadow:var(--shadow)}
+  .chip b{display:block;color:var(--rust-dark)}
+  .chip span{font-size:13.5px;color:var(--muted)}
+  footer{max-width:920px;margin:0 auto;padding:40px 24px 80px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  .toggle{cursor:pointer;user-select:none;color:var(--teal-dark);font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+  .toggle:hover{text-decoration:underline}
+  .drawer{max-height:0;overflow:hidden;transition:max-height .4s ease;border-radius:10px}
+  .drawer.open{max-height:600px}
+  .drawer-inner{background:#f3f0ec;border-radius:10px;padding:2px 18px;margin-top:8px}
+  .scale{font-size:13px;color:var(--muted);font-style:italic}
+</style>
+</head>
+<body>
+
+<div id="modebar">
+  <span class="mlabel">VIEW</span>
+  <button data-mode="guide" data-src="teaching-guide-app.html" class="active">📘 Teaching Guide</button>
+  <button data-mode="depth" data-src="gut-brain-axis-indepth.html">🔬 In-Depth (Learner)</button>
+  <button data-mode="tour">📖 Visual Tour</button>
+</div>
+
+<div id="tourView" style="display:none">
+
+<nav>
+  <span class="brand">🧠↔️🦠 Gut–Brain</span>
+  <a href="#start">Big Idea</a>
+  <a href="#hardware">The Wiring</a>
+  <a href="#neuropod">Millisecond Synapse</a>
+  <a href="#software">The Chemicals</a>
+  <a href="#stress">Stress Line</a>
+  <a href="#breaks">When It Breaks</a>
+  <a href="#money">Gut & Decisions</a>
+  <a href="#glp1">Ozempic</a>
+  <a href="#takeaways">Takeaways</a>
+  <a href="#resources" style="color:var(--rust-dark);font-weight:700">Go Deeper ↓</a>
+</nav>
+
+<header id="start">
+  <div class="kicker">A Field Guide to Your Insides</div>
+  <h1>The Gut–Brain Axis</h1>
+  <p class="sub">How the bag of microbes in your belly is in constant, two-way conversation with your brain — shaping your mood, your cravings, your health, and (it turns out) even the choices you make.</p>
+  <div class="for">Made for Sam &amp; family · Paris 🇫🇷</div>
+</header>
+
+<section>
+  <p class="lead">Here's the idea in one sentence: <strong>your gut and your brain are wired together like two cities joined by a highway, a postal service, and a private phone line — all running at once, in both directions.</strong></p>
+  <p>For most of history we thought of the gut as plumbing: food in, waste out. We now know it's one of the most heavily wired, chemically chatty organs in the body — and a huge fraction of that wiring is busy <em>reporting upward to the brain</em>, not taking orders from it. Add the ~38 trillion microbes living inside you, and you have a system that helps run your appetite, your stress response, your immune system, and your frame of mind.</p>
+  <p>This guide walks through it in four moves: the <strong>hardware</strong> (the wiring), the <strong>software</strong> (the chemical messages), what happens <strong>when it breaks</strong>, and the surprising punchline — how this system touches <strong>decision-making</strong> and the new <strong>GLP-1 drugs</strong> like Ozempic.</p>
+
+  <div class="grid g3" style="margin-top:24px">
+    <div class="card"><div class="stat">~500M</div><p class="muted" style="margin:6px 0 0">neurons in the gut — a "second brain" running on its own.</p></div>
+    <div class="card"><div class="stat">~95%</div><p class="muted" style="margin:6px 0 0">of your body's serotonin is made in the gut, not the brain.</p></div>
+    <div class="card"><div class="stat">38<span style="font-size:18px"> trillion</span></div><p class="muted" style="margin:6px 0 0">microbes living in you — a chemical factory and a second organ.</p></div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section id="hardware">
+  <div class="sec-num">Part One</div>
+  <h2>The Hardware — your "second brain" and its highway</h2>
+
+  <h3>A brain in your belly</h3>
+  <p>Lining your gut wall is the <strong>enteric nervous system</strong> — roughly 200–600 million neurons, more than in your spinal cord. It can run digestion entirely on its own, without checking in with the brain. It uses the same chemical messengers your head-brain does (acetylcholine, serotonin, dopamine, GABA and 20+ others), which is why scientists nicknamed it the <strong>"second brain."</strong></p>
+
+  <h3>The vagus nerve: the information superhighway</h3>
+  <p>The main cable between gut and brain is the <strong>vagus nerve</strong>. Here's the surprise that flips everyone's intuition: about <strong>80% of its fibers carry signals <em>up</em> from gut to brain</strong>, and only 20% carry commands down. In other words, your gut talks far more than it listens. It's a giant sensory organ constantly streaming a status report to your head.</p>
+
+  <figure class="art-figure">
+    <img src="fig-vagus-highway.png" alt="Generated illustration of the vagus nerve connecting brain and gut">
+    <figcaption>Companion art: the gut-to-brain highway. The editable diagram below carries the precise labels.</figcaption>
+  </figure>
+
+  <figure>
+    <svg viewBox="0 0 720 320" width="100%" style="max-width:680px">
+      <title>Vagus nerve signals flow mostly upward from gut to brain</title>
+      <defs>
+        <marker id="up" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="var(--teal)"/></marker>
+        <marker id="dn" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="var(--rust)"/></marker>
+        <linearGradient id="brainWarm" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="var(--card)"/>
+          <stop offset="1" stop-color="var(--rust)"/>
+        </linearGradient>
+        <linearGradient id="gutCool" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="var(--card)"/>
+          <stop offset="1" stop-color="var(--teal)"/>
+        </linearGradient>
+      </defs>
+      <rect x="18" y="18" width="684" height="284" rx="18" fill="var(--card)" stroke="var(--line)"/>
+      <g fill="none" stroke="var(--line)" stroke-width="1" opacity=".7">
+        <path d="M230 72 C320 36 430 34 524 72"/>
+        <path d="M214 248 C330 282 428 282 542 244"/>
+      </g>
+      <g class="hot" onmouseover="t('h1','The brainstem (the NTS) is the gut\'s main inbox — it gathers visceral signals and relays them to the hypothalamus, amygdala, memory and emotion centers.')">
+        <path d="M103 58 C86 42 55 49 48 78 C26 85 25 126 52 137 C51 165 87 176 108 158 C129 176 166 164 166 135 C194 123 190 81 164 73 C154 48 123 44 103 58Z" fill="url(#brainWarm)" fill-opacity=".32" stroke="var(--rust-dark)" stroke-width="2.4"/>
+        <g fill="none" stroke="var(--rust-dark)" stroke-width="1.5" opacity=".9">
+          <path d="M63 93 C78 74 101 86 98 105 C122 85 148 92 151 116"/>
+          <path d="M63 125 C83 112 103 122 107 145 C122 126 148 128 157 146"/>
+          <path d="M95 65 C103 83 127 76 135 91"/>
+        </g>
+        <path d="M151 139 C175 151 181 176 165 194 C151 209 126 206 118 187 C139 185 150 168 151 139Z" fill="var(--rust)" fill-opacity=".2" stroke="var(--rust-dark)" stroke-width="1.6"/>
+        <text x="108" y="104" text-anchor="middle" font-size="13" font-weight="800" fill="var(--rust-dark)">BRAIN</text>
+        <text x="176" y="200" font-size="11.5" fill="var(--muted)">brainstem</text>
+        <text x="176" y="214" font-size="11.5" fill="var(--muted)">NTS</text>
+      </g>
+      <g class="hot" onmouseover="t('h1','The gut wall holds the enteric nervous system plus sensors for stretch, nutrients, acidity and microbial chemicals — the source of the upward stream.')">
+        <path d="M570 66 C631 54 662 98 649 143 C638 181 598 180 587 149 C579 124 600 113 618 126" fill="none" stroke="var(--teal-dark)" stroke-width="17" stroke-linecap="round"/>
+        <path d="M554 92 C511 102 512 151 551 160 C589 169 587 213 550 220 C511 227 500 185 525 170" fill="none" stroke="url(#gutCool)" stroke-width="35" stroke-linecap="round"/>
+        <path d="M554 92 C511 102 512 151 551 160 C589 169 587 213 550 220 C511 227 500 185 525 170" fill="none" stroke="var(--teal-dark)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M570 66 C631 54 662 98 649 143 C638 181 598 180 587 149 C579 124 600 113 618 126" fill="none" stroke="var(--teal-dark)" stroke-width="2.2" stroke-linecap="round"/>
+        <g stroke="var(--teal-dark)" stroke-width="1.6" opacity=".65" fill="none">
+          <path d="M528 113 C548 124 548 138 530 149"/>
+          <path d="M558 173 C536 185 535 201 554 211"/>
+          <path d="M608 86 C625 103 626 124 608 140"/>
+        </g>
+        <text x="585" y="166" text-anchor="middle" font-size="13" font-weight="800" fill="var(--teal-dark)">GUT</text>
+        <text x="585" y="183" text-anchor="middle" font-size="11.5" fill="var(--teal-dark)">enteric sensors</text>
+      </g>
+      <g fill="none" stroke="var(--teal)" stroke-linecap="round" opacity=".55">
+        <path d="M532 116 C477 106 438 110 397 119"/>
+        <path d="M526 134 C475 129 436 131 397 138"/>
+        <path d="M526 154 C474 154 437 151 397 153"/>
+        <path d="M523 178 C474 170 438 166 397 164"/>
+        <path d="M525 202 C475 187 437 180 397 174"/>
+      </g>
+      <path d="M397 119 C330 102 276 96 207 101" fill="none" stroke="var(--teal)" stroke-width="8.5" stroke-linecap="round" marker-end="url(#up)" opacity=".9"/>
+      <path d="M397 138 C330 121 276 113 207 108" fill="none" stroke="var(--teal)" stroke-width="6.5" stroke-linecap="round" opacity=".55"/>
+      <path d="M397 164 C330 146 275 133 206 119" fill="none" stroke="var(--teal)" stroke-width="4.5" stroke-linecap="round" opacity=".38"/>
+      <circle cx="474" cy="148" r="14" fill="var(--card)" stroke="var(--teal-dark)" stroke-width="2"/>
+      <text x="474" y="146" text-anchor="middle" font-size="9.5" font-weight="800" fill="var(--teal-dark)">nodose</text>
+      <text x="474" y="158" text-anchor="middle" font-size="9.5" font-weight="800" fill="var(--teal-dark)">ganglion</text>
+      <path d="M191 156 C276 196 402 224 540 207" fill="none" stroke="var(--rust)" stroke-width="3.5" stroke-linecap="round" marker-end="url(#dn)" opacity=".85"/>
+      <text x="360" y="78" text-anchor="middle" font-size="14" font-weight="800" fill="var(--teal-dark)">80% gut → brain: sensing</text>
+      <text x="360" y="239" text-anchor="middle" font-size="13" font-weight="700" fill="var(--rust-dark)">20% brain → gut: commands</text>
+    </svg>
+    <div class="tip" id="h1">Hover the brain or gut to see what each end does. The thick green arrow is the point: traffic mostly flows <em>upward</em>.</div>
+  </figure>
+
+  <div class="callout">
+    <div class="tag">Why it matters</div>
+    Because the vagus is mostly a sensing nerve, much of what we call "gut feeling" is literal: the gut is sending real-time data the brain blends into mood, appetite, and alertness — often below conscious awareness.
+  </div>
+</section>
+
+<!-- NEUROPOD -->
+<section id="neuropod">
+  <div class="sec-num">A discovery that changed the field</div>
+  <h2>The millisecond synapse: how your gut "tastes" sugar</h2>
+  <p>For decades we assumed the gut talked to the brain slowly, by dribbling hormones into the bloodstream. Then researchers found that certain gut cells have a long tail — a <strong>neuropod</strong> — that reaches out and forms a <em>direct synaptic connection</em> with the vagus nerve, exactly like neurons wiring to each other in the brain.</p>
+
+  <div class="quote">
+    "Some enteroendocrine cells have long, basal extensions, called neuropods, which synapse with vagal afferent fibers to directly convey sugar-sensing information to the brain within milliseconds."
+    <cite>— Josephine M. Egan, M.D. · <em>Physiological Integration of Taste and Metabolism</em>, New England Journal of Medicine, May 2024</cite>
+  </div>
+
+  <p>The kicker: these cells can tell <strong>real sugar from artificial sweetener.</strong> Glucose triggers one fast electrical channel (a "this is real fuel" signal); non-nutritive sweeteners trigger a different, weaker one. That "real fuel" signal is what drives your brain's <strong>dopamine reward circuit</strong> to prefer actual sugar — part of why diet soda never quite satisfies the way the real thing does.</p>
+
+  <figure class="art-figure">
+    <img src="fig-neuropod.png" alt="Generated illustration of a neuropod cell synapsing onto the vagus nerve">
+    <figcaption>Companion art: a neuropod cell turning lunch into a nerve-speed message.</figcaption>
+  </figure>
+
+  <figure>
+    <svg viewBox="0 0 700 250" width="100%" style="max-width:640px">
+      <title>Neuropod cell distinguishes sugar from sweetener and synapses onto the vagus nerve</title>
+      <defs>
+        <marker id="npStrong" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--gold)"/></marker>
+        <marker id="npWeak" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker>
+        <linearGradient id="cellFill" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="var(--card)"/>
+          <stop offset="1" stop-color="var(--teal)"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="700" height="62" fill="var(--gold)" opacity=".22"/>
+      <path d="M0 62 C76 52 142 71 213 61 C284 51 350 71 421 61 C492 51 571 70 700 58" fill="none" stroke="var(--gold)" stroke-width="3" opacity=".55"/>
+      <text x="18" y="35" font-size="13" fill="var(--rust-dark)" font-weight="800">GUT INTERIOR (food passing by)</text>
+      <g class="hot" onmouseover="t('np','Glucose (real sugar) → activates the SGLT1 channel → a strong glutamate signal → brain reads it as FUEL and rewards it with dopamine.')">
+        <circle cx="205" cy="29" r="14" fill="var(--gold)" stroke="var(--rust-dark)" stroke-width="1.4"/>
+        <text x="205" y="33" text-anchor="middle" font-size="10.5" fill="var(--card)" font-weight="800">G</text>
+        <path d="M218 42 C249 66 279 75 318 80" fill="none" stroke="var(--gold)" stroke-width="5" stroke-linecap="round" marker-end="url(#npStrong)"/>
+        <text x="256" y="61" font-size="11.5" font-weight="700" fill="var(--rust-dark)">strong SGLT1</text>
+      </g>
+      <g class="hot" onmouseover="t('np','Artificial sweetener → triggers only a weaker purinergic signal → tastes sweet but the brain does not get the same FUEL reward.')">
+        <circle cx="474" cy="29" r="14" fill="var(--muted)" opacity=".72" stroke="var(--ink)" stroke-width="1.2"/>
+        <text x="474" y="33" text-anchor="middle" font-size="9.5" fill="var(--card)" font-weight="800">art</text>
+        <path d="M461 43 C430 65 403 73 371 80" fill="none" stroke="var(--muted)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 5" marker-end="url(#npWeak)"/>
+        <text x="394" y="61" font-size="11.5" font-weight="700" fill="var(--muted)">weak sweet signal</text>
+      </g>
+      <g class="hot" onmouseover="t('np','The neuropod cell: senses the gut interior up top, and grows a long tail down to physically wire into the vagus nerve.')">
+        <path d="M334 62 C367 61 386 83 381 115 C376 151 371 174 365 194 C354 201 337 201 326 194 C319 169 314 145 310 115 C306 83 318 65 334 62Z" fill="url(#cellFill)" fill-opacity=".55" stroke="var(--teal-dark)" stroke-width="2.2"/>
+        <circle cx="346" cy="113" r="17" fill="var(--card)" stroke="var(--teal-dark)" stroke-width="1.5" opacity=".9"/>
+        <text x="346" y="111" text-anchor="middle" font-size="11" fill="var(--teal-dark)" font-weight="800">neuro-</text>
+        <text x="346" y="125" text-anchor="middle" font-size="11" fill="var(--teal-dark)" font-weight="800">pod</text>
+        <path d="M346 195 C352 211 366 220 388 221" fill="none" stroke="var(--teal-dark)" stroke-width="4.5" stroke-linecap="round"/>
+      </g>
+      <g class="hot" onmouseover="t('np','At the synapse, tiny neurotransmitter packets jump the narrow cleft to the vagus fiber — gut information moving at neuron speed.')">
+        <line x1="390" y1="221" x2="415" y2="221" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/>
+        <path d="M390 211 C395 218 395 224 390 231" fill="none" stroke="var(--teal-dark)" stroke-width="1.8"/>
+        <path d="M415 211 C410 218 410 224 415 231" fill="none" stroke="var(--teal-dark)" stroke-width="1.8"/>
+        <g fill="var(--gold)">
+          <circle cx="398" cy="215" r="2.7"/><circle cx="403" cy="222" r="2.7"/><circle cx="407" cy="216" r="2.7"/><circle cx="399" cy="228" r="2.7"/>
+        </g>
+        <text x="402" y="206" text-anchor="middle" font-size="11" fill="var(--muted)">synaptic cleft</text>
+      </g>
+      <g class="hot" onmouseover="t('np','The vagus nerve carries the signal to the brainstem in milliseconds — a single synapse from your lunch to your head.')">
+        <rect x="414" y="207" width="258" height="28" rx="14" fill="var(--teal)"/>
+        <path d="M435 221 C486 213 526 229 575 221 C604 216 632 218 658 221" fill="none" stroke="var(--card)" stroke-width="1.7" opacity=".75"/>
+        <text x="543" y="226" text-anchor="middle" font-size="13" fill="var(--card)" font-weight="800">VAGUS NERVE → brain</text>
+      </g>
+      <g transform="translate(590 72)">
+        <circle cx="24" cy="24" r="21" fill="var(--card)" stroke="var(--rust-dark)" stroke-width="2"/>
+        <path d="M24 24 L24 10 M24 24 L34 29" stroke="var(--rust-dark)" stroke-width="2" stroke-linecap="round"/>
+        <text x="24" y="59" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--rust-dark)">milliseconds</text>
+      </g>
+    </svg>
+    <div class="tip" id="np">Hover the sugar molecule, the sweetener, the cell, and the nerve to follow the signal from lunch to brain.</div>
+  </figure>
+</section>
+
+<!-- SOFTWARE -->
+<section id="software">
+  <div class="sec-num">Part Two</div>
+  <h2>The Software — how gut and brain actually talk</h2>
+  <p>The wiring is only half the story. The other half is <strong>chemistry</strong>. Your gut microbes are a living chemical factory, turning the fiber and protein you eat into molecules that act like messages. There are four main "channels," running in parallel.</p>
+
+  <div class="grid g2" style="margin-top:8px">
+    <div class="card">
+      <h4>📨 1. Microbial chemicals</h4>
+      <p class="muted" style="margin:6px 0 0">Bacteria ferment dietary fiber into <strong>short-chain fatty acids</strong> (butyrate, propionate, acetate) that calm inflammation, feed the brain, and keep the blood–brain barrier sealed. They also reshape <strong>tryptophan</strong> into either calming or irritating molecules — and some microbes make neurotransmitters (GABA, dopamine, serotonin) outright.</p>
+    </div>
+    <div class="card">
+      <h4>🚨 2. The stress line (HPA axis)</h4>
+      <p class="muted" style="margin:6px 0 0">When the brain perceives stress, it floods the gut with stress hormones that loosen the gut lining and unsettle the microbes. Chronic stress becomes a vicious loop: stress → leaky, inflamed gut → more stress signals back to the brain.</p>
+    </div>
+    <div class="card">
+      <h4>🧯 3. The anti-inflammatory brake</h4>
+      <p class="muted" style="margin:6px 0 0">The vagus nerve can actively dial <em>down</em> inflammation through the "cholinergic anti-inflammatory pathway" — telling immune cells to stop releasing inflammatory signals. People with low vagal tone tend toward more inflammation.</p>
+    </div>
+    <div class="card">
+      <h4>🛡️ 4. The immune wire & "leaky gut"</h4>
+      <p class="muted" style="margin:6px 0 0">A healthy gut lining is a tight wall. When the wrong microbes take over, bits of bacteria slip into the bloodstream, trip the immune alarm, and send inflammation toward the brain. Gut microbes even tutor the brain's own immune cells (microglia) as they mature.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:22px">The illustration below is a recreation of the classic "microbiome–gut–brain axis" map: on the left, all the things that shape <em>which</em> microbes you carry; in the middle, the channels they use to reach the brain; on the right, the actual chemical keys they make.</p>
+
+  <figure class="art-figure">
+    <img src="fig-four-channels.png" alt="Generated illustration of four parallel communication channels between gut and brain">
+    <figcaption>Companion art: the four gut–brain channels as a simple overview.</figcaption>
+  </figure>
+
+  <figure>
+    <svg viewBox="0 0 920 390" width="100%" style="max-width:880px">
+      <title>Microbiome gut-brain axis map with channels and chemical keys</title>
+      <defs>
+        <marker id="swArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--teal-dark)"/></marker>
+        <marker id="swGoldArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--gold)"/></marker>
+      </defs>
+      <rect x="0" y="0" width="920" height="390" fill="var(--card)" stroke="var(--line)" rx="14"/>
+      <rect x="16" y="16" width="260" height="358" fill="var(--gold)" opacity=".16" rx="12"/>
+      <rect x="298" y="16" width="330" height="358" fill="var(--teal)" opacity=".13" rx="12"/>
+      <rect x="650" y="16" width="254" height="358" fill="var(--rust)" opacity=".13" rx="12"/>
+      <text x="146" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="var(--rust-dark)">What shapes your microbiome</text>
+      <g font-size="12.5" fill="var(--muted)">
+        <text x="34" y="78">Diet &amp; fiber</text><text x="160" y="78">Genes</text>
+        <text x="34" y="108">Antibiotics</text><text x="160" y="108">Stress</text>
+        <text x="34" y="138">Birth mode</text><text x="160" y="138">Lifestyle</text>
+        <text x="34" y="168">Age</text><text x="160" y="168">Location</text>
+      </g>
+      <g fill="none" stroke="var(--gold)" stroke-width="1.8" opacity=".75">
+        <path d="M116 72 h26"/><path d="M110 102 h30"/><path d="M111 132 h26"/><path d="M95 162 h26"/>
+        <path d="M217 72 h26"/><path d="M213 102 h26"/><path d="M222 132 h26"/><path d="M222 162 h26"/>
+      </g>
+      <circle cx="146" cy="269" r="67" fill="var(--card)" stroke="var(--gold)" stroke-width="2"/>
+      <g opacity=".9">
+        <path d="M93 248 C108 232 130 236 139 253 C151 230 180 234 188 256" fill="none" stroke="var(--rust-dark)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M94 286 C117 302 138 285 154 296 C169 307 190 298 200 284" fill="none" stroke="var(--teal-dark)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M110 318 C123 306 140 307 151 320 C164 306 183 307 195 318" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round"/>
+        <g fill="var(--gold)">
+          <circle cx="124" cy="262" r="5"/><circle cx="174" cy="272" r="5"/><circle cx="150" cy="241" r="4"/>
+        </g>
+        <g fill="var(--teal)"><circle cx="118" cy="294" r="4"/><circle cx="181" cy="245" r="4"/></g>
+      </g>
+      <text x="146" y="358" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--rust-dark)">~38 trillion microbes</text>
+      <text x="463" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="var(--teal-dark)">How they reach the brain</text>
+      <path d="M438 68 C423 55 397 61 393 84 C374 91 376 119 397 126 C400 147 428 152 444 136 C461 151 491 145 493 121 C515 113 511 83 491 77 C484 57 457 54 438 68Z" fill="var(--rust)" fill-opacity=".18" stroke="var(--rust-dark)" stroke-width="2"/>
+      <g fill="none" stroke="var(--rust-dark)" stroke-width="1.3" opacity=".85">
+        <path d="M407 94 C421 80 440 89 438 104 C455 88 478 94 480 112"/>
+        <path d="M405 118 C424 108 442 117 445 134 C457 122 475 124 486 135"/>
+      </g>
+      <text x="446" y="112" text-anchor="middle" font-size="12" font-weight="800" fill="var(--rust-dark)">BRAIN</text>
+      <rect x="486" y="180" width="116" height="142" rx="16" fill="var(--card)" stroke="var(--teal-dark)" stroke-width="1.8"/>
+      <path d="M497 205 C512 191 529 191 544 205 C559 219 576 219 591 205" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" opacity=".45"/>
+      <text x="544" y="178" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--teal-dark)">gut lining</text>
+      <g>
+        <circle cx="514" cy="226" r="8" fill="var(--teal)"/><circle cx="541" cy="235" r="8" fill="var(--plum)"/>
+        <circle cx="572" cy="224" r="8" fill="var(--gold)"/><circle cx="514" cy="263" r="6" fill="var(--green)"/>
+        <circle cx="558" cy="270" r="6" fill="var(--rust)"/><circle cx="585" cy="258" r="6" fill="var(--teal)"/>
+      </g>
+      <text x="544" y="302" text-anchor="middle" font-size="11" fill="var(--teal-dark)">microbes &amp;</text>
+      <text x="544" y="316" text-anchor="middle" font-size="11" fill="var(--teal-dark)">metabolites</text>
+      <g class="hot" onmouseover="t('sw','HPA / stress hormones: the brain\'s chemical command line down to the gut.')">
+        <rect x="320" y="162" width="132" height="28" rx="14" fill="var(--plum)"/>
+        <text x="386" y="181" text-anchor="middle" font-size="12" fill="var(--card)" font-weight="800">HPA · stress</text>
+      </g>
+      <g class="hot" onmouseover="t('sw','Vagus nerve: the fast electrical line carrying gut signals up.')">
+        <rect x="320" y="204" width="132" height="28" rx="14" fill="var(--teal)"/>
+        <text x="386" y="223" text-anchor="middle" font-size="12" fill="var(--card)" font-weight="800">vagus nerve</text>
+      </g>
+      <g class="hot" onmouseover="t('sw','Immune cells &amp; cytokines: inflammation signals that travel to the brain.')">
+        <rect x="320" y="246" width="132" height="28" rx="14" fill="var(--green)"/>
+        <text x="386" y="265" text-anchor="middle" font-size="12" fill="var(--card)" font-weight="800">immune cells</text>
+      </g>
+      <g class="hot" onmouseover="t('sw','Gut hormones (GLP-1, PYY): released by gut cells, they signal fullness and mood — and are the target of Ozempic-type drugs.')">
+        <rect x="320" y="288" width="132" height="28" rx="14" fill="var(--rust)"/>
+        <text x="386" y="307" text-anchor="middle" font-size="12" fill="var(--card)" font-weight="800">gut hormones</text>
+      </g>
+      <g stroke="var(--teal-dark)" stroke-width="1.8" fill="none" marker-end="url(#swArrow)" opacity=".62">
+        <path d="M452 176 C482 169 501 166 529 178"/>
+        <path d="M452 218 C475 197 487 167 440 136"/>
+        <path d="M452 260 C484 246 500 182 456 137"/>
+        <path d="M452 302 C492 284 516 187 470 136"/>
+      </g>
+      <text x="777" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="var(--rust-dark)">The chemical keys</text>
+      <g class="hot" onmouseover="t('sw','SCFAs (e.g. butyrate): fiber fermented by bacteria → calm inflammation, seal the blood-brain barrier, feed brain cells.')">
+        <rect x="666" y="58" width="220" height="82" rx="10" fill="var(--card)" stroke="var(--rust-dark)" stroke-dasharray="4 3"/>
+        <path d="M680 113 C690 95 703 128 714 108 C724 90 737 122 747 104" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="756" cy="104" r="4" fill="var(--gold)"/>
+        <text x="680" y="82" font-size="13" font-weight="800" fill="var(--rust-dark)">Short-chain fatty acids</text>
+        <text x="774" y="108" font-size="12" fill="var(--muted)">from fiber →</text>
+        <text x="680" y="128" font-size="12" fill="var(--muted)">barrier-sealing brain fuel</text>
+      </g>
+      <g class="hot" onmouseover="t('sw','Tryptophan-derived indoles: shift the gut toward calm, barrier-protective signaling via the AhR receptor.')">
+        <rect x="666" y="154" width="220" height="82" rx="10" fill="var(--card)" stroke="var(--rust-dark)" stroke-dasharray="4 3"/>
+        <polygon points="697,193 709,185 722,193 718,208 702,208" fill="none" stroke="var(--plum)" stroke-width="2.2"/>
+        <polygon points="721,193 733,187 744,196 740,209 724,208" fill="none" stroke="var(--plum)" stroke-width="2.2"/>
+        <circle cx="709" cy="198" r="2.5" fill="var(--plum)"/>
+        <text x="680" y="178" font-size="13" font-weight="800" fill="var(--rust-dark)">Tryptophan &amp; indoles</text>
+        <text x="760" y="202" font-size="12" fill="var(--muted)">calming vs.</text>
+        <text x="680" y="222" font-size="12" fill="var(--muted)">irritating chemical forks</text>
+      </g>
+      <g class="hot" onmouseover="t('sw','Bile acids: reshaped by microbes, they signal to the brain and trigger gut hormone (GLP-1) release.')">
+        <rect x="666" y="250" width="220" height="82" rx="10" fill="var(--card)" stroke="var(--rust-dark)" stroke-dasharray="4 3"/>
+        <g fill="none" stroke="var(--green)" stroke-width="2.1">
+          <polygon points="690,290 701,279 716,284 719,300 705,309 691,302"/>
+          <polygon points="716,284 731,278 744,289 738,305 719,300"/>
+          <polygon points="738,305 752,304 760,316 751,327 738,321"/>
+          <polygon points="686,305 697,316 690,327 678,320"/>
+        </g>
+        <text x="680" y="274" font-size="13" font-weight="800" fill="var(--rust-dark)">Bile acids</text>
+        <text x="772" y="301" font-size="12" fill="var(--muted)">microbe-modified;</text>
+        <text x="680" y="321" font-size="12" fill="var(--muted)">trigger GLP-1 release</text>
+      </g>
+      <g stroke="var(--gold)" stroke-width="1.6" fill="none" marker-end="url(#swGoldArrow)" opacity=".45">
+        <path d="M604 226 C628 201 642 140 666 112"/>
+        <path d="M604 247 C628 239 642 210 666 198"/>
+        <path d="M604 270 C630 281 642 294 666 294"/>
+      </g>
+    </svg>
+    <div class="tip" id="sw">Hover any channel or chemical key. This is an original redrawing of the microbiome–gut–brain axis figure (Microbial Biotechnology, 2024).</div>
+  </figure>
+
+  <p class="scale">A famous experiment (Bravo et al., 2011): feeding mice a single probiotic strain changed calming GABA receptors across their brains and made them act less anxious — but the effect vanished if the vagus nerve was cut. That cut-the-wire result is the cleanest proof that microbes reach the brain <em>through</em> the vagus.</p>
+</section>
+
+<!-- STRESS / quick aside merged; go to breaks -->
+<section id="breaks">
+  <div class="sec-num">Part Three</div>
+  <h2>When the axis breaks down</h2>
+  <p>If gut and brain are this tightly linked, then trouble on one end shows up on the other. This plays out across a striking range of conditions — from belly to brain.</p>
+
+  <div class="chips">
+    <div class="chip"><b>IBS</b><span>Now officially called a "disorder of gut–brain interaction." Doubles the risk of later anxiety/depression — and vice versa.</span></div>
+    <div class="chip"><b>IBD (Crohn's, colitis)</b><span>Active disease ~3× the depression risk. Depression, in turn, predicts more flares and worse treatment response.</span></div>
+    <div class="chip"><b>Depression</b><span>Specific gut bacteria (butyrate-makers) are consistently depleted across depression, bipolar, schizophrenia — a shared signature.</span></div>
+    <div class="chip"><b>Autism</b><span>GI problems in up to 47–80% of autistic children; transplanting their microbes into germ-free mice reproduces autism-like behavior.</span></div>
+  </div>
+
+  <h3>The headline case: Parkinson's may start in the gut</h3>
+  <p>This is the most dramatic example of the axis running in reverse. The protein clumps that define <strong>Parkinson's disease</strong> show up in the gut's nerves years before the brain — and constipation often precedes the tremor by a decade. The "body-first" hypothesis says the disease can <strong>begin in the gut and crawl up the vagus nerve into the brain</strong>, prion-style.</p>
+  <p>Two lines of evidence are hard to ignore. In mice, injecting the rogue protein into the gut wall sent it marching up to the brain in sequence — <em>unless the vagus was cut first</em>, which blocked it. And in huge Swedish and Danish registries, people who'd had their vagus nerve surgically cut decades earlier had a <strong>~40–47% lower</strong> risk of Parkinson's. Cut the wire, slow the spread.</p>
+
+  <div class="callout">
+    <div class="tag">The honest caveat</div>
+    Most human gut–brain links are <strong>correlations</strong>. The animal "cut-the-wire" experiments give us the strongest cause-and-effect evidence, but proving causation in people is genuinely hard. Keep this grain of salt handy for everything that follows.
+  </div>
+</section>
+
+<!-- DECISIONS -->
+<section id="money">
+  <div class="sec-num">The plot twist</div>
+  <h2>Your gut and your decisions</h2>
+  <p>Here's where it gets philosophically weird — and irresistible to anyone interested in behavioral economics. If gut microbes feed into the brain's reward and emotion circuits, could they nudge the <em>choices</em> you make?</p>
+  <p>In 2022, a placebo-controlled trial did the experiment. Healthy volunteers took either a probiotic or a placebo for 28 days, then played economic games for real money. The probiotic group became <strong>less risk-taking</strong> and <strong>more patient</strong> — more willing to wait for a bigger later reward instead of grabbing a smaller one now.</p>
+  <p>Sit with that: two of the most "fixed" assumptions in economics — how much risk you'll take and how patient you are — shifted because of a <em>change in gut bacteria.</em> Preferences we treat as part of someone's personality may be partly biological, and partly editable from the gut up. (As we'll see, the GLP-1 drugs poke the very same reward circuit.)</p>
+  <div class="grid g2">
+    <div class="card"><h4>🎲 Risk</h4><p class="muted" style="margin:6px 0 0">Probiotic group took <strong>fewer risky gambles</strong> than placebo.</p></div>
+    <div class="card"><h4>⏳ Patience</h4><p class="muted" style="margin:6px 0 0">Probiotic group chose <strong>more future-oriented, patient</strong> options.</p></div>
+  </div>
+</section>
+
+<!-- GLP-1 -->
+<section id="glp1">
+  <div class="sec-num">Part Four</div>
+  <h2>The big sequel: Ozempic and the gut–brain axis</h2>
+  <p>GLP-1 is one of those gut hormones — released by gut cells after you eat, it tells your brain you're full. The blockbuster drugs <strong>semaglutide (Ozempic/Wegovy)</strong> and relatives are lab-made copies of it. They were built to manage diabetes and weight, but they turn out to be a master key into the gut–brain reward system.</p>
+
+  <h3>Two GLP-1s, two completely different modes</h3>
+  <p>The trick is that the natural hormone and the drug behave nothing alike. Your own GLP-1 lasts about <strong>1–2 minutes</strong> before it's destroyed, and mostly whispers to the local vagus nerve. The drug lasts about <strong>5–7 days</strong> and reaches the brain directly. (This table is a recreation of the OpenEvidence comparison.)</p>
+
+  <table>
+    <thead><tr><th>Feature</th><th><span class="pill endo">Your own GLP-1</span></th><th><span class="pill drug">The drug (semaglutide)</span></th></tr></thead>
+    <tbody>
+      <tr><td>Half-life</td><td>1–2 minutes</td><td>~5–7 days</td></tr>
+      <tr><td>Main mechanism</td><td>Whispers to nearby vagus nerve</td><td>Travels in blood + reaches brain directly</td></tr>
+      <tr><td>How it enters the brain</td><td>Via vagus &amp; brainstem neurons</td><td>Through "leaky-by-design" brain windows (CVOs)</td></tr>
+      <tr><td>Needs the vagus nerve?</td><td>Yes, for its quick effects</td><td>No — works without it long-term</td></tr>
+      <tr><td>Brain regions reached</td><td>Mostly local brainstem</td><td>Brainstem, hypothalamus, reward &amp; emotion centers</td></tr>
+      <tr><td>Blood levels</td><td>Small bump after a meal</td><td>Steady, far above natural levels</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The sneaky entrance: it skips the brain's bouncer</h3>
+  <p>The brain is normally sealed off by the blood–brain barrier. Semaglutide barely crosses it. Instead it slips in through a few special spots — the <strong>circumventricular organs</strong> — where the barrier is deliberately leaky so the brain can sample the blood. From those windows it reaches appetite and reward centers and parks there for days.</p>
+
+  <figure class="art-figure">
+    <img src="fig-bbb-cvo.png" alt="Generated illustration of drug molecules entering through leaky blood-brain barrier windows">
+    <figcaption>Companion art: the brain's wall with a few intentionally leaky windows.</figcaption>
+  </figure>
+
+  <figure>
+    <svg viewBox="0 0 700 230" width="100%" style="max-width:660px">
+      <title>Semaglutide enters the brain through leaky circumventricular organ windows</title>
+      <defs>
+        <marker id="bbArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--rust)"/></marker>
+      </defs>
+      <rect x="18" y="18" width="664" height="194" rx="16" fill="var(--card)" stroke="var(--line)"/>
+      <path d="M78 154 C146 120 195 120 256 151 C316 181 379 181 442 151 C504 120 555 120 622 154" fill="none" stroke="var(--teal)" stroke-width="12" stroke-linecap="round" opacity=".25"/>
+      <text x="350" y="196" text-anchor="middle" font-size="12" font-weight="800" fill="var(--teal-dark)">bloodstream carrying semaglutide</text>
+      <g fill="var(--rust)" opacity=".9">
+        <circle cx="142" cy="154" r="6"/><circle cx="192" cy="140" r="6"/><circle cx="501" cy="139" r="6"/><circle cx="552" cy="154" r="6"/>
+      </g>
+      <g class="hot" onmouseover="t('bbb','The usual blood-brain barrier is a tight wall: most large or sticky blood chemicals cannot simply wander into brain tissue.')">
+        <path d="M96 98 H604" stroke="var(--muted)" stroke-width="10" stroke-linecap="round"/>
+        <g stroke="var(--card)" stroke-width="2">
+          <path d="M124 89 v18"/><path d="M156 89 v18"/><path d="M188 89 v18"/><path d="M220 89 v18"/>
+          <path d="M252 89 v18"/><path d="M284 89 v18"/><path d="M416 89 v18"/><path d="M448 89 v18"/>
+          <path d="M480 89 v18"/><path d="M512 89 v18"/><path d="M544 89 v18"/><path d="M576 89 v18"/>
+        </g>
+        <text x="350" y="75" text-anchor="middle" font-size="13" font-weight="800" fill="var(--muted)">blood-brain barrier: mostly sealed</text>
+      </g>
+      <g class="hot" onmouseover="t('bbb','Circumventricular organs are leaky-by-design sampling windows, so blood signals like semaglutide can reach appetite and reward circuits from there.')">
+        <rect x="304" y="84" width="34" height="30" rx="6" fill="var(--gold)" stroke="var(--rust-dark)" stroke-width="2"/>
+        <rect x="362" y="84" width="34" height="30" rx="6" fill="var(--gold)" stroke="var(--rust-dark)" stroke-width="2"/>
+        <path d="M192 140 C242 128 290 123 319 113" fill="none" stroke="var(--rust)" stroke-width="3" stroke-linecap="round" marker-end="url(#bbArrow)"/>
+        <path d="M502 140 C455 128 414 122 382 113" fill="none" stroke="var(--rust)" stroke-width="3" stroke-linecap="round" marker-end="url(#bbArrow)"/>
+        <text x="350" y="132" text-anchor="middle" font-size="12" font-weight="800" fill="var(--rust-dark)">leaky CVO windows</text>
+      </g>
+      <g class="hot" onmouseover="t('bbb','From those entry points, the signal reaches brainstem, hypothalamus, reward and emotion centers — and the drug lasts for days.')">
+        <path d="M318 52 C306 41 285 46 282 64 C266 70 268 93 285 98 C288 115 310 119 323 106 C337 119 361 114 362 95 C380 88 376 65 360 60 C354 43 333 40 318 52Z" fill="var(--rust)" fill-opacity=".18" stroke="var(--rust-dark)" stroke-width="2"/>
+        <text x="323" y="86" text-anchor="middle" font-size="12" font-weight="800" fill="var(--rust-dark)">brain</text>
+        <g fill="var(--teal-dark)" opacity=".72">
+          <circle cx="292" cy="52" r="3"/><circle cx="357" cy="54" r="3"/><circle cx="374" cy="91" r="3"/>
+        </g>
+        <text x="450" y="52" font-size="11.5" fill="var(--teal-dark)">appetite</text>
+        <text x="450" y="68" font-size="11.5" fill="var(--teal-dark)">reward</text>
+        <text x="450" y="84" font-size="11.5" fill="var(--teal-dark)">emotion</text>
+      </g>
+    </svg>
+    <div class="tip" id="bbb">Hover the wall, windows, or brain to see how the drug reaches the central circuits without crossing the sealed barrier everywhere.</div>
+  </figure>
+
+  <h3>What it does to craving: turning down the dopamine</h3>
+  <p>This is the heart of the matter. In the brain's reward hub, GLP-1 receptors sit mostly on the <em>brakes</em> (GABA neurons). When the drug presses those brakes, dopamine release drops — and so does the pull of whatever you were craving, whether that's cake, alcohol, or nicotine.</p>
+
+  <figure class="art-figure">
+    <img src="fig-reward-circuit.png" alt="Generated illustration of GLP-1 activating GABA brakes in the reward circuit">
+    <figcaption>Companion art: the reward circuit with the dopamine signal turned down.</figcaption>
+  </figure>
+
+  <figure>
+    <svg viewBox="0 0 700 250" width="100%" style="max-width:660px">
+      <title>GLP-1 drug activates GABA brakes in the VTA, lowering dopamine to nucleus accumbens</title>
+      <defs>
+        <marker id="rwArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--teal)"/></marker>
+        <marker id="rwInhibit" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M8,1 L8,9" stroke="var(--plum)" stroke-width="2.6" stroke-linecap="round"/></marker>
+      </defs>
+      <rect x="18" y="18" width="664" height="214" rx="16" fill="var(--card)" stroke="var(--line)"/>
+      <ellipse cx="320" cy="118" rx="186" ry="72" fill="var(--teal)" opacity=".09" stroke="var(--teal-dark)" stroke-width="1.5"/>
+      <text x="320" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="var(--teal-dark)">VTA reward hub</text>
+      <g class="hot" onmouseover="t('rw','Semaglutide reaches the reward hub (the VTA) and binds receptors sitting on the brake cells.')">
+        <circle cx="102" cy="111" r="28" fill="var(--rust)" stroke="var(--rust-dark)" stroke-width="2"/>
+        <text x="102" y="107" text-anchor="middle" font-size="11.5" fill="var(--card)" font-weight="800">GLP-1</text>
+        <text x="102" y="121" text-anchor="middle" font-size="11" fill="var(--card)">drug</text>
+        <path d="M130 111 C166 98 190 93 221 94" fill="none" stroke="var(--rust)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 4" marker-end="url(#rwArrow)"/>
+      </g>
+      <g class="hot" onmouseover="t('rw','It activates the GABA neurons — the brain\'s brake pedal in the reward circuit.')">
+        <circle cx="244" cy="94" r="24" fill="var(--plum)" stroke="var(--ink)" stroke-width="1.6"/>
+        <path d="M221 94 C203 78 203 109 221 94 M267 94 C289 77 290 110 267 94" fill="none" stroke="var(--plum)" stroke-width="3" stroke-linecap="round"/>
+        <text x="244" y="98" text-anchor="middle" font-size="11.5" fill="var(--card)" font-weight="800">GABA</text>
+        <text x="244" y="134" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--plum)">brakes ON</text>
+      </g>
+      <g class="hot" onmouseover="t('rw','The dopamine neurons fire less — the reward signal is dialed down.')">
+        <circle cx="383" cy="130" r="27" fill="var(--teal)" stroke="var(--teal-dark)" stroke-width="2"/>
+        <path d="M356 130 C329 112 310 103 274 99" fill="none" stroke="var(--plum)" stroke-width="4" stroke-linecap="round" marker-end="url(#rwInhibit)"/>
+        <path d="M407 122 C450 93 498 90 553 111" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" marker-end="url(#rwArrow)"/>
+        <path d="M411 139 C455 130 501 136 548 152" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 5" opacity=".55"/>
+        <text x="383" y="128" text-anchor="middle" font-size="11.5" fill="var(--card)" font-weight="800">dopamine</text>
+        <text x="383" y="142" text-anchor="middle" font-size="11" fill="var(--card)">neuron</text>
+        <text x="443" y="82" font-size="12" font-weight="800" fill="var(--teal-dark)">dopamine ↓</text>
+      </g>
+      <g class="hot" onmouseover="t('rw','Result: weaker cravings for food, alcohol, nicotine — the reward feels less compelling.')">
+        <ellipse cx="589" cy="132" rx="66" ry="46" fill="var(--green)" fill-opacity=".18" stroke="var(--green)" stroke-width="2.2"/>
+        <text x="589" y="120" text-anchor="middle" font-size="12" font-weight="800" fill="var(--green)">nucleus</text>
+        <text x="589" y="136" text-anchor="middle" font-size="12" font-weight="800" fill="var(--green)">accumbens</text>
+        <text x="589" y="156" text-anchor="middle" font-size="11.5" fill="var(--green)">craving ↓</text>
+      </g>
+      <g font-size="11.5" fill="var(--muted)">
+        <rect x="48" y="198" width="604" height="22" rx="11" fill="var(--line)" opacity=".7"/>
+        <text x="62" y="214"><tspan font-weight="800" fill="var(--rust-dark)">1</tspan> drug binds GLP-1 receptor</text>
+        <text x="236" y="214"><tspan font-weight="800" fill="var(--plum)">2</tspan> GABA brakes ON</text>
+        <text x="379" y="214"><tspan font-weight="800" fill="var(--teal-dark)">3</tspan> dopamine ↓</text>
+        <text x="502" y="214"><tspan font-weight="800" fill="var(--green)">4</tspan> craving ↓</text>
+      </g>
+    </svg>
+    <div class="tip" id="rw">Hover each step to follow how the drug quiets a craving.</div>
+  </figure>
+
+  <h3>What shows up in people</h3>
+  <div class="grid g2">
+    <div class="card"><h4>🍷 Alcohol — the strongest signal</h4><p class="muted" style="margin:6px 0 0">In the first proper trials, semaglutide cut heavy-drinking days and craving — performing <strong>better than today's approved alcohol medications</strong> in real-world data. This is the most exciting addiction finding in years.</p></div>
+    <div class="card"><h4>🚬 Other habits</h4><p class="muted" style="margin:6px 0 0">Large datasets link GLP-1 drugs to lower use of <strong>nicotine, cocaine, opioids and cannabis.</strong> Early, mostly observational — but consistent.</p></div>
+    <div class="card"><h4>🙂 Mood</h4><p class="muted" style="margin:6px 0 0">Mixed but leaning positive. A large Swedish study tied semaglutide to <strong>42% lower risk</strong> of worsening mental illness. Trials show small mood benefits.</p></div>
+    <div class="card"><h4>🧠 Brain disease — promise, then letdown</h4><p class="muted" style="margin:6px 0 0">Big hopes for Parkinson's and Alzheimer's. But the <strong>definitive Parkinson's trial in 2025 was negative</strong>, and an Alzheimer's trial missed its mark. A cautionary tale.</p></div>
+  </div>
+
+  <div class="callout">
+    <div class="tag">Resolved worry</div>
+    Early headlines linked these drugs to suicidal thoughts. Both the FDA and the European regulator reviewed the evidence and found <strong>no causal link</strong>; the apparent signal traced to media-driven reporting, not the drug.
+  </div>
+
+  <h3>Back to decisions — the circle closes</h3>
+  <p>Remember the probiotic study that made people more patient? In 2026, a trial found semaglutide changed <strong>effort-based decision-making</strong> in people with depression: they became more willing to work for a reward — and crucially, this happened <em>independently of whether their mood improved.</em> A gut-hormone drug measurably shifted a decision-making parameter. The microbiome → gut-hormone → reward pathway looks like a real, biological lever on human choice.</p>
+</section>
+
+<!-- TAKEAWAYS -->
+<section id="takeaways">
+  <div class="sec-num">The whole thing in a nutshell</div>
+  <h2>Takeaways for the dinner table</h2>
+  <div class="grid g2">
+    <div class="card"><h4>1 · You have two brains</h4><p class="muted" style="margin:6px 0 0">The gut runs ~500M neurons and makes most of your serotonin. It talks to your head constantly — mostly upward.</p></div>
+    <div class="card"><h4>2 · Microbes are messengers</h4><p class="muted" style="margin:6px 0 0">Fiber → calming fatty acids; the right bugs make neurotransmitters. What you eat tunes the chemistry that reaches your brain.</p></div>
+    <div class="card"><h4>3 · Breakdowns go both ways</h4><p class="muted" style="margin:6px 0 0">From IBS to depression to Parkinson's, gut and brain rise and fall together — sometimes the gut leads.</p></div>
+    <div class="card"><h4>4 · It reaches your choices</h4><p class="muted" style="margin:6px 0 0">Probiotics and GLP-1 drugs both nudge the reward circuit — shifting risk, patience, craving, and effort.</p></div>
+  </div>
+
+  <h3>So what can a family actually do?</h3>
+  <p>The evidence is young, but the low-risk levers point the same way: <strong>eat fiber and fermented foods</strong> (feed the good bugs), <strong>lean Mediterranean</strong> (the one diet with trial evidence for mood), <strong>manage stress and sleep</strong> (the stress line is real), and <strong>move your body.</strong> None of this is a magic cure — but it's the same advice that keeps showing up, now with a mechanism behind it.</p>
+
+  <div class="callout">
+    <div class="tag">One mind to take away</div>
+    Your gut isn't just where food goes. It's a sensing, chemical, decision-shaping organ in a lifelong conversation with your brain — and we're only now learning to listen in.
+  </div>
+</section>
+
+<section id="resources">
+  <div class="sec-num">Your toolkit</div>
+  <h2>Go deeper — the companion materials</h2>
+  <p class="muted">This page is the visual tour and the front door. When you want the full depth, the studies, or something to present or hand out, everything below lives in the same folder.</p>
+  <div class="grid g2" style="margin-top:20px">
+    <a class="card reslink" href="teaching-guide-app.html">
+      <h4>📘 Study &amp; Teaching Guide</h4>
+      <p class="muted" style="margin:6px 0 0">Full technical depth with plain-language explainers, teaching analogies, and click-to-reveal self-quiz. Your learn-it-then-teach-it textbook.</p>
+      <span class="pillk">open in browser</span>
+    </a>
+    <a class="card reslink" href="gut-brain-axis-indepth.html">
+      <h4>🔬 In-Depth Reference</h4>
+      <p class="muted" style="margin:6px 0 0">The complete reference — every mechanism, trial, and effect size, with citation markers. For when someone pushes back.</p>
+      <span class="pillk">open in browser</span>
+    </a>
+    <a class="card reslink" href="Gut-Brain-Axis-Deck-Depth.pptx">
+      <h4>📊 Slide Deck · 26 slides</h4>
+      <p class="muted" style="margin:6px 0 0">Presentable-with-depth PowerPoint to talk through with the family. Room for your own speaker notes.</p>
+      <span class="pillk">PowerPoint</span>
+    </a>
+    <a class="card reslink" href="Gut-Brain-Axis-Handout-INDEPTH.pdf">
+      <h4>📄 Printable Handout</h4>
+      <p class="muted" style="margin:6px 0 0">A 23-page in-depth PDF to print or share — the whole story in one document.</p>
+      <span class="pillk">PDF</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p><strong>About this guide.</strong> A teaching tool made for Sam &amp; family, synthesizing a research review of the gut–brain axis and GLP-1 receptor agonists (sources include NEJM, JAMA, Lancet, Nature, Science, and Wiley journals, via OpenEvidence). Diagrams are original recreations; the New England Journal of Medicine neuropod passage is quoted with attribution. Figures and findings are simplified for a general audience — this is educational, not medical advice.</p>
+</footer>
+</div><!-- /tourView -->
+
+<div id="frameView" style="display:block"><iframe id="modeFrame" title="Reading view" src="teaching-guide-app.html"></iframe></div>
+
+<script>
+  function t(id,msg){var el=document.getElementById(id); if(el) el.innerHTML=msg;}
+  // mode switcher: flip between the visual tour, the teaching guide, and the in-depth reference
+  (function(){
+    var tour=document.getElementById('tourView'), frame=document.getElementById('frameView'),
+        ifr=document.getElementById('modeFrame'), btns=document.querySelectorAll('#modebar button');
+    function setMode(m,src){
+      btns.forEach(function(b){b.classList.toggle('active', b.getAttribute('data-mode')===m);});
+      if(m==='tour'){ frame.style.display='none'; tour.style.display='block'; }
+      else { tour.style.display='none'; frame.style.display='block'; if(src && ifr.getAttribute('src')!==src) ifr.setAttribute('src',src); }
+      window.scrollTo(0,0);
+    }
+    btns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode'), b.getAttribute('data-src')); }); });
+    setMode('guide','teaching-guide-app.html'); // default to the Teaching Guide on open
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gut–Brain Axis · Textbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f6f7; --content:#ffffff; --ink:#17181b; --body:#2c2e33; --muted:#71757e; --faint:#9a9ea6;
+    --line:#e6e7ea; --line2:#eef0f2; --accent:#4f46e5; --accent-soft:#eef0ff; --accent-ink:#3730a3;
+    --blue:#2563eb; --blue-bg:#eff5ff; --amber:#b7791f; --amber-bg:#fdf6e7;
+    --rose:#d6455d; --rose-bg:#fdeef0; --teal:#0e7c73; --teal-bg:#e7f5f3; --slate:#64748b; --slate-bg:#f1f3f6;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:var(--sans);
+    font-size:14.5px;line-height:1.58;-webkit-font-smoothing:antialiased;letter-spacing:.005em}
+  a{color:var(--accent);text-decoration:none}
+  /* ---------- layout ---------- */
+  .app{display:flex;align-items:flex-start}
+  aside{position:sticky;top:0;height:100vh;width:262px;flex:0 0 262px;overflow-y:auto;
+    background:var(--content);border-right:1px solid var(--line);padding:22px 14px 40px}
+  aside .brand{font-weight:800;font-size:14px;color:var(--ink);letter-spacing:-.01em;padding:0 10px;margin-bottom:2px}
+  aside .brand small{display:block;font-weight:500;font-size:11px;color:var(--faint);letter-spacing:.02em;margin-top:2px}
+  aside .grp{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);font-weight:600;margin:18px 10px 5px}
+  aside a{display:flex;gap:9px;align-items:baseline;padding:4px 10px;border-radius:7px;color:var(--muted);font-size:12.8px;font-weight:500;line-height:1.3}
+  aside a:hover{background:var(--line2);color:var(--ink)}
+  aside a.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+  aside a .n{font-family:var(--mono);font-size:11px;color:var(--faint);min-width:20px;font-weight:500}
+  aside a.active .n{color:var(--accent)}
+  main{flex:1 1 auto;min-width:0;display:flex;justify-content:center;padding:0 32px}
+  .doc{width:100%;max-width:740px;padding:40px 0 90px}
+  /* ---------- masthead ---------- */
+  .mast{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:8px}
+  .mast .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500}
+  .mast h1{font-size:31px;line-height:1.12;letter-spacing:-.022em;margin:9px 0 6px;color:var(--ink);font-weight:800}
+  .mast p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+  .mast .meta{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+  .mast .meta span{font-size:11.5px;font-family:var(--mono);background:var(--slate-bg);color:var(--slate);padding:3px 9px;border-radius:20px}
+  /* ---------- sections / headings ---------- */
+  section{padding-top:30px}
+  .secnum{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.04em}
+  h2.part{font-size:21px;letter-spacing:-.018em;color:var(--ink);font-weight:750;margin:3px 0 4px;line-height:1.2}
+  .rule{height:1px;background:var(--line);margin:7px 0 4px}
+  h3{font-size:15.5px;color:var(--ink);font-weight:700;margin:22px 0 3px;letter-spacing:-.01em}
+  h4{font-size:13px;color:var(--accent-ink);font-weight:600;margin:15px 0 1px;font-family:var(--mono);text-transform:none}
+  p{margin:9px 0}
+  .lead{font-size:15.5px;color:#3a3d44}
+  strong{color:var(--ink);font-weight:650}
+  em.t{font-style:normal;font-weight:600;color:var(--teal)}
+  sup.cit{font-family:var(--mono);font-size:9.5px;color:var(--accent);font-weight:500;vertical-align:super;padding:0 1px}
+  ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+  code,.kbd{font-family:var(--mono);font-size:.86em;background:var(--slate-bg);padding:1px 5px;border-radius:5px;color:#3f4350}
+  /* ---------- callouts (compact) ---------- */
+  .box{border:1px solid var(--line);border-left-width:3px;border-radius:8px;padding:9px 13px;margin:12px 0;font-size:13px;line-height:1.5;background:var(--content)}
+  .box .lab{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+  .plain{border-left-color:var(--blue);background:var(--blue-bg)}.plain .lab{color:var(--blue)}
+  .analogy{border-left-color:var(--amber);background:var(--amber-bg)}.analogy .lab{color:var(--amber)}.analogy .body{font-style:italic}
+  .study{border-left-color:var(--rose);background:var(--rose-bg)}.study .lab{color:var(--rose)}
+  .key{border-left-color:var(--accent);background:var(--accent-soft)}.key .lab{color:var(--accent)}
+  .quote{border-left:3px solid var(--slate);background:var(--slate-bg);border-radius:8px;padding:11px 15px;margin:12px 0;font-style:italic;font-size:13.5px;color:#3b3f47}
+  .quote cite{display:block;margin-top:6px;font-size:11px;font-style:normal;color:var(--faint);font-family:var(--mono)}
+  /* ---------- check-yourself ---------- */
+  .check{border:1px solid var(--line);border-left:3px solid var(--slate);border-radius:8px;padding:9px 13px;margin:12px 0;background:var(--slate-bg)}
+  .check>.lab{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:5px}
+  .qa{margin:5px 0;cursor:pointer}
+  .qa .q{font-size:12.6px;color:#3a3d44}
+  .qa .q b{font-family:var(--mono);color:var(--slate);font-weight:500}
+  .qa .toggle{font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:500;user-select:none;margin-left:5px}
+  .qa .a{margin-top:3px;font-size:12.6px;font-style:italic;color:#3b3f47;background:var(--content);border:1px solid var(--line);border-radius:6px;padding:6px 10px;display:none}
+  .qa.open .a{display:block}
+  /* ---------- tables ---------- */
+  .tbl{overflow-x:auto;margin:13px 0}
+  table{width:100%;border-collapse:collapse;font-size:12.3px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  th,td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
+  thead th{background:#1f2024;color:#f4f4f5;font-weight:600;font-size:11.5px;font-family:var(--mono);letter-spacing:.01em}
+  tbody tr:nth-child(even){background:#fafafb}
+  td:first-child,th:first-child{font-weight:600}
+  td.num,.num{font-family:var(--mono);font-size:11.5px}
+  .pos{color:#0e7c52;font-weight:600}.neg{color:var(--rose);font-weight:600}
+  /* ---------- misc ---------- */
+  .howto{border:1px solid var(--line);border-radius:10px;padding:4px 14px 12px;margin:14px 0;background:var(--content)}
+  .revealbtn{font-family:var(--mono);font-size:11.5px;background:var(--accent);color:#fff;border:0;border-radius:7px;padding:6px 12px;cursor:pointer;margin:10px 0}
+  .revealbtn:hover{background:#4338ca}
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:16px;color:var(--faint);font-size:11.5px}
+  .topbar{display:none}
+  @media(max-width:900px){
+    aside{display:none}
+    main{padding:0 18px}
+    .topbar{display:flex;position:sticky;top:0;z-index:20;background:rgba(246,246,247,.95);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);padding:9px 16px;gap:7px;overflow-x:auto;font-family:var(--mono);font-size:11px}
+    .topbar a{color:var(--muted);white-space:nowrap;padding:3px 7px;border-radius:6px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="#how">0</a><a href="#brain">0½</a><a href="#p1">1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a><a href="#p5">5</a>
+  <a href="#g1">6</a><a href="#g2">7</a><a href="#g3">8</a><a href="#g4">9</a><a href="#g5">10</a><a href="#g6">11</a>
+  <a href="#glossary">A</a><a href="#cheat">B</a>
+</div>
+
+<div class="app">
+<aside>
+  <div class="brand">Gut–Brain Axis<small>study &amp; teaching textbook</small></div>
+  <div class="grp">Foundations</div>
+  <a href="#how"><span class="n">0</span><span>How to use</span></a>
+  <a href="#brain"><span class="n">0.5</span><span>Brain basics</span></a>
+  <a href="#p1"><span class="n">1</span><span>The wiring</span></a>
+  <a href="#p2"><span class="n">2</span><span>The chemistry</span></a>
+  <a href="#p3"><span class="n">3</span><span>When it breaks</span></a>
+  <a href="#p4"><span class="n">4</span><span>Therapeutics</span></a>
+  <a href="#p5"><span class="n">5</span><span>Gut &amp; decisions</span></a>
+  <div class="grp">GLP-1 Drugs</div>
+  <a href="#g1"><span class="n">6</span><span>Brain access</span></a>
+  <a href="#g2"><span class="n">7</span><span>Reward circuit</span></a>
+  <a href="#g3"><span class="n">8</span><span>Mood &amp; safety</span></a>
+  <a href="#g4"><span class="n">9</span><span>Addiction</span></a>
+  <a href="#g5"><span class="n">10</span><span>Neurodegeneration</span></a>
+  <a href="#g6"><span class="n">11</span><span>Decision-making</span></a>
+  <div class="grp">Appendix</div>
+  <a href="#glossary"><span class="n">A</span><span>Glossary</span></a>
+  <a href="#cheat"><span class="n">B</span><span>Teaching cheat sheet</span></a>
+</aside>
+
+<main><div class="doc">
+
+<div class="mast">
+  <div class="eyebrow">A study &amp; teaching textbook</div>
+  <h1>The Gut–Brain Axis<br>&amp; the GLP-1 Drugs That Hijack It</h1>
+  <p>Full technical depth — mechanisms, trials, effect sizes — with plain-language explainers, teaching analogies, and self-check questions in every section. Learn it first; teach it second.</p>
+  <div class="meta"><span>for Jenni</span><span>11 chapters</span><span>29 self-checks</span><span>citation-marked</span></div>
+</div>
+
+<section id="how">
+<div class="secnum">§ 0</div>
+<h2 class="part">How to use this</h2><div class="rule"></div>
+<p class="lead">Two layers run in parallel. The main text is the real science, at the level a clinician reads. Wrapped around it are four kinds of callouts that turn it into something you can learn, then teach.</p>
+<div class="howto">
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">the hard idea restated in everyday language — read first if a paragraph feels dense.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">a metaphor you can hand straight to the family. Your teaching lines.</span></div>
+<div class="box study"><span class="lab">Key study · author (year)</span><span class="body">the evidence and numbers — what makes you credible when someone pushes back.</span></div>
+<div class="check"><span class="lab">Check yourself</span><div class="qa"><div class="q"><b>Q</b> a question to test yourself. <span class="toggle">show</span></div><div class="a">the answer — say it out loud before revealing.</div></div></div>
+</div>
+<p><strong>Study loop:</strong> read a section → cover the screen → teach it back using the analogy → quiz yourself. Citation markers like <sup class="cit">[2]</sup> mark well-supported claims.</p>
+<button class="revealbtn" onclick="document.querySelectorAll('.qa').forEach(q=>q.classList.add('open'));this.textContent='answers shown';">Reveal all answers</button>
+<div class="box key"><span class="lab">The 30-second spine</span><span class="body">Gut and brain talk both ways over four channels — nerves, hormones, immune signals, and chemicals made by gut bacteria. When that conversation fails you get everything from IBS to depression to Parkinson's. GLP-1 drugs (Ozempic) tap this exact system — sneaking into the brain's reward circuit and turning down cravings of every kind.</span></div>
+</section>
+
+<section id="brain">
+<div class="secnum">§ 0.5 · Orientation</div>
+<h2 class="part">Brain basics — just what this talk needs</h2><div class="rule"></div>
+<p class="lead">You don't need a neuroscience degree to follow the rest — just five ideas. Everything later hangs on these.</p>
+
+<h3>0.5.1 Neurons talk with chemicals</h3>
+<p>The brain is ~86 billion <strong>neurons</strong> passing signals across tiny gaps (synapses) using chemical messengers — <em class="t">neurotransmitters</em>. Five matter for this talk: <strong>dopamine</strong> (reward, motivation — the "I want that" signal), <strong>serotonin</strong> (mood), <strong>GABA</strong> (the universal <em>brake</em> — quiets neurons), <strong>glutamate</strong> (the universal <em>accelerator</em> — excites them), and <strong>acetylcholine</strong> (used by the vagus). Almost every effect in this guide is one chemical pressing the gas or the brake on another neuron.<sup class="cit">[2][4]</sup></p>
+
+<h3>0.5.2 A few regions, by job</h3>
+<div class="tbl"><table>
+<thead><tr><th>Region</th><th>Its job</th><th>Why it shows up here</th></tr></thead>
+<tbody>
+<tr><td>Brainstem (NTS, area postrema)</td><td>Runs automatic body functions</td><td>The gut's landing zone — where vagus signals arrive and where GLP-1 drugs act</td></tr>
+<tr><td>Hypothalamus</td><td>Appetite, hormones, stress</td><td>Start of the HPA stress axis; main target of GLP-1 drugs</td></tr>
+<tr><td>VTA → nucleus accumbens</td><td>The reward circuit (dopamine)</td><td>The craving system the GLP-1 drugs turn down</td></tr>
+<tr><td>Amygdala</td><td>Emotion, fear, salience</td><td>Tunes how strongly you "want" food/drugs</td></tr>
+<tr><td>Hippocampus</td><td>Memory</td><td>Gut signals reach it; links eating to memory</td></tr>
+<tr><td>Prefrontal cortex</td><td>Decisions, self-control</td><td>Where "deliberate vs impulsive" choices are weighed</td></tr>
+</tbody></table></div>
+
+<h3>0.5.3 The reward circuit (the star of the show)</h3>
+<p>Motivation lives in the <em class="t">mesolimbic dopamine pathway</em>: the <strong>VTA</strong> (ventral tegmental area) sends dopamine to the <strong>nucleus accumbens</strong>. More dopamine here = stronger "I want that." Food, sugar, alcohol, nicotine, and social rewards all push this circuit. Crucially, the VTA's dopamine neurons have a <strong>brake</strong> sitting on them — local GABA neurons. Press that brake and dopamine falls. <em>This single lever is the entire GLP-1 story in §7.</em><sup class="cit">[12]</sup></p>
+
+<h3>0.5.4 The blood–brain barrier</h3>
+<p>The brain is walled off from the bloodstream by the <em class="t">blood–brain barrier</em> — a tight seal that keeps most molecules out. But a few spots, the <strong>circumventricular organs (CVOs)</strong>, are deliberately leaky so the brain can sample the blood. Remember this wall and its few open windows — it's exactly how the GLP-1 drugs get in (§6).<sup class="cit">[7-8]</sup></p>
+
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">The brain runs on chemicals that either excite (glutamate) or calm (GABA) neurons. Dopamine is the "want it" chemical, made in a reward circuit (VTA → accumbens). The brain is sealed behind a barrier with a few open windows. That's 90% of what you need.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Think of the brain as a city of switchboards. Glutamate is "go," GABA is "stop." Dopamine is the hype-man in the reward district shouting "you want this!" — and there's a volume knob (the GABA brake) on him. The city is walled, with a few unguarded gates (the CVOs).</span></div>
+<div class="box key"><span class="lab">Carry these forward</span><span class="body">(1) GABA = brake, glutamate = gas. (2) Dopamine in the VTA→accumbens circuit = craving. (3) The brain is walled off except at the CVOs. The gut–brain axis and the GLP-1 drugs are just clever ways of reaching these three things.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Which neurotransmitter is the brake, which is the accelerator? <span class="toggle">show</span></div><div class="a">GABA inhibits (brake); glutamate excites (accelerator).</div></div>
+<div class="qa"><div class="q"><b>Q</b> Name the reward circuit and its chemical. <span class="toggle">show</span></div><div class="a">The mesolimbic pathway, VTA → nucleus accumbens, using dopamine.</div></div>
+<div class="qa"><div class="q"><b>Q</b> What are CVOs and why will they matter later? <span class="toggle">show</span></div><div class="a">Circumventricular organs — leaky spots in the blood–brain barrier where GLP-1 drugs enter the brain.</div></div>
+</div>
+</section>
+
+<section id="p1">
+<div class="secnum">§ 1 · The Hardware</div>
+<h2 class="part">The wiring: a second brain and its highway</h2><div class="rule"></div>
+
+<h3>1.1 The enteric nervous system</h3>
+<p>Lining your gut wall is its own autonomous nervous system — the <em class="t">enteric nervous system (ENS)</em> — with <strong>200–600 million neurons</strong>, more than the spinal cord, in thousands of ganglia across two layers. The <em class="t">myenteric (Auerbach's) plexus</em> runs motility esophagus-to-anus; the <em class="t">submucosal (Meissner's) plexus</em> controls secretion, blood flow, epithelium.<sup class="cit">[2-3]</sup></p>
+<p>It is chemically as rich as the brain: <strong>20+ neurotransmitters</strong>, most neurons <em class="t">plurichemical</em> — acetylcholine (excitatory), nitric oxide (inhibitory), serotonin, VIP, substance P, ATP, GABA, dopamine. <strong>~95% of the body's serotonin is in the gut</strong>, from enterochromaffin cells (<code>TPH1</code>) and a smaller neuronal pool (<code>TPH2</code>).<sup class="cit">[2][4]</sup> <em class="t">Enteric glial cells</em> outnumber the neurons, acting like the brain's astrocytes.<sup class="cit">[2]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Your gut has its own nervous system that runs digestion by itself — the "second brain." It even makes most of your body's serotonin.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">The gut is a factory with its own on-site management (the ENS). Head office (the brain) doesn't micromanage every machine — the floor mostly runs itself and sends reports upstairs.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Gut neurons vs spinal cord? <span class="toggle">show</span></div><div class="a">200–600 million — more than the spinal cord.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Where is most serotonin and which cells make it? <span class="toggle">show</span></div><div class="a">~95% in the gut, from enterochromaffin cells (TPH1) plus a smaller neuronal pool (TPH2).</div></div>
+</div>
+
+<h3>1.2 The vagus nerve</h3>
+<p>The vagus (cranial nerve X) is the main cable — and about <strong>80% afferent (gut→brain), only 20% efferent (brain→gut)</strong>. The gut is mostly a sensory organ reporting up, not taking orders.<sup class="cit">[2-3]</sup></p>
+<h4>afferent (bottom-up)</h4>
+<p>Cell bodies in the <em class="t">nodose ganglia</em>; endings sense stretch (muscle) and chemistry — nutrients, pH, microbial products (mucosa). They project to the <em class="t">nucleus tractus solitarius (NTS)</em> in the medulla — the brain's visceral inbox — relaying to hypothalamus, amygdala, hippocampus, parabrachial nucleus, insular/prefrontal cortex. One route, <code>NTS → medial septum → dorsal hippocampus</code>, even links gut signals to memory.<sup class="cit">[2-3]</sup></p>
+<h4>efferent (top-down)</h4>
+<p>Motor fibers start in the <em class="t">dorsal motor nucleus (DMV)</em> and nucleus ambiguus; they don't touch gut muscle directly — they synapse onto the ENS, which executes the command. The NTS tunes the DMV with glutamate (excite) and GABA (inhibit); tonic GABA sets resting tone.<sup class="cit">[2-3]</sup></p>
+<h4>spinal afferents</h4>
+<p>Splanchnic and pelvic afferents (dorsal-root-ganglion bodies) carry <strong>pain/noxious signals</strong> — the main route for visceral pain, vs the vagus carrying everyday chatter.<sup class="cit">[2]</sup></p>
+<div class="box key"><span class="lab">Key fact</span><span class="body">The 80/20 split is the most counter-intuitive fact here — lead your teaching with it: the gut talks to the brain far more than the brain talks to the gut.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">An eight-lane highway between two cities: ~6½ lanes run gut→brain (reports flooding in); ~1½ run brain→gut (instructions out).</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Vagus afferent:efferent ratio and implication? <span class="toggle">show</span></div><div class="a">~80/20 afferent — the gut is mainly a sensory organ reporting to the brain.</div></div>
+<div class="qa"><div class="q"><b>Q</b> What is the NTS? <span class="toggle">show</span></div><div class="a">Nucleus tractus solitarius — the brainstem hub receiving and relaying gut signals.</div></div>
+<div class="qa"><div class="q"><b>Q</b> How do vagal motor commands reach gut muscle? <span class="toggle">show</span></div><div class="a">Indirectly — they synapse onto the enteric nervous system, which does the movement.</div></div>
+</div>
+
+<h3>1.3 Neuropod cells — the discovery that rewrote the textbook</h3>
+<p>We thought gut cells signaled slowly via leaked hormones. Then <em class="t">enteroendocrine cells (EECs)</em> — ~1% of gut lining cells but collectively the body's largest endocrine organ — turned out to do something far faster.<sup class="cit">[5-6]</sup></p>
+<div class="box study"><span class="lab">Key study · Bohórquez 2015 &amp; Kaelberer 2018</span><span class="body">A subset of EECs grow a long basal tail — a <strong>neuropod</strong> — that synapses onto vagal afferents and uses glutamate to signal the brainstem in <strong>milliseconds</strong>. A one-synapse circuit from gut interior to brain.<sup class="cit">[7][8]</sup></span></div>
+<div class="quote">"Some enteroendocrine cells have long, basal extensions, called neuropods, which synapse with vagal afferent fibers to directly convey sugar-sensing information to the brain within milliseconds."
+<cite>Josephine M. Egan, M.D. · NEJM, May 2024</cite></div>
+<p>These cells <strong>distinguish real sugar from artificial sweetener</strong>: glucose opens an <code>SGLT1</code>-dependent glutamate signal (strong "this is fuel"); sweeteners trigger only a weaker purinergic signal via taste receptors (<code>TAS1Rs</code>). The strong signal drives dopamine reward for actual sugar.<sup class="cit">[9]</sup> (Caveat: in the colon this may be mostly paracrine at ~25–30 μm, not true synapses.<sup class="cit">[6]</sup>)</p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Some gut cells are wired straight into the brain like neurons, and they tell real sugar from fake — sending a stronger "reward this!" signal for the real thing.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">A doorbell wired straight to your bedroom (the neuropod, instant) vs a letter in the mailbox (the old slow-hormone idea). And the bell rings louder for real sugar than diet soda — part of why diet soda never fully satisfies.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> What's a neuropod and why special? <span class="toggle">show</span></div><div class="a">A tail on certain gut cells that synapses onto the vagus and signals the brain in milliseconds via glutamate.</div></div>
+<div class="qa"><div class="q"><b>Q</b> How tell sugar from sweetener? <span class="toggle">show</span></div><div class="a">Glucose → strong SGLT1-dependent glutamate signal; sweeteners → weaker purinergic one, so real sugar gets more dopamine reward.</div></div>
+</div>
+</section>
+
+<section id="p2">
+<div class="secnum">§ 2 · The Software</div>
+<h2 class="part">How gut and brain talk: four channels</h2><div class="rule"></div>
+<p>The wiring is half of it; the rest is chemistry. Your ~38 trillion gut microbes are a living chemical factory reaching the brain over four overlapping channels.</p>
+
+<h3>2.1 Microbial metabolites</h3>
+<h4>short-chain fatty acids (SCFAs)</h4>
+<p>Bacteria fermenting fiber make <strong>butyrate, propionate, acetate</strong>, acting on three receptors: <code>FFAR2 (GPR43)</code> on gut endocrine/immune cells (triggers GLP-1 &amp; PYY); <code>FFAR3 (GPR41)</code> on enteric, vagal, dorsal-root &amp; sympathetic neurons — a direct neural sensor of microbial activity; and <code>GPR109a</code> on colon epithelium/immune cells.<sup class="cit">[2][4]</sup> Butyrate is also a potent <strong>HDAC inhibitor</strong>, calming microglia, and SCFAs seal the blood–brain barrier — germ-free mice have leaky barriers SCFAs repair.<sup class="cit">[2-3]</sup></p>
+<h4>tryptophan: one amino acid, three fates</h4>
+<div class="tbl"><table>
+<thead><tr><th>Pathway</th><th>Enzymes / drivers</th><th>Products</th><th>Why the brain cares</th></tr></thead>
+<tbody>
+<tr><td>Serotonin</td><td>TPH1, TPH2</td><td>5-HT</td><td>~95% of body serotonin; tunes vagus &amp; ENS (doesn't cross BBB); microbes set TPH1</td></tr>
+<tr><td>Kynurenine</td><td>IDO (inflammation), TDO (cortisol)</td><td>Kynurenic acid (protective) vs quinolinic acid (toxic)</td><td>Inflammation tips toward the neurotoxic side</td></tr>
+<tr><td>Indole</td><td>Bacterial tryptophanases</td><td>Indole-3-aldehyde, tryptamine</td><td>Activate AhR → IL-22 → barrier &amp; BBB upkeep</td></tr>
+</tbody></table></div>
+<h4>bacteria that make neurotransmitters directly</h4>
+<p><strong>GABA</strong> (Lactobacillus, Bifidobacterium, Bacteroides), <strong>dopamine/norepinephrine</strong> (Bacillus, Escherichia, Enterococcus), <strong>serotonin</strong> (Enterococcus, Streptococcus), <strong>acetylcholine</strong> (Lactobacillus).<sup class="cit">[2][4]</sup></p>
+<div class="box study"><span class="lab">Key study · Bravo et al. 2011</span><span class="body">Feeding mice one strain (<em>L. rhamnosus</em> JB-1) changed GABA-receptor expression across cortex, hippocampus &amp; amygdala and reduced anxiety — and <strong>cutting the vagus abolished it</strong>. The cleanest proof microbes reach the brain through the vagus.<sup class="cit">[2]</sup></span></div>
+<h4>bile acids</h4>
+<p>Bacteria convert primary bile acids to secondary ones, signaling three ways: crossing into the brain to hit <code>FXR</code> and <code>TGR5</code>; intestinal FXR → FGF15/19 into blood; and intestinal TGR5 on L-cells → <strong>GLP-1 release</strong> → vagal signal. (Note this last one — it's the bridge to the Ozempic story.)<sup class="cit">[2-3]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Gut bacteria turn your food into chemical "messages": fiber → calming, brain-protecting fatty acids; tryptophan → soothing or irritating molecules depending on inflammation; some bacteria literally make GABA and dopamine.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">The microbiome is a translation service: you feed it raw ingredients; it hands the brain finished notes in the brain's own chemical language. Feed it well, calming notes; feed it badly, inflammatory ones.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Which SCFA receptor sits on neurons? <span class="toggle">show</span></div><div class="a">FFAR3 (GPR41).</div></div>
+<div class="qa"><div class="q"><b>Q</b> What does inflammation do to tryptophan metabolism? <span class="toggle">show</span></div><div class="a">Activates IDO, shunting it toward neurotoxic quinolinic acid instead of serotonin.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Why is Bravo (2011) important? <span class="toggle">show</span></div><div class="a">It proved the microbe→brain effect travels via the vagus — cut the nerve, the effect disappears.</div></div>
+</div>
+
+<h3>2.2 The HPA axis (the stress line)</h3>
+<p>The <strong>hypothalamic–pituitary–adrenal axis</strong> is how the brain reaches DOWN. Stress makes the paraventricular nucleus release <em class="t">CRF</em>, which raises gut permeability, promotes dysbiosis, fires mast cells. Two receptors split the job: <strong>CRF-R1 speeds colon motility</strong> (stress diarrhea); <strong>CRF-R2 slows gastric emptying</strong>. Germ-free mice over-respond to stress until colonized. Chronic stress loops: stress → inflammation (IL-1/6, TNF-α) → leaky gut → dysbiosis → more stress.<sup class="cit">[2-3]</sup></p>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Stress is head office sending panicked memos to the floor. A few are fine; a constant stream jams the machines, the workers (microbes) revolt, and they send panic back up — a spiral.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> What do the two CRF receptors do? <span class="toggle">show</span></div><div class="a">CRF-R1 speeds colon motility; CRF-R2 slows gastric emptying.</div></div>
+</div>
+
+<h3>2.3 The cholinergic anti-inflammatory pathway (the brake)</h3>
+<p>The vagus can turn inflammation <strong>down</strong>: vagal signals → enteric neurons release acetylcholine onto macrophages → ACh hits the <code>α7nAChR</code> → shuts down TNF-α. A splenic route runs vagus → splenic nerve → norepinephrine → β2 on ACh-making T cells → α7nAChR. <strong>Low vagal tone shows up in IBD and IBS.</strong><sup class="cit">[2-3]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">The vagus isn't just a sensor — it can tell the immune system to calm down. A weak vagus signal tilts the body toward inflammation.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Which receptor switches off macrophage TNF-α? <span class="toggle">show</span></div><div class="a">The α7 nicotinic acetylcholine receptor (α7nAChR).</div></div>
+</div>
+
+<h3>2.4 The immune wire &amp; "leaky gut"</h3>
+<p>When dysbiosis loosens the lining, bacterial fragments (LPS, peptidoglycan) leak into blood, trip <code>TLR4/NF-κB</code>, releasing IL-1β, IL-6, TNF-α that reach the brain via a leaky barrier or the vagus. The microbiota even <strong>trains the brain's microglia</strong> — germ-free mice have immature microglia. Indole metabolites push back via AhR on ILC3 cells → IL-22 → tighter barrier.<sup class="cit">[2-3]</sup></p>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">A healthy lining is a brick wall. Bad microbes loosen the mortar; debris leaks through and the body's alarm (immune cells) blares — and the noise reaches the brain.</span></div>
+</section>
+
+<section id="p3">
+<div class="secnum">§ 3 · When It Breaks</div>
+<h2 class="part">Pathophysiology: gut and brain rise and fall together</h2><div class="rule"></div>
+
+<h3>3.1 Irritable bowel syndrome (IBS)</h3>
+<p>IBS hits <strong>5–10%</strong> (up to 14.1%), more in women (OR 1.46); now a <em class="t">disorder of gut–brain interaction</em>. ~60% have visceral hypersensitivity with sensory/emotional/prefrontal abnormalities, plus mast-cell/eosinophil activation. In ~50% distress precedes gut symptoms; in the other half the gut goes first. IBS <strong>doubles–triples anxiety (HR 2.89) and depression (HR 2.71)</strong> risk, and vice versa.<sup class="cit">[2]</sup></p>
+<h3>3.2 Inflammatory bowel disease (IBD)</h3>
+<div class="box study"><span class="lab">Key study · 2025 meta-analysis (193 studies)</span><span class="body">IBD raises depression (OR 1.42), anxiety (OR 1.30), bipolar (OR 1.64). Active disease drives it — ~2× anxiety (OR 2.5), 3× depression (OR 3.1) vs remission. Bidirectional: baseline depression predicts flares (RR 1.60), surgery (RR 1.63), worse infliximab response (HR 2.27).<sup class="cit">[2]</sup></span></div>
+<h3>3.3 Depression &amp; the microbiome</h3>
+<p>A microbiome-wide study (n=1,054, validated n=1,539) tied <strong>13 taxa</strong> to depression (Eggerthella, Coprococcus, Sellimonas). A JAMA Psychiatry meta-analysis (59 studies) found a <strong>transdiagnostic signature</strong>: depleted butyrate-makers (Faecalibacterium, Coprococcus) and enriched Eggerthella shared across depression, bipolar, schizophrenia, anxiety — a common pathway, not disease-specific bugs.<sup class="cit">[2]</sup></p>
+<h3>3.4 Parkinson's disease — the headline case</h3>
+<p>The Parkinson's protein, <em class="t">α-synuclein</em>, appears in gut nerves <strong>years before</strong> the brain; constipation often precedes tremor by a decade. The "body-first" idea: pathology starts in the gut and climbs the vagus, prion-style.<sup class="cit">[10-11]</sup></p>
+<div class="box study"><span class="lab">Key study · Kim et al. 2019</span><span class="body">Injecting α-synuclein into the mouse gut wall spread it in sequence — dorsal motor nucleus → locus coeruleus → amygdala, raphe, substantia nigra — with real dopamine loss and symptoms. <strong>Truncal vagotomy prevented the spread.</strong><sup class="cit">[11]</sup></span></div>
+<div class="box key"><span class="lab">Key fact</span><span class="body">Swedish registry: vagus cut ≥5 yrs earlier → ~41% lower Parkinson's (HR 0.59). Danish at &gt;20 yrs → HR 0.53 (~47% lower). Cut the wire, slow the spread.<sup class="cit">[10]</sup></span></div>
+<h3>3.5 Autism spectrum disorder (ASD)</h3>
+<p>GI problems in up to <strong>47–80%</strong> of autistic children (diarrhea OR 3.63, constipation OR 3.86), reduced diversity. Transplanting ASD-donor microbiota into germ-free mice <strong>induces autism-like behaviors</strong>.<sup class="cit">[2][10]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">The same axis that keeps you healthy, disrupted, links gut and brain disorders — and in Parkinson's the damage may actually start in the gut and travel up the nerve.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">If two cities share one power grid, a fault in either browns out both. In Parkinson's the fault seems to start at the gut substation and travel up the line.</span></div>
+<div class="box key"><span class="lab">The honest caveat</span><span class="body">Most human gut–brain links are correlations. Animal "cut-the-wire" studies are the strongest causal evidence — proving cause in people is hard. Carry this into every claim, including the drug ones.<sup class="cit">[2-3][14]</sup></span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Why is IBS a "disorder of gut–brain interaction"? <span class="toggle">show</span></div><div class="a">It's bidirectional — distress can precede gut symptoms or vice versa — and sharply raises anxiety/depression risk both ways.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Strongest human evidence for gut-origin Parkinson's? <span class="toggle">show</span></div><div class="a">Vagotomy decades earlier lowers Parkinson's risk ~41–47% (Swedish HR 0.59, Danish HR 0.53).</div></div>
+<div class="qa"><div class="q"><b>Q</b> What does the transdiagnostic signature suggest? <span class="toggle">show</span></div><div class="a">Shared depletion of butyrate-makers across disorders — a common pathway, not disease-specific bacteria.</div></div>
+</div>
+</section>
+
+<section id="p4">
+<div class="secnum">§ 4 · Fixing It</div>
+<h2 class="part">Therapeutics: probiotics, stimulation, diet, transplant</h2><div class="rule"></div>
+<div class="box study"><span class="lab">Probiotics · 2025 meta (23 RCTs, n=1,401)</span><span class="body">Significantly cut depression (SMD −0.96) and anxiety (SMD −0.59) in diagnosed patients; a JAMA Psychiatry pilot (n=49) found moderate effects. But CANMAT (2026) rates them only a cautious third-line add-on — trials are inconsistent.<sup class="cit">[2]</sup></span></div>
+<div class="box study"><span class="lab">VNS · RECOVER (n=493)</span><span class="body">Invasive vagus stimulation missed its primary MADRS endpoint but improved quality of life (p=0.029) and function (p=0.039); ~80% of 12-month responders held at 24 months. Non-invasive taVNS matched citalopram in one RCT.<sup class="cit">[2]</sup></span></div>
+<div class="box study"><span class="lab">Diet · SMILES (2017)</span><span class="body">First RCT of diet for depression: a Mediterranean diet beat control decisively — Cohen's d −1.16, remission 32.3% vs 8.0%, <strong>NNT 4.1</strong>. The cleanest trial evidence of the four.<sup class="cit">[2]</sup></span></div>
+<div class="box study"><span class="lab">FMT · 2025 meta (12 RCTs, n=681)</span><span class="body">Fecal transplant cut depressive symptoms (SMD −1.21), stronger via direct GI delivery. In ASD, open-label Microbiota Transfer Therapy improved GI and autism symptoms to 2 years. But no large RCTs; not yet clinical.<sup class="cit">[2]</sup></span></div>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Several gut-targeting treatments help mood — probiotics, vagus stimulation, Mediterranean diet, stool transplants — but evidence quality varies, and diet has the cleanest trial support.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Four ways to repair a soured gut–brain line: add good staff (probiotics), boost the cable (VNS), improve the raw materials (diet), or replace the workforce (FMT).</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Cleanest RCT evidence for depression, and its NNT? <span class="toggle">show</span></div><div class="a">Diet — the SMILES Mediterranean-diet trial, NNT 4.1.</div></div>
+</div>
+</section>
+
+<section id="p5">
+<div class="secnum">§ 5 · The Plot Twist</div>
+<h2 class="part">Your gut and your decisions</h2><div class="rule"></div>
+<div class="box study"><span class="lab">Key study · Dantas et al. 2022</span><span class="body">First placebo-controlled trial showing probiotics change economic decision-making. Over 28 days the probiotic group became significantly <strong>less risk-taking</strong> and <strong>more patient</strong> on incentivized money games.<sup class="cit">[13]</sup></span></div>
+<p>The mechanism runs through microbe-driven modulation of prefrontal, amygdala, and striatal reward circuits — the same circuits gut-derived serotonin, GABA, dopamine touch. If gut bacteria shift <strong>risk preference and patience</strong> — two pillars of behavioral economics — the microbiome is a hidden variable in human decision-making. (Microbial diversity even tracked better midlife cognition in CARDIA.)<sup class="cit">[2][13]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">In a real experiment, changing gut bacteria made people take fewer risks and wait more patiently for bigger rewards. Traits we call "personality" may be partly editable from the gut.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Two supposedly fixed dials — risk and patience — turned out adjustable by a change in gut bacteria. Hold that thought, because the GLP-1 drugs reach for the same dials.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> What two traits did probiotics shift, and which way? <span class="toggle">show</span></div><div class="a">Less risk-taking and more patience (future-oriented choices).</div></div>
+</div>
+</section>
+
+<section id="g1">
+<div class="secnum">§ 6 · GLP-1 · Access</div>
+<h2 class="part">How Ozempic reaches and reshapes the brain</h2><div class="rule"></div>
+<p>GLP-1 is a gut hormone — released by intestinal L-cells after eating, it signals fullness. The drugs (<em class="t">semaglutide, liraglutide, tirzepatide, lixisenatide</em>) are engineered copies. Built for diabetes and weight, they're really a master key into the gut–brain reward system.</p>
+<h3>6.1 Two GLP-1s, two modes</h3>
+<p>Your own GLP-1 lasts <strong>1–2 minutes</strong> before DPP-4 destroys it; it acts paracrine on nearby vagal endings and mostly never reaches blood. A central supply of ~2,000–3,000 <em class="t">PPG neurons</em> in the caudal NTS projects to hypothalamus, VTA, accumbens, amygdala. The drug behaves nothing like this.<sup class="cit">[1][4-6]</sup></p>
+<p>Acylated drugs like semaglutide <strong>barely cross the blood–brain barrier</strong> (brain:plasma &lt;0.01). They enter through <em class="t">circumventricular organs (CVOs)</em> — area postrema, median eminence — where the barrier is deliberately leaky. Labeled semaglutide appears in area postrema, NTS, septal nucleus, hypothalamus (highest there). With a <strong>5–7 day half-life</strong>, it parks at steady supraphysiological levels. Its energy effects need <code>Adcyap1+</code> neurons in the area postrema/NTS.<sup class="cit">[7-9]</sup></p>
+<div class="tbl"><table>
+<thead><tr><th>Feature</th><th>Your own GLP-1</th><th>The drug (semaglutide)</th></tr></thead>
+<tbody>
+<tr><td>Half-life</td><td>1–2 minutes</td><td>~5–7 days</td></tr>
+<tr><td>Primary mechanism</td><td>Paracrine on vagal afferents</td><td>Endocrine + direct CVO access</td></tr>
+<tr><td>Brain access</td><td>Vagal afferents + PPG neurons</td><td>CVOs (area postrema, median eminence)</td></tr>
+<tr><td>Vagal dependence</td><td>Required for acute effects</td><td>Not required for chronic treatment</td></tr>
+<tr><td>Receptors engaged</td><td>Local vagal + brainstem</td><td>Brainstem, hypothalamus, mesolimbic, amygdala</td></tr>
+<tr><td>Plasma levels</td><td>2–4× postprandial rise</td><td>Sustained supraphysiological</td></tr>
+</tbody></table></div>
+<p>GLP-1 receptors sit on cell bodies AND <strong>axon terminals</strong>, so the drug tunes transmitter release far from the receptor's cell. Semaglutide and tirzepatide rapidly inhibit hunger-driving AgRP neurons; tirzepatide (dual GIP/GLP-1) more potently.<sup class="cit">[10-11]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Your natural GLP-1 is a 2-minute whisper to the local nerve. The drug is a 5–7 day broadcast that sneaks past the brain's security gate through a few unguarded windows and parks in the appetite and reward centers.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">The blood–brain barrier is a guarded wall. Semaglutide doesn't climb it — it walks in through a few always-open service windows (the CVOs) and camps for a week.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Does semaglutide cross the BBB? How does it get in? <span class="toggle">show</span></div><div class="a">No (ratio &lt;0.01) — via circumventricular organs like the area postrema and median eminence.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Two ways the drug differs from natural GLP-1? <span class="toggle">show</span></div><div class="a">Half-life (5–7 days vs 1–2 min) and reach (distributed brain regions vs local vagal/brainstem).</div></div>
+</div>
+</section>
+
+<section id="g2">
+<div class="secnum">§ 7 · GLP-1 · Reward</div>
+<h2 class="part">Rewiring the dopamine reward circuit</h2><div class="rule"></div>
+<div class="box key"><span class="lab">The core mechanism</span><span class="body">GLP-1R on VTA <strong>GABA neurons</strong> → more GABA (inhibition) → less VTA dopamine firing → less dopamine in the nucleus accumbens → weaker craving. The receptors sit on the BRAKES, not the accelerator.<sup class="cit">[12]</sup></span></div>
+<p>A 2025 Science Advances study (single-nuclei transcriptomics) showed VTA GLP-1Rs are mostly on <strong>GABA neurons, not dopamine neurons</strong>, and this dopamine suppression attenuated cocaine-seeking. A 2026 Nature study found a <em class="t">central amygdala</em> GLP-1R population that selectively suppresses palatable-food intake by cutting accumbens dopamine; deleting it removed the drug's effect on reward-driven (not homeostatic) eating.<sup class="cit">[12-13]</sup></p>
+<div class="box study"><span class="lab">Key study · Zhu et al. 2025 (Science) — tolerance warning</span><span class="body">Semaglutide blunted VTA dopamine responses to food, but mice <strong>recovered</strong> appetite and dopamine activity during repeated dosing — a hint reward suppression may wane.<sup class="cit">[14]</sup></span></div>
+<p>In people: a crossover RCT (n=48) showed IV exenatide cut food-cue responses in insula, amygdala, putamen, orbitofrontal cortex. A meta-analysis of <strong>80 RCTs (n=107,860)</strong> found improved restrained (g=0.35) and emotional (g=0.32) eating and mental-health QoL (g=0.15) — <strong>not correlated with weight loss</strong>, implying a direct brain effect.<sup class="cit">[15]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">The drug presses the brake pedal (GABA neurons) in the reward hub, so dopamine drops and cravings — food, and as we'll see alcohol and nicotine — fade. The catch: in mice the brakes loosened over time.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Dopamine is the "I want that" signal. The drug doesn't cut the wire — it leans on the brake pedal, so everything you used to crave feels a notch less compelling.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Which VTA neurons hold the GLP-1 receptors, and the effect? <span class="toggle">show</span></div><div class="a">GABA neurons — activating them inhibits dopamine neurons, lowering accumbens dopamine and craving.</div></div>
+<div class="qa"><div class="q"><b>Q</b> What did Zhu (2025) warn about? <span class="toggle">show</span></div><div class="a">Possible tolerance — mice recovered appetite and dopamine activity during repeated treatment.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Why does "not correlated with weight loss" matter? <span class="toggle">show</span></div><div class="a">It suggests a direct brain effect, not just a consequence of losing weight.</div></div>
+</div>
+</section>
+
+<section id="g3">
+<div class="secnum">§ 8 · GLP-1 · Mind</div>
+<h2 class="part">Mood and the suicidality question</h2><div class="rule"></div>
+<p>The 80-RCT meta-analysis found <strong>no significant mood difference</strong> vs placebo (g=0.02) — but those trials excluded psychiatric patients. Post-hoc STEP analyses showed a small real PHQ-9 edge (−0.56) and less worsening to severe depression (OR 0.63).<sup class="cit">[15-16]</sup></p>
+<div class="box study"><span class="lab">Key study · Taipale et al., Lancet Psychiatry 2026 — strongest signal</span><span class="body">A Swedish within-individual cohort tied semaglutide to <strong>42% lower risk of worsening mental illness</strong> (aHR 0.62), incl. depression (0.56) and anxiety (0.62). Liraglutide weaker (0.74); exenatide/dulaglutide nothing — agent-specific, not a class effect.<sup class="cit">[17]</sup></span></div>
+<div class="box key"><span class="lab">Resolved worry</span><span class="body">Early headlines linked these drugs to suicidal thoughts. FDA and EMA found <strong>no causal link</strong> (144-RCT meta RR 0.76; Danish cohort HR 0.58). The signal appeared only AFTER media attention in late 2023 — reporting bias, not a real effect.<sup class="cit">[18-19]</sup></span></div>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Mood results are mixed but lean positive, strongest in Sweden (42% less worsening). The scary suicide headlines didn't hold up.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">On mood: "gentle tailwind, not a cure." On the suicide scare: a rumor that spread because everyone was suddenly watching, not because the drug caused it.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Is the mood benefit a uniform class effect? <span class="toggle">show</span></div><div class="a">No — semaglutide (weakly liraglutide) showed benefit; exenatide and dulaglutide didn't.</div></div>
+<div class="qa"><div class="q"><b>Q</b> What did regulators conclude on suicidality? <span class="toggle">show</span></div><div class="a">No causal link; the signal traced to media-driven reporting bias after late 2023.</div></div>
+</div>
+</section>
+
+<section id="g4">
+<div class="secnum">§ 9 · GLP-1 · Addiction</div>
+<h2 class="part">Substance use: the most striking signal</h2><div class="rule"></div>
+<div class="box study"><span class="lab">Key study · Klausen et al., Lancet 2026 — first AUD RCT</span><span class="body">In treatment-seeking alcohol-use-disorder patients with obesity (n=108), semaglutide 2.4 mg for 26 weeks cut heavy-drinking days (−13.7 pp vs placebo, P=.0015), consumption, drinks/day, AUDIT, craving. <strong>NNT 4.3</strong> — better than approved AUD drugs (naltrexone/acamprosate NNT ≥7).<sup class="cit">[20]</sup></span></div>
+<div class="box study"><span class="lab">Key study · Hendershot et al., JAMA Psychiatry 2025</span><span class="body">Phase 2 in 48 non-treatment-seeking adults: even low-dose semaglutide (≤1.0 mg) reduced lab alcohol self-administration (β −0.48), drinks/day (β −0.41), craving (β −0.39), bigger at higher dose.<sup class="cit">[21]</sup></span></div>
+<p>Real-world data agree: a Swedish cohort (n=227,866) tied semaglutide to the <strong>lowest AUD-hospitalization risk (aHR 0.64)</strong>, beating approved meds (0.98). A US Veterans cohort (n=606,434) linked GLP-1 RAs to lower incident AUD (HR 0.82) and lower SUD mortality (HR 0.50). Across substances: cannabis (0.86), cocaine (0.80), nicotine (0.80), opioids (0.75).<sup class="cit">[23-24][26]</sup></p>
+<div class="box study"><span class="lab">Mechanistic tell</span><span class="body">DPP-4 inhibitors (which RAISE your own GLP-1) do NOT reduce alcohol outcomes — in humans or rodents. So it's the drug's supraphysiological GLP-1R activation that matters, not just "more GLP-1." Key point if someone asks "why not just boost natural GLP-1?"<sup class="cit">[23][25]</sup></span></div>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">The most exciting finding: semaglutide cut drinking — and craving for nicotine, cocaine, opioids — often beating existing addiction meds. And only the actual drug works, not boosting natural GLP-1.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Because the drug turns down the whole reward circuit, it doesn't just quiet food cravings — it quiets alcohol, cigarettes, and more, all from the same brake pedal.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> How does semaglutide's alcohol NNT compare to existing meds? <span class="toggle">show</span></div><div class="a">Better — NNT 4.3 vs ≥7 for naltrexone/acamprosate.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Why does the DPP-4 comparison matter? <span class="toggle">show</span></div><div class="a">Boosting natural GLP-1 doesn't reduce drinking — only supraphysiological drug-level GLP-1R activation does.</div></div>
+</div>
+</section>
+
+<section id="g5">
+<div class="secnum">§ 10 · GLP-1 · The Brain Itself</div>
+<h2 class="part">Neurodegeneration: promise, then phase-3 reality</h2><div class="rule"></div>
+<p>Epidemiology looked thrilling — a 26-RCT meta-analysis (N=164,531) tied GLP-1 RAs to <strong>45% lower dementia risk (OR 0.55)</strong>. Then the dedicated trials landed.</p>
+<div class="box study"><span class="lab">LIXIPARK · Meissner, NEJM 2024</span><span class="body">Lixisenatide in 156 early-PD patients: motor scores held (−0.04) vs worsening on placebo (+3.04), difference 3.08, P=.007 — but just under the 3.25 meaningful threshold, with 46% nausea. Borderline positive.<sup class="cit">[27-28]</sup></span></div>
+<div class="box study"><span class="lab">Exenatide-PD3 · Lancet 2025 — the verdict</span><span class="body">The biggest, longest trial (194 patients, 96 weeks) was flatly <span class="neg">negative</span>: no motor difference (P=.47), no subgroup benefit, no DaT-SPECT difference.<sup class="cit">[29]</sup></span></div>
+<div class="tbl"><table>
+<thead><tr><th>Trial</th><th>Agent</th><th>N</th><th>Duration</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Aviles-Olmos 2013</td><td>Exenatide (open-label)</td><td class="num">45</td><td>12 mo</td><td class="pos">Positive</td></tr>
+<tr><td>Exenatide-PD (Athauda 2017)</td><td>Exenatide RCT</td><td class="num">62</td><td>48 wk</td><td class="pos">Positive</td></tr>
+<tr><td>LIXIPARK (Meissner 2024)</td><td>Lixisenatide RCT</td><td class="num">156</td><td>12 mo</td><td class="pos">Positive (borderline)</td></tr>
+<tr><td>NLY01 / PRISM-PD (2024)</td><td>PEG-exenatide RCT</td><td class="num">255</td><td>36 wk</td><td class="neg">Negative</td></tr>
+<tr><td>Exenatide-PD3 (2025)</td><td>Exenatide phase 3</td><td class="num">194</td><td>96 wk</td><td class="neg">Negative</td></tr>
+</tbody></table></div>
+<p>The pattern — short-acting agents positive in small/short trials, long-acting negative in big/long ones — raises whether <em class="t">pulsatile vs continuous</em> stimulation matters, or whether early wins were symptomatic effects that washed out. For Alzheimer's, the <strong>EVOKE trial</strong> of oral semaglutide missed its cognitive endpoint despite improving biomarkers (p-tau, t-tau, neurogranin, YKL-40).<sup class="cit">[29][31-33]</sup></p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Huge observational hope (up to 45% less dementia), but the rigorous trials disappointed — the definitive Parkinson's trial was negative and the Alzheimer's trial missed. Correlation isn't cure.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">The cautionary tale of the whole field: the epidemiology promised a miracle, but the careful experiments didn't deliver it. A perfect teaching moment about why we run trials at all.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Tension between the dementia data and the PD/AD trials? <span class="toggle">show</span></div><div class="a">Observational data showed big risk reductions, but the definitive RCTs (Exenatide-PD3, EVOKE) were negative — correlation didn't translate to benefit.</div></div>
+</div>
+</section>
+
+<section id="g6">
+<div class="secnum">§ 11 · GLP-1 · Decisions</div>
+<h2 class="part">The circle closes: GLP-1 and decision-making</h2><div class="rule"></div>
+<div class="box study"><span class="lab">Key study · Gill et al., JAMA Psychiatry 2026</span><span class="body">First RCT of a GLP-1 drug on reward behavior in psychiatry. In 16 weeks of oral semaglutide in MDD patients (BMI ≥25), it reduced parameter <strong>k</strong> — the effort-cost discount — on the EEfRT task (β −1.737, P=.03): patients were more willing to work for rewards. No effect on probability weighting (h), and the effect was <strong>independent of mood change</strong>.<sup class="cit">[34]</sup></span></div>
+<p>Beside the Dantas probiotic study, a pattern emerges: both gut–brain interventions shift economic decision parameters via a shared <strong>microbiome → gut-hormone → mesolimbic dopamine</strong> pathway, nudging people from impulsive/hedonic toward deliberative/future-oriented. No GLP-1 study has yet measured <strong>delay discounting or risk preference</strong> directly — a wide-open, high-value gap.<sup class="cit">[4-5][34][36]</sup></p>
+<div class="tbl"><table>
+<thead><tr><th>Decision parameter</th><th>Probiotics (Dantas 2022)</th><th>Semaglutide (Gill 2026)</th></tr></thead>
+<tbody>
+<tr><td>Risk preference</td><td>Decreased risk-taking</td><td>Not measured</td></tr>
+<tr><td>Patience / discounting</td><td>More patient</td><td>Not measured</td></tr>
+<tr><td>Effort cost</td><td>Not measured</td><td>Decreased (parameter k)</td></tr>
+<tr><td>Probability weighting</td><td>Not measured</td><td>No effect (parameter h)</td></tr>
+<tr><td>Independent of mood?</td><td>Not assessed</td><td>Yes</td></tr>
+</tbody></table></div>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">A gut-hormone drug measurably changed how hard people would work for a reward — and not because their mood lifted. The gut-to-reward pathway is a real biological lever on human choice.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Remember the dials from §5? Probiotics nudged "risk" and "patience"; semaglutide nudged "effort." Same dashboard, same hidden hand reaching for it from the gut.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> What did semaglutide change about decision-making, and the caveat? <span class="toggle">show</span></div><div class="a">It lowered the perceived cost of effort (parameter k) — independent of any change in depression severity.</div></div>
+</div>
+</section>
+
+<section id="glossary">
+<div class="secnum">Appendix A</div>
+<h2 class="part">Glossary</h2><div class="rule"></div>
+<ul>
+<li><strong>Enteric nervous system (ENS)</strong> — the gut's own ~500M-neuron network; the "second brain."</li>
+<li><strong>Vagus nerve</strong> — the main gut–brain cable; ~80% of fibers carry signals up.</li>
+<li><strong>Afferent / efferent</strong> — afferent = toward the brain (sensory); efferent = away (motor).</li>
+<li><strong>NTS</strong> — nucleus tractus solitarius; brainstem "inbox" receiving and relaying gut signals.</li>
+<li><strong>Neuropod</strong> — a tail on certain gut cells that synapses onto the vagus, signaling in milliseconds.</li>
+<li><strong>SCFA</strong> — short-chain fatty acids (butyrate, propionate, acetate) from fiber; anti-inflammatory.</li>
+<li><strong>HDAC inhibitor</strong> — butyrate's second job: changing gene expression, calming microglia.</li>
+<li><strong>Tryptophan</strong> — amino acid split into serotonin, kynurenine (calm vs toxic), or indole paths.</li>
+<li><strong>HPA axis</strong> — the brain's stress-hormone line (CRF → cortisol) reaching down to the gut.</li>
+<li><strong>α7nAChR</strong> — the receptor the vagus uses to switch off macrophage inflammation.</li>
+<li><strong>Dysbiosis</strong> — an unhealthy shift in the gut microbial community.</li>
+<li><strong>α-synuclein</strong> — the misfolded Parkinson's protein; appears in gut nerves before the brain.</li>
+<li><strong>GLP-1</strong> — a gut fullness hormone; the drugs (semaglutide) are long-acting copies.</li>
+<li><strong>CVO</strong> — circumventricular organ; leaky-barrier brain region where GLP-1 drugs enter.</li>
+<li><strong>VTA / nucleus accumbens</strong> — the dopamine reward hub; where the drug presses the GABA "brake."</li>
+<li><strong>NNT</strong> — Number Needed to Treat — patients treated for one to benefit (lower = better).</li>
+<li><strong>Effort / delay / risk discounting</strong> — behavioral-economics measures of willingness to work, wait, or gamble for rewards.</li>
+</ul>
+</section>
+
+<section id="cheat">
+<div class="secnum">Appendix B</div>
+<h2 class="part">The dinner-table cheat sheet</h2><div class="rule"></div>
+<p>Five minutes with the family? Teach it in this order — each line is a hook you can expand.</p>
+<ul>
+<li><strong>"You have a second brain."</strong> ~500M neurons in the gut; it makes 95% of your serotonin and runs itself.</li>
+<li><strong>"Your gut talks more than it listens."</strong> 80% of the vagus runs gut→brain. "Gut feeling" is partly literal.</li>
+<li><strong>"It can taste sugar in milliseconds."</strong> Neuropod cells wire straight to the brain and reward real sugar over sweetener.</li>
+<li><strong>"Your bacteria write notes to your brain."</strong> Fiber → calming fatty acids; some bugs make GABA and dopamine.</li>
+<li><strong>"When it breaks, both ends suffer."</strong> IBS, depression, even Parkinson's — which may START in the gut.</li>
+<li><strong>"It can even shift your choices."</strong> Probiotics made people less risky and more patient in a real money experiment.</li>
+<li><strong>"Ozempic hijacks this whole system."</strong> It sneaks past the brain's gate, presses the dopamine brake, and quiets cravings — food, alcohol, nicotine.</li>
+<li><strong>"But stay humble."</strong> Most links are correlations; the big Parkinson's and Alzheimer's drug trials disappointed.</li>
+</ul>
+<div class="box analogy"><span class="lab">Your one-line closer</span><span class="body">"Your gut isn't just where food goes — it's a sensing, chemical, decision-shaping organ in lifelong conversation with your brain, and medicine is only now learning to listen in."</span></div>
+</section>
+
+<footer>
+A study &amp; teaching textbook for Jenni — full technical depth plus plain-language explainers, analogies, and self-check questions. Synthesized from research reviews on the gut–brain axis and GLP-1 receptor agonists (sources via OpenEvidence: NEJM, JAMA / JAMA Psychiatry, The Lancet / Lancet Psychiatry, Nature, Science, Wiley). NEJM neuropod passage quoted with attribution. Educational synthesis — not medical advice.
+</footer>
+
+</div></main>
+</div>
+
+<script>
+  // click-to-reveal answers
+  document.querySelectorAll('.qa').forEach(function(qa){
+    qa.addEventListener('click', function(){
+      qa.classList.toggle('open');
+      var t=qa.querySelector('.toggle'); if(t) t.textContent = qa.classList.contains('open') ? 'hide' : 'show';
+    });
+  });
+  // scroll-spy sidebar
+  var links = Array.from(document.querySelectorAll('aside a'));
+  var map = {}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var secs = Array.from(document.querySelectorAll('section[id]'));
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');});
+        var a = map[e.target.id]; if(a) a.classList.add('active'); }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+  secs.forEach(function(s){ obs.observe(s); });
+</script>
+</body>
+</html>
