@@ -99,14 +99,21 @@ s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.2,w:6.0,h:1.4,fill:{color:"FCF4
 s.addText([{text:"“Gut feeling” is literal — ",options:{bold:true,color:GOLD}},{text:"the gut streams real-time data the brain blends into mood, appetite and alertness.",options:{}}],
   {x:0.85,y:4.35,w:5.5,h:1.1,fontFace:BF,fontSize:15.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.1});
 card(s,7.0,1.9,5.7,3.9,CREAM);
-s.addShape(p.shapes.OVAL,{x:7.4,y:2.9,w:1.6,h:1.6,fill:{color:"F7E3DA"},line:{color:RUSTD,width:2}});
-s.addText("BRAIN",{x:7.4,y:2.9,w:1.6,h:1.6,fontFace:BF,fontSize:12,bold:true,color:RUSTD,align:"center",valign:"middle",margin:0});
-s.addShape(p.shapes.OVAL,{x:10.7,y:2.9,w:1.6,h:1.6,fill:{color:"E3EFEE"},line:{color:TEALD,width:2}});
-s.addText("GUT",{x:10.7,y:2.9,w:1.6,h:1.6,fontFace:BF,fontSize:12,bold:true,color:TEALD,align:"center",valign:"middle",margin:0});
-s.addShape(p.shapes.LINE,{x:9.0,y:3.4,w:1.7,h:0,line:{color:TEAL,width:7,beginArrowType:"triangle"}});
-s.addText("80%  gut → brain  (sensing)",{x:7.6,y:2.45,w:5.0,h:0.35,fontFace:BF,fontSize:13.5,bold:true,color:TEALD,align:"center",margin:0});
-s.addShape(p.shapes.LINE,{x:9.0,y:4.1,w:1.7,h:0,line:{color:RUST,width:3,endArrowType:"triangle"}});
-s.addText("20%  brain → gut  (commands)",{x:7.6,y:4.85,w:5.0,h:0.35,fontFace:BF,fontSize:12.5,color:RUSTD,align:"center",margin:0});
+// Brain: overlapping soft lobes read more like an organ than a plain circle.
+[[7.45,2.75,0.95,0.82],[7.95,2.55,1.05,0.9],[8.55,2.8,0.95,0.86],[7.65,3.28,1.08,0.88],[8.25,3.22,1.0,0.82]].forEach((b,i)=>s.addShape(p.shapes.OVAL,{x:b[0],y:b[1],w:b[2],h:b[3],fill:{color:"F7E3DA",transparency:i?8:0},line:{color:RUSTD,width:1.4}}));
+s.addText("BRAIN",{x:7.78,y:3.12,w:1.35,h:0.35,fontFace:BF,fontSize:12,bold:true,color:RUSTD,align:"center",margin:0});
+s.addText("brainstem / NTS",{x:7.55,y:4.0,w:1.8,h:0.25,fontFace:BF,fontSize:9.5,color:GREY,align:"center",margin:0});
+// Gut: large loop plus inner loop, leaving the label open and readable.
+s.addShape(p.shapes.ARC,{x:10.3,y:2.55,w:1.55,h:1.7,adjustPoint:0.25,line:{color:TEALD,width:7,beginArrowType:"none",endArrowType:"none"}});
+s.addShape(p.shapes.ARC,{x:10.65,y:3.1,w:0.8,h:0.82,adjustPoint:0.2,line:{color:TEALD,width:6}});
+s.addShape(p.shapes.OVAL,{x:10.08,y:3.55,w:1.05,h:0.74,fill:{color:"DDECE9"},line:{color:TEALD,width:1.5}});
+s.addText("GUT",{x:10.13,y:3.76,w:0.95,h:0.25,fontFace:BF,fontSize:12,bold:true,color:TEALD,align:"center",margin:0});
+s.addShape(p.shapes.LINE,{x:9.25,y:3.05,w:1.05,h:0,line:{color:TEAL,width:7,beginArrowType:"triangle"}});
+s.addShape(p.shapes.LINE,{x:9.25,y:3.32,w:1.0,h:0,line:{color:TEAL,width:3,beginArrowType:"triangle",transparency:25}});
+s.addShape(p.shapes.LINE,{x:9.25,y:3.58,w:0.95,h:0,line:{color:TEAL,width:2.5,beginArrowType:"triangle",transparency:45}});
+s.addText("80%  gut → brain  (sensing)",{x:7.55,y:2.25,w:4.8,h:0.35,fontFace:BF,fontSize:13.2,bold:true,color:TEALD,align:"center",margin:0});
+s.addShape(p.shapes.LINE,{x:9.22,y:4.35,w:1.05,h:0,line:{color:RUST,width:3,endArrowType:"triangle"}});
+s.addText("20%  brain → gut  (commands)",{x:7.55,y:4.82,w:4.8,h:0.35,fontFace:BF,fontSize:12.3,color:RUSTD,align:"center",margin:0});
 
 /* 7 Vagus pathways depth */
 s=p.addSlide(); s.background={color:WHITE};
@@ -172,20 +179,20 @@ edgeCards(s,1.95,[
 /* 13 MICROBIOME MAP */
 s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"The microbiome–gut–brain map","From what you eat, to messengers, to molecular keys");
-card(s,0.6,1.95,3.85,4.5,"FCF4E3");
-s.addText("What shapes your microbiome",{x:0.8,y:2.1,w:3.45,h:0.5,fontFace:BF,fontSize:14,bold:true,color:"B88A1F",align:"center",margin:0});
-s.addText(["Diet & fiber","Genes & age","Antibiotics","Stress","Birth mode","Lifestyle · place"].map(r=>({text:r,options:{breakLine:true,bullet:true,paraSpaceAfter:7}})),
-  {x:1.05,y:2.7,w:3.1,h:2.0,fontFace:BF,fontSize:13.5,color:GREY,margin:0});
-s.addShape(p.shapes.OVAL,{x:1.55,y:4.85,w:1.95,h:1.2,fill:{color:"E9D9C4"},line:{color:"B88A1F",width:1.5}});
-s.addText("~38T microbes",{x:1.45,y:5.25,w:2.15,h:0.4,fontFace:BF,fontSize:12,bold:true,color:RUSTD,align:"center",margin:0});
-card(s,4.7,1.95,3.9,4.5,"E9F0EF");
-s.addText("How they reach the brain",{x:4.9,y:2.1,w:3.5,h:0.5,fontFace:BF,fontSize:14,bold:true,color:TEALD,align:"center",margin:0});
-s.addShape(p.shapes.OVAL,{x:6.0,y:2.65,w:1.3,h:1.0,fill:{color:"F7E3DA"},line:{color:RUSTD,width:2}});
-s.addText("BRAIN",{x:6.0,y:2.65,w:1.3,h:1.0,fontFace:BF,fontSize:11,bold:true,color:RUSTD,align:"center",valign:"middle",margin:0});
-[["HPA · stress",PLUM],["vagus nerve",TEAL],["immune cells",GREEN],["gut hormones",RUST]].forEach((l,i)=>{const y=3.85+i*0.6; s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:4.95,y,w:3.4,h:0.48,fill:{color:l[1]},rectRadius:0.2}); s.addText(l[0],{x:4.95,y,w:3.4,h:0.48,fontFace:BF,fontSize:13,bold:true,color:WHITE,align:"center",valign:"middle",margin:0});});
-card(s,8.85,1.95,3.85,4.5,"F7E3DA");
-s.addText("The molecular keys",{x:9.05,y:2.1,w:3.45,h:0.5,fontFace:BF,fontSize:14,bold:true,color:RUSTD,align:"center",margin:0});
-[["Short-chain fatty acids","fiber → anti-inflammatory brain fuel"],["Tryptophan & indoles","serotonin's raw material; calm vs irritate"],["Bile acids","microbe-modified; trigger GLP-1"]].forEach((k,i)=>{const y=2.7+i*1.15; s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:9.0,y,w:3.55,h:1.0,fill:{color:WHITE},line:{color:RUSTD,width:1,dashType:"dash"},rectRadius:0.08}); s.addText(k[0],{x:9.15,y:y+0.1,w:3.25,h:0.35,fontFace:BF,fontSize:13,bold:true,color:RUSTD,margin:0}); s.addText(k[1],{x:9.15,y:y+0.46,w:3.25,h:0.5,fontFace:BF,fontSize:11.5,color:GREY,margin:0});});
+card(s,0.6,1.95,3.7,4.5,"FCF4E3");
+s.addText("What shapes your microbiome",{x:0.8,y:2.1,w:3.25,h:0.5,fontFace:BF,fontSize:14,bold:true,color:"B88A1F",align:"center",margin:0});
+s.addText(["Diet & fiber","Genes & age","Antibiotics","Stress","Birth mode","Lifestyle · place"].map(r=>({text:r,options:{breakLine:true,bullet:true,paraSpaceAfter:6}})),
+  {x:1.02,y:2.65,w:2.95,h:2.0,fontFace:BF,fontSize:13.2,color:GREY,margin:0});
+s.addShape(p.shapes.OVAL,{x:1.48,y:4.82,w:1.95,h:1.18,fill:{color:"E9D9C4"},line:{color:"B88A1F",width:1.5}});
+s.addText("~38T microbes",{x:1.42,y:5.22,w:2.08,h:0.4,fontFace:BF,fontSize:12,bold:true,color:RUSTD,align:"center",margin:0});
+card(s,4.55,1.95,3.95,4.5,"E9F0EF");
+s.addText("How they reach the brain",{x:4.78,y:2.1,w:3.5,h:0.5,fontFace:BF,fontSize:14,bold:true,color:TEALD,align:"center",margin:0});
+s.addShape(p.shapes.OVAL,{x:5.88,y:2.55,w:1.42,h:1.02,fill:{color:"F7E3DA"},line:{color:RUSTD,width:2}});
+s.addText("BRAIN",{x:5.88,y:2.88,w:1.42,h:0.28,fontFace:BF,fontSize:11,bold:true,color:RUSTD,align:"center",margin:0});
+[["HPA · stress",PLUM],["vagus nerve",TEAL],["immune cells",GREEN],["gut hormones",RUST]].forEach((l,i)=>{const y=3.68+i*0.64; s.addShape(p.shapes.LINE,{x:6.56,y:y-0.18,w:0,h:-0.42,line:{color:l[1],width:1.2,endArrowType:"triangle",transparency:45}}); s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:4.9,y,w:3.25,h:0.48,fill:{color:l[1]},rectRadius:0.18}); s.addText(l[0],{x:4.9,y,w:3.25,h:0.48,fontFace:BF,fontSize:12.7,bold:true,color:WHITE,align:"center",valign:"middle",margin:0});});
+card(s,8.75,1.95,3.95,4.5,"F7E3DA");
+s.addText("The molecular keys",{x:8.96,y:2.1,w:3.5,h:0.5,fontFace:BF,fontSize:14,bold:true,color:RUSTD,align:"center",margin:0});
+[["Short-chain fatty acids","fiber → anti-inflammatory brain fuel",TEAL],["Tryptophan & indoles","serotonin's raw material; calm vs irritate",PLUM],["Bile acids","microbe-modified; trigger GLP-1",GOLD]].forEach((k,i)=>{const y=2.7+i*1.15; s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:8.95,y,w:3.58,h:1.0,fill:{color:WHITE},line:{color:RUSTD,width:1,dashType:"dash"},rectRadius:0.08}); s.addShape(p.shapes.OVAL,{x:9.1,y:y+0.24,w:0.2,h:0.2,fill:{color:k[2]},line:{color:k[2]}}); s.addShape(p.shapes.LINE,{x:9.22,y:y+0.34,w:0.22,h:0.1,line:{color:k[2],width:1.4}}); s.addShape(p.shapes.OVAL,{x:9.48,y:y+0.39,w:0.13,h:0.13,fill:{color:k[2]},line:{color:k[2]}}); s.addText(k[0],{x:9.68,y:y+0.1,w:2.65,h:0.35,fontFace:BF,fontSize:12.8,bold:true,color:RUSTD,margin:0}); s.addText(k[1],{x:9.68,y:y+0.46,w:2.65,h:0.5,fontFace:BF,fontSize:11.1,color:GREY,margin:0});});
 source(s,"Original recreation of the microbiome–gut–brain axis figure (Microbial Biotechnology, 2024).");
 
 /* 14 WHEN IT BREAKS */
@@ -260,23 +267,32 @@ titleBlock(s,"How the drug gets in","It skips the brain's bouncer");
 s.addText([{text:"Semaglutide barely crosses the blood–brain barrier",options:{bold:true,color:RUSTD}},{text:" (brain:plasma <0.01). It slips in through ",options:{}},{text:"circumventricular organs (CVOs)",options:{bold:true,color:TEALD}},{text:" — the area postrema & median eminence — where the barrier is deliberately leaky. With a 5–7 day half-life it parks there at supraphysiological levels. Its energy effects need Adcyap1+ neurons in the area postrema/NTS.",options:{}}],
   {x:0.6,y:1.85,w:6.2,h:3.2,fontFace:BF,fontSize:16,color:INK,margin:0,lineSpacingMultiple:1.2});
 card(s,7.2,1.95,5.5,4.3,CREAM);
-s.addShape(p.shapes.OVAL,{x:8.7,y:2.45,w:2.6,h:2.6,fill:{color:"F7E3DA"},line:{color:RUSTD,width:2}});
-s.addText("BRAIN",{x:8.7,y:2.9,w:2.6,h:0.5,fontFace:BF,fontSize:14,bold:true,color:RUSTD,align:"center",margin:0});
-[[8.5,3.1],[10.9,3.5],[9.4,4.9]].forEach(c=>s.addShape(p.shapes.OVAL,{x:c[0],y:c[1],w:0.55,h:0.55,fill:{color:GOLD}}));
-s.addText("← drug enters here (leaky windows / CVOs)",{x:7.4,y:5.35,w:5.1,h:0.6,fontFace:BF,fontSize:13.5,italic:true,color:RUSTD,align:"center",margin:0,lineSpacingMultiple:1.1});
+s.addText("blood–brain barrier: mostly sealed",{x:7.55,y:2.18,w:4.8,h:0.26,fontFace:BF,fontSize:11.8,bold:true,color:GREY,align:"center",margin:0});
+s.addShape(p.shapes.LINE,{x:7.55,y:2.68,w:4.78,h:0,line:{color:GREY,width:6}});
+[7.75,8.18,8.61,9.04,9.47,10.9,11.33,11.76].forEach(x=>s.addShape(p.shapes.LINE,{x,y:2.54,w:0,h:0.28,line:{color:WHITE,width:1}}));
+[[9.78,2.5],[10.18,2.5]].forEach(c=>s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:c[0],y:c[1],w:0.28,h:0.38,fill:{color:GOLD},line:{color:RUSTD,width:1},rectRadius:0.04}));
+s.addText("leaky CVO windows",{x:9.25,y:3.03,w:1.7,h:0.24,fontFace:BF,fontSize:10.8,bold:true,color:RUSTD,align:"center",margin:0});
+s.addShape(p.shapes.LINE,{x:8.35,y:4.75,w:1.55,h:-1.8,line:{color:RUST,width:2.5,endArrowType:"triangle"}});
+s.addShape(p.shapes.LINE,{x:11.25,y:4.75,w:-1.0,h:-1.8,line:{color:RUST,width:2.5,endArrowType:"triangle"}});
+[[8.18,4.78],[8.55,4.95],[10.95,4.92],[11.36,4.75]].forEach(c=>s.addShape(p.shapes.OVAL,{x:c[0],y:c[1],w:0.16,h:0.16,fill:{color:RUST},line:{color:RUST}}));
+[[9.08,3.48,0.8,0.68],[9.5,3.32,0.9,0.78],[10.02,3.54,0.82,0.68],[9.3,3.95,0.9,0.72],[9.82,3.93,0.92,0.72]].forEach(b=>s.addShape(p.shapes.OVAL,{x:b[0],y:b[1],w:b[2],h:b[3],fill:{color:"F7E3DA",transparency:4},line:{color:RUSTD,width:1.2}}));
+s.addText("BRAIN",{x:9.48,y:3.85,w:0.96,h:0.3,fontFace:BF,fontSize:12,bold:true,color:RUSTD,align:"center",margin:0});
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:10.92,y:3.25,w:1.25,h:1.0,fill:{color:WHITE},line:{color:LINE,width:1},rectRadius:0.08});
+s.addText("appetite\nreward\nemotion",{x:11.05,y:3.39,w:1.0,h:0.72,fontFace:BF,fontSize:10.2,bold:true,color:TEALD,align:"center",margin:0,breakLine:false});
+s.addShape(p.shapes.LINE,{x:10.62,y:3.88,w:0.3,h:-0.05,line:{color:TEALD,width:1.2,endArrowType:"triangle",transparency:30}});
+s.addText("drug enters here",{x:7.5,y:5.58,w:4.85,h:0.32,fontFace:BF,fontSize:12.3,italic:true,color:RUSTD,align:"center",margin:0});
 
 /* 21 REWARD FLOW */
 s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"What it does to craving","Turning down the dopamine");
 s.addText("In the reward hub, GLP-1 receptors sit mostly on the BRAKES (VTA GABA neurons). The drug presses them, dopamine drops in the nucleus accumbens, and the pull of whatever you craved fades.",
   {x:0.6,y:1.8,w:12,h:0.95,fontFace:BF,fontSize:17,color:INK,margin:0,lineSpacingMultiple:1.1});
-[["GLP-1 drug","binds VTA receptor",RUST],["GABA brakes ON","↑ inhibition",PLUM],["Dopamine ↓","in nucleus accumbens",TEAL],["Craving ↓","food · alcohol · nicotine",GREEN]].forEach((f,i)=>{const x=0.6+i*3.18; card(s,x,3.1,2.75,1.9,WHITE);
-  s.addShape(p.shapes.RECTANGLE,{x,y:3.1,w:2.75,h:0.13,fill:{color:f[2]}});
-  s.addText(f[0],{x:x+0.15,y:3.45,w:2.45,h:0.7,fontFace:BF,fontSize:15.5,bold:true,color:f[2],align:"center",valign:"middle",margin:0});
-  s.addText(f[1],{x:x+0.15,y:4.15,w:2.45,h:0.7,fontFace:BF,fontSize:12.5,color:GREY,align:"center",margin:0});
-  if(i<3) s.addText("→",{x:x+2.78,y:3.5,w:0.42,h:1.0,fontFace:BF,fontSize:26,bold:true,color:GREY,align:"center",valign:"middle",margin:0});});
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.85,y:3.0,w:11.6,h:1.85,fill:{color:CREAM},line:{color:LINE,width:1},rectRadius:0.12});
+[["GLP-1 drug","binds VTA receptor",RUST],["GABA brakes ON","↑ inhibition",PLUM],["Dopamine ↓","in nucleus accumbens",TEAL],["Craving ↓","food · alcohol · nicotine",GREEN]].forEach((f,i)=>{const x=1.05+i*2.85; s.addShape(p.shapes.OVAL,{x:x+0.42,y:3.18,w:1.25,h:1.25,fill:{color:f[2]},line:{color:f[2],width:1.2}}); s.addText(f[0],{x:x+0.18,y:3.45,w:1.75,h:0.28,fontFace:BF,fontSize:12.8,bold:true,color:WHITE,align:"center",margin:0}); s.addText(f[1],{x:x,y:4.42,w:2.15,h:0.28,fontFace:BF,fontSize:11.4,color:f[2],bold:true,align:"center",margin:0}); if(i<3) s.addShape(p.shapes.LINE,{x:x+2.1,y:3.8,w:0.72,h:0,line:{color:GREY,width:2.2,endArrowType:"triangle"}});});
+s.addShape(p.shapes.LINE,{x:4.45,y:3.72,w:2.1,h:0,line:{color:PLUM,width:3,endArrowType:"triangle"}});
+s.addText("VTA GABA brake suppresses dopamine output",{x:3.6,y:5.02,w:6.2,h:0.28,fontFace:BF,fontSize:12.2,italic:true,color:GREY,align:"center",margin:0});
 s.addText("Caveat (Zhu 2025): in mice, dopamine activity & appetite recovered during repeated dosing — possible tolerance.",
-  {x:0.6,y:5.4,w:12,h:0.5,fontFace:BF,fontSize:14,italic:true,color:GREY,align:"center",margin:0});
+  {x:0.6,y:5.55,w:12,h:0.5,fontFace:BF,fontSize:14,italic:true,color:GREY,align:"center",margin:0});
 
 /* 22 IN PEOPLE */
 s=p.addSlide(); s.background={color:WHITE};
