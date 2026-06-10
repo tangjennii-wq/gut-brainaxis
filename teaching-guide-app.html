@@ -170,23 +170,50 @@
 <figure>
   <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
     <title>How one neuron signals the next across a synapse</title>
-    <g stroke="#4f46e5" fill="none" stroke-width="2.4" stroke-linecap="round">
-      <path d="M74 100 L42 72 M72 100 L36 100 M74 100 L42 130 M82 84 L56 58 M82 118 L56 144"/>
+    <defs>
+      <marker id="apWave" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#4f46e5"/></marker>
+    </defs>
+    <rect x="14" y="14" width="692" height="172" rx="18" fill="#ffffff" stroke="#e6e7ea"/>
+    <g stroke="#4f46e5" fill="none" stroke-width="2.6" stroke-linecap="round" opacity=".9">
+      <path d="M96 97 C76 84 58 68 38 48"/>
+      <path d="M91 107 C66 104 48 104 30 113"/>
+      <path d="M101 117 C83 134 64 147 42 158"/>
+      <path d="M116 76 C106 57 92 45 74 36"/>
+      <path d="M126 121 C130 143 124 159 108 174"/>
+      <path d="M130 82 C151 65 169 55 190 48"/>
     </g>
-    <circle cx="106" cy="100" r="33" fill="#eef0ff" stroke="#4f46e5" stroke-width="2.4"/>
-    <text x="106" y="96" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#3730a3">neuron</text>
-    <text x="106" y="110" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6d72c4">(cell body)</text>
-    <path d="M139 100 L432 100" stroke="#4f46e5" stroke-width="6" fill="none"/>
-    <g fill="#c7cbf7"><rect x="190" y="92" width="36" height="16" rx="8"/><rect x="270" y="92" width="36" height="16" rx="8"/><rect x="350" y="92" width="36" height="16" rx="8"/></g>
-    <text x="240" y="80" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#71757e">electrical spike travels down the axon  →</text>
-    <path d="M432 100 q40 -19 46 0 q-6 21 -46 0Z" fill="#4f46e5"/>
-    <g fill="#b7791f"><circle cx="494" cy="86" r="4"/><circle cx="502" cy="100" r="4"/><circle cx="494" cy="114" r="4"/><circle cx="518" cy="92" r="4"/><circle cx="518" cy="108" r="4"/></g>
-    <text x="478" y="56" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#17181b">synapse</text>
-    <path d="M478 60 L492 82" stroke="#9a9ea6" stroke-width="1"/>
-    <text x="506" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#71757e">neurotransmitters cross the gap</text>
-    <path d="M566 58 Q540 100 566 142" stroke="#0e7c73" stroke-width="11" fill="none" stroke-linecap="round"/>
-    <g fill="#0e7c73"><rect x="542" y="84" width="9" height="6" rx="2"/><rect x="538" y="100" width="9" height="6" rx="2"/><rect x="542" y="116" width="9" height="6" rx="2"/></g>
-    <text x="612" y="104" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#0e6f66">next neuron</text>
+    <circle cx="126" cy="100" r="36" fill="#eef0ff" stroke="#4f46e5" stroke-width="2.6"/>
+    <circle cx="116" cy="94" r="10" fill="#c7cbf7" opacity=".85"/>
+    <text x="126" y="96" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#3730a3">neuron</text>
+    <text x="126" y="110" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6d72c4">(cell body)</text>
+    <path d="M162 100 C218 96 252 102 304 100 C357 97 391 100 438 100" stroke="#4f46e5" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <g fill="#c7cbf7" stroke="#4f46e5" stroke-width=".6">
+      <rect x="204" y="91" width="38" height="18" rx="9"/>
+      <rect x="282" y="91" width="38" height="18" rx="9"/>
+      <rect x="360" y="91" width="38" height="18" rx="9"/>
+    </g>
+    <path d="M190 79 C222 63 255 63 286 79 C318 95 354 95 389 79" stroke="#4f46e5" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#apWave)" opacity=".65"/>
+    <text x="287" y="61" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#71757e">electrical spike travels down the axon  →</text>
+    <path d="M438 100 C452 76 483 80 490 98 C482 119 453 122 438 100Z" fill="#4f46e5"/>
+    <g fill="#eef0ff" opacity=".9">
+      <circle cx="457" cy="91" r="3.2"/><circle cx="466" cy="99" r="3.2"/><circle cx="457" cy="108" r="3.2"/>
+    </g>
+    <text x="482" y="47" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#17181b">synapse</text>
+    <path d="M482 51 L496 80" stroke="#9a9ea6" stroke-width="1"/>
+    <g fill="#b7791f">
+      <circle cx="506" cy="83" r="4"/><circle cx="515" cy="96" r="4"/><circle cx="506" cy="111" r="4"/>
+      <circle cx="529" cy="88" r="4"/><circle cx="531" cy="107" r="4"/><circle cx="544" cy="98" r="3.4"/>
+    </g>
+    <path d="M500 122 C516 130 536 130 552 122" stroke="#b7791f" stroke-width="1.8" fill="none" stroke-dasharray="3 3" opacity=".75"/>
+    <text x="516" y="151" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#71757e">neurotransmitters cross the gap</text>
+    <path d="M584 53 C559 78 558 124 584 148" stroke="#0e7c73" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <g fill="#0e7c73">
+      <rect x="559" y="80" width="12" height="7" rx="2"/>
+      <rect x="554" y="97" width="12" height="7" rx="2"/>
+      <rect x="559" y="115" width="12" height="7" rx="2"/>
+    </g>
+    <path d="M586 56 C617 42 648 39 678 51 M586 145 C618 161 649 164 682 152" stroke="#0e7c73" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".8"/>
+    <text x="630" y="104" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#0e6f66">next neuron</text>
     <g font-family="sans-serif" font-size="11" font-weight="700">
       <rect x="250" y="168" width="186" height="24" rx="12" fill="#fdf6e7" stroke="#b7791f"/><text x="343" y="184" text-anchor="middle" fill="#8a5e16">glutamate = excite (+)</text>
       <rect x="448" y="168" width="170" height="24" rx="12" fill="#e7f5f3" stroke="#0e7c73"/><text x="533" y="184" text-anchor="middle" fill="#0e6f66">GABA = inhibit (−)</text>
@@ -203,20 +230,31 @@
 <figure>
   <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg">
     <title>Sympathetic versus parasympathetic effects on the organs</title>
-    <rect x="18" y="12" width="322" height="30" rx="8" fill="#fdeef0"/>
-    <text x="179" y="32" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#d6455d">SYMPATHETIC · fight or flight</text>
-    <rect x="380" y="12" width="322" height="30" rx="8" fill="#e7f5f3"/>
-    <text x="541" y="32" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#0e7c73">PARASYMPATHETIC · rest &amp; digest (vagus)</text>
-    <line x1="360" y1="54" x2="360" y2="238" stroke="#e6e7ea" stroke-width="1.4"/>
+    <rect x="18" y="12" width="322" height="34" rx="10" fill="#fdeef0" stroke="#f4cbd1"/>
+    <text x="179" y="34" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#d6455d">SYMPATHETIC · fight or flight</text>
+    <rect x="380" y="12" width="322" height="34" rx="10" fill="#e7f5f3" stroke="#c7e7e3"/>
+    <text x="541" y="34" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#0e7c73">PARASYMPATHETIC · rest &amp; digest (vagus)</text>
+    <line x1="360" y1="56" x2="360" y2="230" stroke="#e6e7ea" stroke-width="1.4"/>
+    <g stroke="#e6e7ea" stroke-width="1"><line x1="42" y1="94" x2="678" y2="94"/><line x1="42" y1="136" x2="678" y2="136"/><line x1="42" y1="178" x2="678" y2="178"/><line x1="42" y1="220" x2="678" y2="220"/></g>
+    <g fill="none" stroke="#17181b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="360" cy="76" r="10"/><circle cx="360" cy="76" r="4"/>
+      <path d="M348 118 C352 107 368 107 372 118 C376 131 360 136 360 136 C360 136 344 131 348 118Z"/>
+      <path d="M344 155 C354 143 366 143 376 155 C369 171 351 171 344 155Z"/><path d="M356 153 C354 160 355 166 360 171 M364 153 C366 160 365 166 360 171"/>
+      <circle cx="360" cy="200" r="12"/><path d="M348 200 H372 M360 188 V212"/>
+    </g>
     <g font-family="sans-serif" font-size="12.5">
-      <rect x="318" y="64" width="84" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="79" text-anchor="middle" font-weight="700" fill="#17181b">Pupils</text>
-      <text x="320" y="79" text-anchor="end" fill="#d6455d">dilate</text><text x="400" y="79" fill="#0e7c73">constrict</text>
-      <rect x="318" y="106" width="84" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="121" text-anchor="middle" font-weight="700" fill="#17181b">Heart</text>
-      <text x="320" y="121" text-anchor="end" fill="#d6455d">beats faster</text><text x="400" y="121" fill="#0e7c73">slows down</text>
-      <rect x="312" y="148" width="96" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="163" text-anchor="middle" font-weight="700" fill="#17181b">Digestion</text>
-      <text x="312" y="163" text-anchor="end" fill="#d6455d">pauses</text><text x="412" y="163" fill="#0e7c73">switches ON</text>
-      <rect x="312" y="190" width="96" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="205" text-anchor="middle" font-weight="700" fill="#17181b">Chemistry</text>
-      <text x="312" y="205" text-anchor="end" fill="#d6455d">adrenaline ↑</text><text x="412" y="205" fill="#0e7c73">calm · ACh</text>
+      <rect x="318" y="65" width="84" height="23" rx="11.5" fill="#f1f3f6"/><text x="360" y="80" text-anchor="middle" font-weight="700" fill="#17181b">Pupils</text>
+      <text x="298" y="80" text-anchor="end" fill="#d6455d">dilate</text><text x="422" y="80" fill="#0e7c73">constrict</text>
+      <rect x="318" y="107" width="84" height="23" rx="11.5" fill="#f1f3f6"/><text x="360" y="122" text-anchor="middle" font-weight="700" fill="#17181b">Heart</text>
+      <text x="298" y="122" text-anchor="end" fill="#d6455d">beats faster</text><text x="422" y="122" fill="#0e7c73">slows down</text>
+      <rect x="312" y="149" width="96" height="23" rx="11.5" fill="#f1f3f6"/><text x="360" y="164" text-anchor="middle" font-weight="700" fill="#17181b">Digestion</text>
+      <text x="298" y="164" text-anchor="end" fill="#d6455d">pauses</text><text x="422" y="164" fill="#0e7c73">switches ON</text>
+      <rect x="312" y="191" width="96" height="23" rx="11.5" fill="#f1f3f6"/><text x="360" y="206" text-anchor="middle" font-weight="700" fill="#17181b">Chemistry</text>
+      <text x="298" y="206" text-anchor="end" fill="#d6455d">adrenaline ↑</text><text x="422" y="206" fill="#0e7c73">calm · ACh</text>
+    </g>
+    <g opacity=".22">
+      <path d="M72 62 C104 95 104 185 72 224" stroke="#d6455d" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M648 62 C616 95 616 185 648 224" stroke="#0e7c73" stroke-width="7" fill="none" stroke-linecap="round"/>
     </g>
   </svg>
   <figcaption>The two autonomic branches do opposite things to the same organs. Digestion only runs well when the parasympathetic (vagus) side is in charge — "rest and digest."</figcaption>
@@ -251,33 +289,35 @@
       <marker id="aT" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0e7c73"/></marker>
       <marker id="aA" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b7791f"/></marker>
     </defs>
-    <!-- brain outline + brainstem stalk -->
-    <path d="M120 205 C100 130 195 96 300 102 C420 96 545 122 548 215 C551 300 470 352 360 350 C255 356 142 332 122 262 C116 242 118 222 120 205 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
-    <path d="M486 330 C500 360 510 374 518 402 L546 394 C536 362 530 344 522 322 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
-    <!-- HPA (amber) -->
-    <path d="M332 302 L332 340" stroke="#b7791f" stroke-width="2.6" fill="none" marker-end="url(#aA)"/>
-    <path d="M332 360 L332 408" stroke="#b7791f" stroke-width="2.6" fill="none" marker-end="url(#aA)"/>
-    <!-- vagal (teal) -->
-    <path d="M520 414 L511 354" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#aT)"/>
-    <path d="M492 332 C442 312 392 300 354 296" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#aT)"/>
-    <path d="M500 326 C462 290 430 260 410 240" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#aT)"/>
-    <!-- reward (indigo) -->
-    <path d="M438 292 C380 250 318 244 270 243" stroke="#4f46e5" stroke-width="2.8" fill="none" marker-end="url(#aI)"/>
-    <path d="M440 288 C360 212 258 186 192 167" stroke="#4f46e5" stroke-width="2.4" fill="none" stroke-dasharray="6 4" marker-end="url(#aI)"/>
-    <!-- nodes -->
-    <g font-family="sans-serif" font-size="10" font-weight="700" fill="#17181b" text-anchor="middle">
-      <circle cx="168" cy="158" r="7" fill="#4f46e5"/><text x="168" y="142">Prefrontal cortex</text>
-      <circle cx="452" cy="178" r="7" fill="#6f4361"/><text x="452" y="163">Hippocampus</text>
-      <circle cx="396" cy="234" r="7" fill="#6f4361"/><text x="396" y="254">Amygdala</text>
-      <circle cx="250" cy="243" r="7" fill="#4f46e5"/><text x="250" y="263">Nucleus accumbens</text>
-      <circle cx="452" cy="298" r="7" fill="#4f46e5"/><text x="478" y="302" text-anchor="start">VTA</text>
-      <circle cx="332" cy="294" r="7" fill="#b7791f"/><text x="322" y="280" text-anchor="end">Hypothalamus</text>
-      <circle cx="332" cy="348" r="7" fill="#b7791f"/><text x="346" y="352" text-anchor="start">Pituitary</text>
-      <circle cx="508" cy="340" r="7" fill="#0e7c73"/><text x="520" y="328" text-anchor="start">Brainstem · NTS</text>
+    <path d="M114 213 C96 164 126 122 178 103 C220 76 286 78 330 96 C385 78 475 94 526 139 C578 185 574 270 520 315 C474 356 386 366 308 352 C230 362 146 330 122 270 C113 248 108 231 114 213 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
+    <path d="M496 315 C515 342 527 365 536 401 L563 392 C551 354 543 330 528 303 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
+    <g fill="none" stroke="#cfd0db" stroke-width="1.5" stroke-linecap="round" opacity=".9">
+      <path d="M154 174 C190 146 234 144 268 166 C300 186 343 185 378 166"/>
+      <path d="M170 220 C216 198 260 205 294 230 C329 256 381 248 416 222"/>
+      <path d="M205 128 C250 114 290 118 324 139"/>
+      <path d="M410 123 C458 132 497 162 514 204"/>
+      <path d="M170 282 C225 304 296 304 354 287 C409 270 460 281 505 308"/>
+    </g>
+    <path d="M336 301 C335 318 335 334 334 344" stroke="#b7791f" stroke-width="2.8" fill="none" marker-end="url(#aA)"/>
+    <path d="M334 362 C335 380 337 395 339 410" stroke="#b7791f" stroke-width="2.8" fill="none" marker-end="url(#aA)"/>
+    <path d="M531 414 C531 392 526 369 516 350" stroke="#0e7c73" stroke-width="3" fill="none" marker-end="url(#aT)"/>
+    <path d="M507 336 C460 321 405 305 354 296" stroke="#0e7c73" stroke-width="3" fill="none" marker-end="url(#aT)"/>
+    <path d="M510 330 C472 295 438 264 407 242" stroke="#0e7c73" stroke-width="3" fill="none" marker-end="url(#aT)"/>
+    <path d="M452 301 C393 266 326 250 270 244" stroke="#4f46e5" stroke-width="3" fill="none" marker-end="url(#aI)"/>
+    <path d="M451 296 C381 223 276 189 191 166" stroke="#4f46e5" stroke-width="2.5" fill="none" stroke-dasharray="6 4" marker-end="url(#aI)"/>
+    <g font-family="sans-serif" font-size="10" font-weight="700" fill="#17181b">
+      <circle cx="168" cy="158" r="8" fill="#4f46e5" stroke="#ffffff" stroke-width="2"/><text x="168" y="139" text-anchor="middle">Prefrontal cortex</text>
+      <circle cx="452" cy="178" r="8" fill="#6f4361" stroke="#ffffff" stroke-width="2"/><text x="452" y="158" text-anchor="middle">Hippocampus</text>
+      <circle cx="396" cy="234" r="8" fill="#6f4361" stroke="#ffffff" stroke-width="2"/><text x="396" y="260" text-anchor="middle">Amygdala</text>
+      <circle cx="250" cy="243" r="8" fill="#4f46e5" stroke="#ffffff" stroke-width="2"/><text x="250" y="270" text-anchor="middle">Nucleus accumbens</text>
+      <circle cx="452" cy="298" r="8" fill="#4f46e5" stroke="#ffffff" stroke-width="2"/><text x="468" y="313" text-anchor="start">VTA</text>
+      <circle cx="332" cy="294" r="8" fill="#b7791f" stroke="#ffffff" stroke-width="2"/><text x="304" y="283" text-anchor="end">Hypothalamus</text>
+      <circle cx="332" cy="348" r="8" fill="#b7791f" stroke="#ffffff" stroke-width="2"/><text x="350" y="354" text-anchor="start">Pituitary</text>
+      <circle cx="508" cy="340" r="8" fill="#0e7c73" stroke="#ffffff" stroke-width="2"/><text x="522" y="333" text-anchor="start">Brainstem · NTS</text>
     </g>
     <g font-family="sans-serif" font-size="10" fill="#71757e">
-      <text x="528" y="420" text-anchor="middle">↑ from gut / body</text>
-      <text x="332" y="424" text-anchor="middle" fill="#b7791f">↓ to adrenal glands</text>
+      <text x="532" y="420" text-anchor="middle">↑ from gut / body</text>
+      <text x="339" y="424" text-anchor="middle" fill="#b7791f">↓ to adrenal glands</text>
     </g>
   </svg>
   <div class="legend">
@@ -354,7 +394,12 @@
 
 <h3>2.1 Microbial metabolites</h3>
 <h4>short-chain fatty acids (SCFAs)</h4>
-<p>Bacteria fermenting fiber make <strong>butyrate, propionate, acetate</strong>, acting on three receptors: <code>FFAR2 (GPR43)</code> on gut endocrine/immune cells (triggers GLP-1 &amp; PYY); <code>FFAR3 (GPR41)</code> on enteric, vagal, dorsal-root &amp; sympathetic neurons — a direct neural sensor of microbial activity; and <code>GPR109a</code> on colon epithelium/immune cells.<sup class="cit">[2][4]</sup> Butyrate is also a potent <strong>HDAC inhibitor</strong>, calming microglia, and SCFAs seal the blood–brain barrier — germ-free mice have leaky barriers SCFAs repair.<sup class="cit">[2-3]</sup></p>
+<p>Bacteria fermenting fiber make <strong>butyrate, propionate, acetate</strong>, acting on three receptors: <code>FFAR2 (GPR43)</code> on gut endocrine/immune cells (triggers GLP-1 &amp; PYY); <code>FFAR3 (GPR41)</code> on enteric, vagal, dorsal-root &amp; sympathetic neurons — a direct neural sensor of microbial activity; and <code>GPR109a</code> on colon epithelium/immune cells.<sup class="cit">[2][4]</sup> Butyrate is also a potent <strong>HDAC inhibitor</strong> — it changes which genes are switched on, which calms the brain's resident immune cells (microglia) — and SCFAs help <strong>seal the blood–brain barrier</strong>.<sup class="cit">[2-3]</sup></p>
+
+<p><strong>What GLP-1 (and PYY) actually do.</strong> Both are <em class="t">gut hormones</em> — released by cells in your intestinal wall after you eat. They're <strong>satiety ("I'm full") signals</strong>: GLP-1 slows how fast the stomach empties, prompts insulin, and tells the brain's appetite centres you've had enough; PYY likewise dials hunger down. So one thing dietary fiber does, by way of the SCFAs it produces, is nudge your own gut to release the very fullness hormone that the Ozempic-class drugs are built to copy. (We unpack GLP-1 fully in §6.)</p>
+<div class="box plain"><span class="lab">In plain terms · GLP-1</span><span class="body">GLP-1 is your gut's natural "I'm full" hormone. Eat fiber → bacteria make SCFAs → SCFAs tell gut cells to release GLP-1 → your brain registers fullness and your appetite drops. Ozempic / Wegovy are just long-lasting lab copies of this same hormone.</span></div>
+
+<p><strong>What "sealing the blood–brain barrier" means.</strong> The <em class="t">blood–brain barrier (BBB)</em> is a tight wall of cells that protects the brain by keeping most of what's floating in your blood — toxins, bacterial fragments, inflammatory molecules — <em>out</em>. When that wall turns "leaky," those irritants seep in and trigger <strong>neuroinflammation</strong>, which is linked to low mood and brain fog. SCFAs like butyrate keep the wall's cells tightly bonded (stronger "tight junctions"). The striking proof: <strong>germ-free mice</strong> — raised with no gut bacteria at all — have leaky barriers, and simply giving them SCFAs repairs the seal. So your gut bacteria literally help maintain the brain's protective wall. <em>(This is different from "crossing" the barrier: SCFAs mainly keep the wall intact, though some also slip through to feed and calm the brain.)</em><sup class="cit">[2-3]</sup></p>
 <h4>tryptophan: one amino acid, three fates</h4>
 <div class="tbl"><table>
 <thead><tr><th>Pathway</th><th>Enzymes / drivers</th><th>Products</th><th>Why the brain cares</th></tr></thead>
@@ -372,6 +417,8 @@
 <div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">The microbiome is a translation service: you feed it raw ingredients; it hands the brain finished notes in the brain's own chemical language. Feed it well, calming notes; feed it badly, inflammatory ones.</span></div>
 <div class="check"><span class="lab">Check yourself</span>
 <div class="qa"><div class="q"><b>Q</b> Which SCFA receptor sits on neurons? <span class="toggle">show</span></div><div class="a">FFAR3 (GPR41).</div></div>
+<div class="qa"><div class="q"><b>Q</b> What does GLP-1 do, and how does fiber relate? <span class="toggle">show</span></div><div class="a">It's the gut's "I'm full" hormone — slows the stomach, signals satiety. Fiber → SCFAs → GLP-1 release. Ozempic mimics it.</div></div>
+<div class="qa"><div class="q"><b>Q</b> What does it mean that SCFAs "seal the blood–brain barrier"? <span class="toggle">show</span></div><div class="a">They keep the brain's protective wall tightly bonded so blood-borne irritants can't leak in and inflame it. Germ-free mice have leaky barriers that SCFAs repair.</div></div>
 <div class="qa"><div class="q"><b>Q</b> What does inflammation do to tryptophan metabolism? <span class="toggle">show</span></div><div class="a">Activates IDO, shunting it toward neurotoxic quinolinic acid instead of serotonin.</div></div>
 <div class="qa"><div class="q"><b>Q</b> Why is Bravo (2011) important? <span class="toggle">show</span></div><div class="a">It proved the microbe→brain effect travels via the vagus — cut the nerve, the effect disappears.</div></div>
 </div>
@@ -411,6 +458,110 @@
 <div class="box key"><span class="lab">Key fact</span><span class="body">Swedish registry: vagus cut ≥5 yrs earlier → ~41% lower Parkinson's (HR 0.59). Danish at &gt;20 yrs → HR 0.53 (~47% lower). Cut the wire, slow the spread.<sup class="cit">[10]</sup></span></div>
 <h3>3.5 Autism spectrum disorder (ASD)</h3>
 <p>GI problems in up to <strong>47–80%</strong> of autistic children (diarrhea OR 3.63, constipation OR 3.86), reduced diversity. Transplanting ASD-donor microbiota into germ-free mice <strong>induces autism-like behaviors</strong>.<sup class="cit">[2][10]</sup></p>
+<h3>3.6 The clinical web — DGBI and how IBS overlaps</h3>
+<p>IBS belongs to a family called <em class="t">disorders of gut–brain interaction (DGBI)</em> (the Rome IV/V framework) — conditions that arise from disordered gut–brain communication: visceral hypersensitivity, altered motility, mucosal immune dysfunction, microbiota changes, and altered CNS processing. Over a <strong>third of DGBI patients overlap with another DGBI</strong>.<sup class="cit">[2-3]</sup></p>
+<ul>
+<li><strong>Functional dyspepsia</strong> — the most common overlap; IBS coexists in ~33–50%, with odds of IBS <strong>8× higher</strong> in functional dyspepsia. Overlap means more psychological comorbidity and worse symptoms.<sup class="cit">[4-5]</sup></li>
+<li><strong>GERD</strong> — ~38% of IBS patients report reflux and ~36% of GERD patients report IBS (above chance); the mixed IBS-M subtype shows the strongest link (OR 5.07).<sup class="cit">[6]</sup></li>
+<li><strong>Functional constipation / diarrhea</strong> — a spectrum with IBS-C and IBS-D; patients frequently shift between diagnoses over time.<sup class="cit">[3][7]</sup></li>
+<li><strong>Other DGBI</strong> — functional bloating, centrally mediated abdominal pain, anorectal disorders (proctalgia fugax, levator ani syndrome), and oesophageal disorders (functional heartburn, globus) all overlap above chance.<sup class="cit">[3][8]</sup></li>
+</ul>
+
+<h3>3.7 Beyond the gut — the body-wide comorbidities</h3>
+<p>These aren't formally DGBI, but they share IBS's machinery — central sensitization, autonomic dysfunction, immune activation, and psychological distress. The same axis reaches across organ systems:</p>
+<figure>
+  <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg">
+    <title>The gut–brain axis reaches across organ systems</title>
+    <g stroke="#cfd0db" stroke-width="1.6" fill="none">
+      <line x1="360" y1="230" x2="240" y2="96"/><line x1="360" y1="230" x2="480" y2="96"/>
+      <line x1="360" y1="230" x2="248" y2="233"/><line x1="360" y1="230" x2="472" y2="233"/>
+      <line x1="360" y1="230" x2="268" y2="360"/><line x1="360" y1="230" x2="452" y2="378"/>
+    </g>
+    <!-- bubbles -->
+    <g font-family="sans-serif">
+      <!-- psychological -->
+      <rect x="22" y="18" width="226" height="78" rx="10" fill="#f3eef1" stroke="#6f4361" stroke-width="1.6"/>
+      <text x="36" y="40" font-size="12.5" font-weight="800" fill="#6f4361">Psychological</text>
+      <text x="36" y="58" font-size="10.5" fill="#3a3d44">Anxiety · depression (3× odds)</text>
+      <text x="36" y="74" font-size="10.5" fill="#3a3d44">PTSD · somatisation</text>
+      <!-- neurological -->
+      <rect x="472" y="18" width="226" height="78" rx="10" fill="#eef0ff" stroke="#4f46e5" stroke-width="1.6"/>
+      <text x="486" y="40" font-size="12.5" font-weight="800" fill="#3730a3">Neurological</text>
+      <text x="486" y="58" font-size="10.5" fill="#3a3d44">Migraine (shared serotonin)</text>
+      <text x="486" y="74" font-size="10.5" fill="#3a3d44">Sleep disorders</text>
+      <!-- rheum / pain -->
+      <rect x="12" y="190" width="234" height="86" rx="10" fill="#fdeef0" stroke="#d6455d" stroke-width="1.6"/>
+      <text x="26" y="212" font-size="12.5" font-weight="800" fill="#d6455d">Rheumatological / pain</text>
+      <text x="26" y="230" font-size="10.5" fill="#3a3d44">Fibromyalgia (~49% have IBS)</text>
+      <text x="26" y="246" font-size="10.5" fill="#3a3d44">Chronic fatigue / ME (~51%)</text>
+      <text x="26" y="262" font-size="10.5" fill="#3a3d44">TMJ disorder (~64%)</text>
+      <!-- cardio-autonomic / pulmonary -->
+      <rect x="474" y="190" width="234" height="86" rx="10" fill="#e7f5f3" stroke="#0e7c73" stroke-width="1.6"/>
+      <text x="488" y="212" font-size="12.5" font-weight="800" fill="#0e6f66">Autonomic / pulmonary</text>
+      <text x="488" y="230" font-size="10.5" fill="#3a3d44">POTS (vagal withdrawal)</text>
+      <text x="488" y="246" font-size="10.5" fill="#3a3d44">Asthma · bronchial</text>
+      <text x="488" y="262" font-size="10.5" fill="#3a3d44">hypersensitivity</text>
+      <!-- uro-gyn -->
+      <rect x="22" y="356" width="246" height="92" rx="10" fill="#fbf3df" stroke="#b7791f" stroke-width="1.6"/>
+      <text x="36" y="378" font-size="12.5" font-weight="800" fill="#8a5e16">Uro-gynaecological</text>
+      <text x="36" y="396" font-size="10.5" fill="#3a3d44">Chronic pelvic pain</text>
+      <text x="36" y="412" font-size="10.5" fill="#3a3d44">Endometriosis (2–3× IBS risk)</text>
+      <text x="36" y="428" font-size="10.5" fill="#3a3d44">Interstitial cystitis (30–75%)</text>
+      <!-- GI core -->
+      <rect x="452" y="356" width="246" height="92" rx="10" fill="#e8f3ec" stroke="#0e7c52" stroke-width="1.6"/>
+      <text x="466" y="378" font-size="12.5" font-weight="800" fill="#0e7c52">GI core (DGBI)</text>
+      <text x="466" y="396" font-size="10.5" fill="#3a3d44">IBS · functional dyspepsia (8×)</text>
+      <text x="466" y="412" font-size="10.5" fill="#3a3d44">GERD · functional const./diarr.</text>
+      <text x="466" y="428" font-size="10.5" fill="#3a3d44">bloating · anorectal · globus</text>
+    </g>
+    <!-- center -->
+    <ellipse cx="360" cy="230" rx="68" ry="50" fill="#eef0ff" stroke="#4f46e5" stroke-width="2.6"/>
+    <text x="360" y="222" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#3730a3">GUT–BRAIN</text>
+    <text x="360" y="238" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#3730a3">AXIS</text>
+    <text x="360" y="256" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#6d72c4">the convergence zone</text>
+  </svg>
+  <figcaption>One axis, many "doors." Numbers are how often each condition co-occurs with IBS — far above chance, because they share the same underlying machinery.</figcaption>
+</figure>
+<ul>
+<li><strong>Fibromyalgia</strong> — 12.9% of IBS patients vs 1.78% of the public; conversely ~49% of fibromyalgia patients meet IBS criteria. Both show visceral/somatic hyperalgesia.<sup class="cit">[1][9]</sup></li>
+<li><strong>Chronic fatigue / ME</strong> — ~51% have IBS; cytokines from gut immune activation may drive the systemic effects.<sup class="cit">[6][10]</sup></li>
+<li><strong>Migraine</strong> — frequently co-occurs; shared serotonergic dysregulation and central sensitization.<sup class="cit">[1][11]</sup></li>
+<li><strong>Chronic pelvic pain / endometriosis</strong> — 36–41% of IBS patients are later diagnosed with endometriosis; 2–3× IBS risk in endometriosis. Shared: visceral hypersensitivity, mast-cell activation, central sensitization.<sup class="cit">[1]</sup></li>
+<li><strong>Interstitial cystitis / bladder pain</strong> — 30–75% have IBS, via pelvic-organ cross-sensitization.<sup class="cit">[12]</sup></li>
+<li><strong>POTS</strong> — GI symptoms very common (IBS-SSS 213 vs 13 in controls); shared autonomic dysfunction (sympathetic activation, vagal withdrawal).<sup class="cit">[11][13]</sup></li>
+<li><strong>TMJ disorder</strong> — ~64% have IBS, through central pain amplification.<sup class="cit">[10]</sup></li>
+<li><strong>Anxiety &amp; depression</strong> — 3× higher odds; ~50% distress-first, ~50% gut-first.<sup class="cit">[14-16]</sup></li>
+</ul>
+
+<h3>3.8 Why one axis drives so much overlap</h3>
+<p>The gut–brain axis isn't a single wire — it's a <strong>convergence zone</strong> for four mechanisms that can surface in any organ:<sup class="cit">[14][17-18]</sup></p>
+<ol>
+<li><strong>Central sensitization</strong> — repeated visceral signalling lowers pain thresholds <em>across</em> organ systems, so IBS patients develop fibromyalgia, migraine and pelvic pain far above chance.</li>
+<li><strong>Mucosal immune activation → systemic effects</strong> — gut mast-cell/eosinophil cytokines reach the CNS (fatigue, mood, headache): an intestinal process with body-wide manifestations.</li>
+<li><strong>Autonomic dysregulation</strong> — sympatho-vagal imbalance hits the gut, the heart (POTS), the bladder (interstitial cystitis) and muscle (fibromyalgia) at once.</li>
+<li><strong>Bidirectional amplification</strong> — distress → CRH → mast-cell degranulation → barrier breakdown → immune activation → cytokine CNS effects → more distress. A self-reinforcing loop that can manifest anywhere along the axis.</li>
+</ol>
+<div class="box key"><span class="lab">The "one spectrum" idea</span><span class="body">The same patient might be labelled IBS (by a gastroenterologist), fibromyalgia (rheumatologist), interstitial cystitis (urologist) or endometriosis (gynaecologist) — depending on which specialist they see. That "single entity" framing is probably an oversimplification, but the shared central sensitization and immune–neural crosstalk genuinely explain why these conditions cluster far beyond chance.<sup class="cit">[1]</sup></span></div>
+
+<h3>3.9 How far the axis reaches — major vs modulating</h3>
+<p>A useful way to grade the evidence runs from "defined by" the axis, to a "major contributor," to merely "modulated by" it:</p>
+<div class="tbl"><table>
+<thead><tr><th>Role of the axis</th><th>Conditions</th></tr></thead>
+<tbody>
+<tr><td>Defined by it</td><td>DGBI (IBS, functional dyspepsia, functional constipation/diarrhea, centrally mediated abdominal pain, functional heartburn, anorectal disorders); anxiety &amp; depression</td></tr>
+<tr><td>Major contributor</td><td>Parkinson's, Alzheimer's, multiple sclerosis · autism, schizophrenia, bipolar, ADHD · fibromyalgia, ME/CFS, POTS, migraine</td></tr>
+<tr><td>Modulating factor</td><td>Obesity &amp; type-2 diabetes (SCFA → GLP-1/PYY/leptin; LPS endotoxemia) · autoimmune (RA, lupus, type-1 diabetes) · cardiovascular (TMAO) · cancer (HPA/sympathetic + microbial metabolites)</td></tr>
+</tbody></table></div>
+<p>Three core pathways explain how the axis reaches so many systems:</p>
+<ul>
+<li><strong>Immune gateway</strong> — the gut houses ~70% of the body's immune cells. Dysbiosis → barrier breakdown → bacterial translocation → low-grade inflammation via LPS/TLR4/NF-κB → affects every organ, the brain included (BBB disruption).<sup class="cit">[8][26]</sup></li>
+<li><strong>Neuroendocrine hub</strong> — the gut makes &gt;30 neurotransmitters (95% of serotonin, ~50% of dopamine); microbial metabolites (SCFAs, tryptophan derivatives) tune vagal afferents, the HPA axis and the hypothalamus.<sup class="cit">[1]</sup></li>
+<li><strong>Metabolic interface</strong> — fermentation products (SCFAs, bile-acid conjugates, TMAO) enter the blood and act on distant organs — fat, liver, brain, vessels — shaping energy balance, inflammation and cell function.<sup class="cit">[19][27]</sup></li>
+</ul>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">IBS rarely travels alone. Because the gut–brain axis is a shared crossroads — immune, hormonal, nerve and metabolic — a problem there can light up pain, fatigue, mood, bladder, pelvic and even heart-rate symptoms. Often it's one underlying process wearing many specialist labels.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Think of the axis as a building's shared utilities. A fault in the main panel doesn't stay in one room — the lights flicker in the kitchen, the heat drops in the bedroom, the water pressure falls in the bathroom. Different rooms, one fault.</span></div>
+<div class="box key"><span class="lab">Critical caveat</span><span class="body">The mechanistic plausibility is strong and animal data compelling, but for most non-GI conditions human <em>causality</em> data are limited — most evidence is observational or preclinical. Whether dysbiosis is cause, consequence, or bystander is still being worked out.<sup class="cit">[2][11]</sup></span></div>
+
 <div class="box plain"><span class="lab">In plain terms</span><span class="body">The same axis that keeps you healthy, disrupted, links gut and brain disorders — and in Parkinson's the damage may actually start in the gut and travel up the nerve.</span></div>
 <div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">If two cities share one power grid, a fault in either browns out both. In Parkinson's the fault seems to start at the gut substation and travel up the line.</span></div>
 <div class="box key"><span class="lab">The honest caveat</span><span class="body">Most human gut–brain links are correlations. Animal "cut-the-wire" studies are the strongest causal evidence — proving cause in people is hard. Carry this into every claim, including the drug ones.<sup class="cit">[2-3][14]</sup></span></div>
@@ -418,6 +569,9 @@
 <div class="qa"><div class="q"><b>Q</b> Why is IBS a "disorder of gut–brain interaction"? <span class="toggle">show</span></div><div class="a">It's bidirectional — distress can precede gut symptoms or vice versa — and sharply raises anxiety/depression risk both ways.</div></div>
 <div class="qa"><div class="q"><b>Q</b> Strongest human evidence for gut-origin Parkinson's? <span class="toggle">show</span></div><div class="a">Vagotomy decades earlier lowers Parkinson's risk ~41–47% (Swedish HR 0.59, Danish HR 0.53).</div></div>
 <div class="qa"><div class="q"><b>Q</b> What does the transdiagnostic signature suggest? <span class="toggle">show</span></div><div class="a">Shared depletion of butyrate-makers across disorders — a common pathway, not disease-specific bacteria.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Name three conditions that overlap with IBS far above chance. <span class="toggle">show</span></div><div class="a">Any three of: fibromyalgia, chronic fatigue/ME, migraine, endometriosis, interstitial cystitis, POTS, TMJ disorder, anxiety/depression.</div></div>
+<div class="qa"><div class="q"><b>Q</b> What four mechanisms make the axis a "convergence zone"? <span class="toggle">show</span></div><div class="a">Central sensitization, mucosal immune activation, autonomic dysregulation, and bidirectional amplification.</div></div>
+<div class="qa"><div class="q"><b>Q</b> The three unifying pathways the axis uses to reach distant organs? <span class="toggle">show</span></div><div class="a">Immune gateway (~70% of immune cells), neuroendocrine hub (95% serotonin, &gt;30 transmitters), and metabolic interface (SCFAs, bile acids, TMAO).</div></div>
 </div>
 </section>
 
@@ -432,6 +586,23 @@
 <div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Four ways to repair a soured gut–brain line: add good staff (probiotics), boost the cable (VNS), improve the raw materials (diet), or replace the workforce (FMT).</span></div>
 <div class="check"><span class="lab">Check yourself</span>
 <div class="qa"><div class="q"><b>Q</b> Cleanest RCT evidence for depression, and its NNT? <span class="toggle">show</span></div><div class="a">Diet — the SMILES Mediterranean-diet trial, NNT 4.1.</div></div>
+</div>
+
+<h3>4.5 Treating IBS — climbing the same axis</h3>
+<p>Here's the satisfying part: the way clinicians actually treat IBS <em>follows the axis</em>. Every step targets one of the channels you just learned — the microbiome, the nerves, the brain's processing, the gut's machinery, or the immune cells — and treatments are layered by how strong the evidence is.</p>
+<div class="tbl"><table>
+<thead><tr><th>Tier</th><th>What it is</th><th>Headline evidence</th></tr></thead>
+<tbody>
+<tr><td>1 · Strong</td><td>Diet (low-FODMAP); gut–brain neuromodulators (low-dose amitriptyline); behavioural therapy (CBT, gut-directed hypnotherapy); subtype-specific drugs (linaclotide, rifaximin…)</td><td>Low-FODMAP ~57% vs 38%; amitriptyline NNT ~4; hypnotherapy up to 80% get ≥50% relief</td></tr>
+<tr><td>2 · Emerging</td><td>Mast-cell drugs (ebastine, ketotifen); GLP-1 RAs; specific probiotic strains</td><td>GLP-1 (ROSE-010) cut IBS pain (OR 2.30); probiotics NNT ~7</td></tr>
+<tr><td>3 · Experimental</td><td>Fecal transplant; vagus-nerve stimulation</td><td>Promising but trials-only for now</td></tr>
+</tbody></table></div>
+<p>Three ideas worth holding onto. <strong>"Neuromodulators" aren't just for mood</strong> — a low-dose antidepressant (amitriptyline) is first-line for IBS <em>pain</em> because it turns down central sensitization, not because the patient is depressed. <strong>Talking therapies genuinely work</strong> — CBT and gut-directed hypnotherapy retrain how the brain processes gut signals, and guidelines rank them alongside drugs. And the newest twist: <strong>GLP-1 drugs sit at a unique crossroads</strong> — they're the only class that touches the vagus, the gut barrier, mast cells, the microbiome, and brain inflammation all at once, which is why they're being explored for the messy overlap of IBS + MCAS + mood.</p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">IBS treatment is a ladder: start with diet and education, add gut–brain meds or therapy, then subtype-specific drugs, and only later the experimental options. Notice an "antidepressant" is used here for gut pain, not sadness — it's quieting over-sensitive nerves.</span></div>
+<div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Treating IBS is like fixing a noisy intercom between two rooms: first improve what's fed in (diet), then turn down the amplifier (neuromodulators &amp; therapy), then fix the specific crackle (subtype drugs). GLP-1 drugs are the rare tool that adjusts several parts of the system at once.</span></div>
+<div class="check"><span class="lab">Check yourself</span>
+<div class="qa"><div class="q"><b>Q</b> Why is a low-dose antidepressant first-line for IBS pain? <span class="toggle">show</span></div><div class="a">As a neuromodulator it dials down central sensitization / visceral pain — not because the patient is depressed (amitriptyline RR 0.66, NNT ~4).</div></div>
+<div class="qa"><div class="q"><b>Q</b> What makes GLP-1 RAs unusual in IBS? <span class="toggle">show</span></div><div class="a">They hit five axis nodes at once — vagus, gut barrier, mast cells, microbiome, and brain inflammation — appealing for IBS + MCAS + mood overlap.</div></div>
 </div>
 </section>
 
