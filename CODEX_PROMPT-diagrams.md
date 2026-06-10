@@ -1,56 +1,82 @@
-# Codex prompt — polish the diagrams
+# Codex prompt — fix & polish the diagrams (HTML + PowerPoint)
 
-Open `~/Desktop/Projects/gut-brain-axis/` in Codex and paste the prompt below. (Codex also reads
-`AGENTS.md` automatically for the house rules.)
-
----
-
-Polish the hand-drawn inline SVG diagrams in this project so they look more professional and
-anatomically clearer — **without changing their meaning, labels, or the page layout.**
-
-**Files & diagrams to improve**
-- `teaching-guide-app.html` → the three `<figure>` SVGs in the §0.5 "Brain basics" section:
-  (1) the neuron/synapse diagram, (2) the sympathetic-vs-parasympathetic comparison, and
-  (3) the "key pathways" brain schematic.
-- `gut-brain-axis-indepth.html` → the same "key pathways" brain schematic in the Primer section
-  (keep it visually identical to the teaching-guide version).
-
-**Rules (do not break these)**
-- Keep everything **inline SVG in the same file** — no external images, libraries, or CDNs; the
-  pages must still open offline by double-click.
-- Keep each `<svg>` with its `viewBox` and `max-width:100%` so it stays responsive; keep the `<title>`.
-- Keep the existing palette: indigo `#4f46e5` (reward / neurons), teal `#0e7c73`
-  (vagal / parasympathetic / GABA), amber `#b7791f` (HPA / glutamate), rose `#d6455d` (sympathetic),
-  plum `#6f4361` (limbic). No off-palette colors.
-- Keep all current labels, the figcaptions, and the legend on the pathways diagram. Don't touch the
-  surrounding text, the sidebar, or the click-to-reveal quiz JavaScript.
-
-**Improvements to make**
-- **Neuron / synapse:** make the neuron read clearly — cell body, branching dendrites, an axon with a
-  few myelin segments, a terminal bouton. Show synaptic vesicles releasing into the cleft and
-  receptors on the next dendrite, and add a subtle action-potential wave along the axon. Keep the
-  "glutamate = excite (+) / GABA = inhibit (−)" pills.
-- **Sympathetic vs parasympathetic:** tighten the alignment, add small simple organ glyphs (eye,
-  heart, stomach) beside each row, and make the two columns clearly distinct (rose vs teal). Keep it a
-  clean two-column comparison.
-- **Key-pathways brain:** make the outline look more brain-like (gentle gyri/folds), space the nodes
-  so no labels overlap (the hypothalamus / nucleus accumbens / VTA cluster is currently tight), smooth
-  the arrow curves, and give the nodes a consistent style. Keep the three color-coded routes (reward,
-  vagal, HPA) and the legend exactly as-is in meaning.
-
-**When done:** list what you changed per diagram, and confirm both pages still open offline with no
-console errors and the diagrams stay legible at phone width.
+Open `~/Desktop/Projects/gut-brain-axis/` in Codex. Paste the **Prompt A** below to fix the HTML
+diagrams, and **Prompt B** to fix the PowerPoint diagrams. (Codex also reads `AGENTS.md` for house rules.)
 
 ---
 
-### One-at-a-time alternatives
-If you'd rather do them individually, paste one of these:
+## 🐞 Known bugs to fix first (seen in the rendered pages)
 
-- *"In `teaching-guide-app.html`, improve ONLY the neuron/synapse SVG in §0.5.1: clearer neuron with
-  dendrites/axon/myelin/terminal, vesicles releasing into the cleft, receptors on the next dendrite,
-  a subtle action-potential wave. Keep the palette, labels, and the excite/inhibit pills. Change
-  nothing else."*
-- *"In both `teaching-guide-app.html` and `gut-brain-axis-indepth.html`, improve ONLY the 'key
-  pathways' brain schematic: more brain-like outline with gyri, no overlapping labels, smoother
-  arrows. Keep the three color-coded routes and legend identical in meaning, and keep both copies
-  matching."*
+1. **Key-pathways brain diagram** — appears in **`teaching-guide-app.html`** (§0.5.7) *and*
+   **`gut-brain-axis-indepth.html`** (the Primer). The **"Nucleus accumbens" and "Hypothalamus"
+   labels overlap each other** near the centre-left, and the VTA / hypothalamus / brainstem cluster
+   is cramped. Reposition the nodes and labels so **no two labels overlap** and no label sits on top
+   of an arrow. Keep both copies identical.
+2. **Blood–brain barrier / CVO diagram** in **`index.html`** (the "Ozempic / sneaky entrance"
+   section). Badly overlapping text: *"blood-brain barrier: mostly sealed brain"*, the
+   *"appetite / reward / emotion"* labels, and *"leaky CVO windows"* all collide with the wall, the
+   windows, and the brain shape. **Re-lay-out this diagram** so the wall, the brain, the leaky
+   windows (CVOs), and every label are clearly separated and readable.
+3. **Synapse diagram** in **`teaching-guide-app.html`** (§0.5.1). The caption *"neurotransmitters
+   cross the gap"* is **cut off / overlapped by the next-neuron shape**. Move it into clear space.
+4. **Global:** at both desktop and phone widths, ensure no label overlaps another label, an arrow,
+   or a shape.
+
+---
+
+## Prompt A — fix the inline SVG diagrams (HTML)
+
+> Fix and polish the inline SVG diagrams in this project. Start with the four known bugs listed in
+> `CODEX_PROMPT-diagrams.md` (overlapping labels on the key-pathways brain in both
+> `teaching-guide-app.html` and `gut-brain-axis-indepth.html`; the broken blood–brain-barrier/CVO
+> diagram in `index.html`; the cut-off synapse caption in `teaching-guide-app.html`). Then do a
+> general pass on the rest.
+>
+> **Diagram inventory:**
+> - `teaching-guide-app.html` — synapse (§0.5.1), sympathetic-vs-parasympathetic (§0.5.3),
+>   key-pathways brain (§0.5.7), organ-system reach map (§3.7).
+> - `gut-brain-axis-indepth.html` — key-pathways brain (Primer), organ-system reach map (Part 3),
+>   GLP-1 "five-way intersection" (IBS-management section).
+> - `index.html` — the vagus, neuropod, microbiome-map, and reward-flow SVGs, plus the
+>   blood–brain-barrier/CVO diagram that needs the most work.
+>
+> **Rules (don't break these):** keep everything inline SVG in the same file (no external images,
+> libraries, or CDNs — pages must open offline by double-click); keep each `<svg>`'s `viewBox` and
+> `max-width:100%` and its `<title>`; keep the palette — indigo `#4f46e5` (reward/neurons), teal
+> `#0e7c73` (vagal/parasympathetic/GABA), amber `#b7791f` (HPA/glutamate), rose `#d6455d`
+> (sympathetic), plum `#6f4361` (limbic), green `#0e7c52` (GI); keep all labels, figcaptions, and
+> legends; don't touch surrounding text, the sidebar, the mode toggle, or the quiz JavaScript.
+>
+> **Goal:** no overlapping labels/arrows/shapes; smoother arrow curves; consistent node styling; the
+> brain outlines a bit more brain-like (gentle gyri); legible at phone width. When done, list what you
+> changed per diagram and confirm every page still opens offline with no console errors.
+
+---
+
+## Prompt B — fix the PowerPoint diagrams
+
+The deck (`Gut-Brain-Axis-Deck-Depth.pptx`) is generated by the script **`build-deck.js`**
+(pptxgenjs). The cleanest way to fix its diagrams is to edit the shape-drawing code and regenerate.
+
+> Improve the diagrams in the slide deck by editing **`build-deck.js`** (pptxgenjs) and regenerating.
+> Setup: `npm install pptxgenjs`, then `node build-deck.js` — it writes `Gut-Brain-Axis-Deck-Depth.pptx`
+> in this folder.
+>
+> The slides with hand-built diagrams are: the **vagus 80/20 highway** (slide ~6), the
+> **microbiome map** (slide ~13), the **"how the drug gets in" / CVO entrance** (slide ~20), and the
+> **reward-flow** (slide ~21). Improve their proportions, spacing, arrowheads, and label placement so
+> nothing overlaps; make the brain/gut shapes a little more organic. Keep the existing warm palette
+> (rust `D2603A`, teal `2F7D77`, gold `D9A441`, plum `7A4B6B`, green `5B8A4F`, dark `2A2420`) and the
+> Georgia/Calibri fonts; do **not** change slide text content or the 26-slide structure — only the
+> shapes/diagrams. After regenerating, open the `.pptx` to confirm all 26 slides are intact and the
+> diagrams look cleaner.
+>
+> (Tip: render to images to check your work — `soffice --headless --convert-to pdf` then `pdftoppm`,
+> or just open the file in PowerPoint/Keynote.)
+
+---
+
+### Working tips
+- Change **one diagram per commit** so you can preview and accept incrementally.
+- Open the HTML file in a browser (or the `.pptx` in PowerPoint) after each change to verify.
+- If a change looks worse, revert just that diagram — everything is editable text/code.
