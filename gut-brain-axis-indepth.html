@@ -67,6 +67,12 @@
   .def{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:15.5px}
   .def b{color:var(--rust-dark)}
   hr.sec{border:0;border-top:1px solid var(--line);margin:38px 0}
+  figure{margin:18px 0;text-align:center}
+  figure svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:10px}
+  figcaption{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:7px}
+  .legend{display:flex;flex-wrap:wrap;gap:7px 16px;justify-content:center;margin:9px 0 2px;font-size:12px}
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--body);font-weight:500}
+  .legend i{width:16px;height:4px;border-radius:2px;display:inline-block}
   footer{border-top:2px solid var(--line);padding:26px 0 60px;color:var(--muted);font-size:13.5px;font-family:-apple-system,sans-serif}
   .refnote{font-size:13px;color:var(--muted);font-family:-apple-system,sans-serif}
   @media(max-width:600px){body{font-size:16px}}
@@ -86,6 +92,7 @@
 <nav class="toc">
   <div class="wrap">
     <b>Jump to</b>
+    <a href="#primer">0 · Primer</a>
     <a href="#hardware">1 · Hardware</a>
     <a href="#neuropod">Neuropods</a>
     <a href="#software">2 · Signaling</a>
@@ -108,6 +115,61 @@
 <p class="lead">This reference synthesizes the evidence on the bidirectional communication system between the gastrointestinal tract and the central nervous system — the <em class="term">gut–brain axis (GBA)</em> — and then examines how GLP-1 receptor agonists exploit that system. It covers the fundamental hardware (neuroanatomy, the enteric nervous system, vagal circuitry), the signaling software (microbial metabolites, neuroendocrine pathways, immune mediators), the pathophysiology of axis dysfunction across disease states, the translational/therapeutic landscape, and — uniquely — the behavioral-economics implications. The evidence base spans preclinical neuroscience, clinical gastroenterology, psychiatry, and behavioral economics. Bracketed superscripts preserve the source citation indices.</p>
 
 <!-- ===================== PART 1 ===================== -->
+<h2 id="primer"><span class="pre">Primer — Neuroanatomy in brief</span>Neurons, the autonomic system, cranial nerves, and the core pathways</h2>
+<p>A brief orientation for readers new to neuroanatomy; specialists may skip to Part 1.</p>
+
+<h3>Signal transmission</h3>
+<p>The CNS comprises ~86 billion neurons. Conduction <em>within</em> a neuron is electrical (an action potential propagating down the axon); transmission <em>between</em> neurons is chemical — neurotransmitter release across the synaptic cleft onto post-synaptic receptors. The principal fast transmitters are <em class="term">glutamate</em> (excitatory) and <em class="term">GABA</em> (inhibitory); key modulatory systems include dopamine (reward/motivation), serotonin (mood; ~95% gut-derived), norepinephrine, and acetylcholine (the parasympathetic transmitter).</p>
+
+<h3>CNS, PNS, and the autonomic division</h3>
+<p>The nervous system divides into the <em class="term">central</em> (brain + spinal cord) and <em class="term">peripheral</em> nervous systems. Within the PNS, the <em class="term">autonomic nervous system (ANS)</em> governs involuntary visceral function through two antagonistic branches: the <strong>sympathetic</strong> ("fight-or-flight"; thoracolumbar outflow, predominantly noradrenergic — increases heart rate, dilates pupils, suppresses GI motility and secretion) and the <strong>parasympathetic</strong> ("rest-and-digest"; craniosacral outflow, cholinergic — slows the heart, stimulates digestion). GI function is predominantly parasympathetically driven, and a third, semi-autonomous division — the enteric nervous system — is detailed in Part 1.</p>
+
+<h3>Cranial nerves and the vagus (CN X)</h3>
+<p>Twelve paired cranial nerves emerge largely from the brainstem: I olfactory, II optic, III oculomotor, IV trochlear, V trigeminal, VI abducens, VII facial, VIII vestibulocochlear, IX glossopharyngeal, X vagus, XI accessory, XII hypoglossal. The <em class="term">vagus (CN X)</em> is the longest, supplying the major parasympathetic innervation of the thoracic and abdominal viscera and carrying ~75% of parasympathetic traffic. It is a mixed nerve that is <strong>~80% afferent</strong> — the anatomical substrate of the gut–brain axis examined throughout this review.</p>
+
+<h3>Core pathways</h3>
+<p>Three circuits recur below: the <strong>mesolimbic reward pathway</strong> (VTA dopaminergic projection to the nucleus accumbens, with a mesocortical branch to prefrontal cortex); the <strong>vagal gut–brain pathway</strong> (afferents → nucleus tractus solitarius → hypothalamus, amygdala and higher centres); and the <strong>HPA stress axis</strong> (hypothalamic CRF → pituitary ACTH → adrenal cortisol).</p>
+<figure>
+  <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg">
+    <title>The brain's key pathways: reward, vagal gut-to-brain, and the HPA stress axis</title>
+    <defs>
+      <marker id="bI" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#4f46e5"/></marker>
+      <marker id="bT" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0e7c73"/></marker>
+      <marker id="bA" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b7791f"/></marker>
+    </defs>
+    <path d="M120 205 C100 130 195 96 300 102 C420 96 545 122 548 215 C551 300 470 352 360 350 C255 356 142 332 122 262 C116 242 118 222 120 205 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
+    <path d="M486 330 C500 360 510 374 518 402 L546 394 C536 362 530 344 522 322 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
+    <path d="M332 302 L332 340" stroke="#b7791f" stroke-width="2.6" fill="none" marker-end="url(#bA)"/>
+    <path d="M332 360 L332 408" stroke="#b7791f" stroke-width="2.6" fill="none" marker-end="url(#bA)"/>
+    <path d="M520 414 L511 354" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#bT)"/>
+    <path d="M492 332 C442 312 392 300 354 296" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#bT)"/>
+    <path d="M500 326 C462 290 430 260 410 240" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#bT)"/>
+    <path d="M438 292 C380 250 318 244 270 243" stroke="#4f46e5" stroke-width="2.8" fill="none" marker-end="url(#bI)"/>
+    <path d="M440 288 C360 212 258 186 192 167" stroke="#4f46e5" stroke-width="2.4" fill="none" stroke-dasharray="6 4" marker-end="url(#bI)"/>
+    <g font-family="sans-serif" font-size="10" font-weight="700" fill="#17181b" text-anchor="middle">
+      <circle cx="168" cy="158" r="7" fill="#4f46e5"/><text x="168" y="142">Prefrontal cortex</text>
+      <circle cx="452" cy="178" r="7" fill="#6f4361"/><text x="452" y="163">Hippocampus</text>
+      <circle cx="396" cy="234" r="7" fill="#6f4361"/><text x="396" y="254">Amygdala</text>
+      <circle cx="250" cy="243" r="7" fill="#4f46e5"/><text x="250" y="263">Nucleus accumbens</text>
+      <circle cx="452" cy="298" r="7" fill="#4f46e5"/><text x="478" y="302" text-anchor="start">VTA</text>
+      <circle cx="332" cy="294" r="7" fill="#b7791f"/><text x="322" y="280" text-anchor="end">Hypothalamus</text>
+      <circle cx="332" cy="348" r="7" fill="#b7791f"/><text x="346" y="352" text-anchor="start">Pituitary</text>
+      <circle cx="508" cy="340" r="7" fill="#0e7c73"/><text x="520" y="328" text-anchor="start">Brainstem · NTS</text>
+    </g>
+    <g font-family="sans-serif" font-size="10" fill="#71757e">
+      <text x="528" y="420" text-anchor="middle">↑ from gut / body</text>
+      <text x="332" y="424" text-anchor="middle" fill="#b7791f">↓ to adrenal glands</text>
+    </g>
+  </svg>
+  <div class="legend">
+    <span><i style="background:#4f46e5"></i>Reward pathway (VTA → accumbens · cortex)</span>
+    <span><i style="background:#0e7c73"></i>Gut → brain (vagal)</span>
+    <span><i style="background:#b7791f"></i>HPA stress axis</span>
+  </div>
+  <figcaption>Schematic of the three circuits referenced throughout: mesolimbic reward (indigo), the vagal gut→brain afferent route (teal), and the HPA neuroendocrine axis (amber).</figcaption>
+</figure>
+<hr class="sec">
+
 <h2 id="hardware"><span class="pre">Part 1 — Fundamental Architecture · The Hardware</span>The enteric nervous system, vagus, and neuropod circuits</h2>
 
 <h3>The Enteric Nervous System: a "second brain"</h3>

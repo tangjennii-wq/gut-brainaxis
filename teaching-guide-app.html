@@ -74,6 +74,13 @@
   .qa .toggle{font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:500;user-select:none;margin-left:5px}
   .qa .a{margin-top:3px;font-size:12.6px;font-style:italic;color:#3b3f47;background:var(--content);border:1px solid var(--line);border-radius:6px;padding:6px 10px;display:none}
   .qa.open .a{display:block}
+  /* diagrams */
+  figure{margin:18px 0;text-align:center}
+  figure svg{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--content);padding:10px}
+  figcaption{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:7px;max-width:60ch;margin-left:auto;margin-right:auto;line-height:1.45}
+  .legend{display:flex;flex-wrap:wrap;gap:7px 16px;justify-content:center;margin:9px 0 2px;font-size:12px;font-family:var(--sans)}
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--body);font-weight:500}
+  .legend i{width:16px;height:4px;border-radius:2px;display:inline-block}
   /* ---------- tables ---------- */
   .tbl{overflow-x:auto;margin:13px 0}
   table{width:100%;border-collapse:collapse;font-size:12.3px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
@@ -156,12 +163,70 @@
 <section id="brain">
 <div class="secnum">§ 0.5 · Orientation</div>
 <h2 class="part">Brain basics — just what this talk needs</h2><div class="rule"></div>
-<p class="lead">You don't need a neuroscience degree to follow the rest — just five ideas. Everything later hangs on these.</p>
+<p class="lead">You don't need a neuroscience degree — just the fundamentals below: how a neuron fires, how the nervous system is wired, the autonomic "gas and brake," the cranial nerves (especially the vagus), and the handful of pathways everything later hangs on.</p>
 
 <h3>0.5.1 Neurons talk with chemicals</h3>
-<p>The brain is ~86 billion <strong>neurons</strong> passing signals across tiny gaps (synapses) using chemical messengers — <em class="t">neurotransmitters</em>. Five matter for this talk: <strong>dopamine</strong> (reward, motivation — the "I want that" signal), <strong>serotonin</strong> (mood), <strong>GABA</strong> (the universal <em>brake</em> — quiets neurons), <strong>glutamate</strong> (the universal <em>accelerator</em> — excites them), and <strong>acetylcholine</strong> (used by the vagus). Almost every effect in this guide is one chemical pressing the gas or the brake on another neuron.<sup class="cit">[2][4]</sup></p>
+<p>The brain is ~86 billion <strong>neurons</strong>. Inside a neuron the signal is <strong>electrical</strong> — a spike travels down a long fibre called the <em class="t">axon</em>. To cross to the next cell it becomes <strong>chemical</strong>: the spike releases <em class="t">neurotransmitters</em> across a tiny gap, the <strong>synapse</strong>, where they bind receptors on the next neuron. Five transmitters matter here: <strong>dopamine</strong> (reward/motivation — the "I want that" signal), <strong>serotonin</strong> (mood), <strong>GABA</strong> (the universal <em>brake</em> — quiets neurons), <strong>glutamate</strong> (the universal <em>accelerator</em> — excites them), and <strong>acetylcholine</strong> (the vagus nerve's transmitter). Almost every effect in this guide is one chemical pressing the gas or the brake on another neuron.<sup class="cit">[2][4]</sup></p>
+<figure>
+  <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+    <title>How one neuron signals the next across a synapse</title>
+    <g stroke="#4f46e5" fill="none" stroke-width="2.4" stroke-linecap="round">
+      <path d="M74 100 L42 72 M72 100 L36 100 M74 100 L42 130 M82 84 L56 58 M82 118 L56 144"/>
+    </g>
+    <circle cx="106" cy="100" r="33" fill="#eef0ff" stroke="#4f46e5" stroke-width="2.4"/>
+    <text x="106" y="96" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#3730a3">neuron</text>
+    <text x="106" y="110" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6d72c4">(cell body)</text>
+    <path d="M139 100 L432 100" stroke="#4f46e5" stroke-width="6" fill="none"/>
+    <g fill="#c7cbf7"><rect x="190" y="92" width="36" height="16" rx="8"/><rect x="270" y="92" width="36" height="16" rx="8"/><rect x="350" y="92" width="36" height="16" rx="8"/></g>
+    <text x="240" y="80" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#71757e">electrical spike travels down the axon  →</text>
+    <path d="M432 100 q40 -19 46 0 q-6 21 -46 0Z" fill="#4f46e5"/>
+    <g fill="#b7791f"><circle cx="494" cy="86" r="4"/><circle cx="502" cy="100" r="4"/><circle cx="494" cy="114" r="4"/><circle cx="518" cy="92" r="4"/><circle cx="518" cy="108" r="4"/></g>
+    <text x="478" y="56" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#17181b">synapse</text>
+    <path d="M478 60 L492 82" stroke="#9a9ea6" stroke-width="1"/>
+    <text x="506" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#71757e">neurotransmitters cross the gap</text>
+    <path d="M566 58 Q540 100 566 142" stroke="#0e7c73" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <g fill="#0e7c73"><rect x="542" y="84" width="9" height="6" rx="2"/><rect x="538" y="100" width="9" height="6" rx="2"/><rect x="542" y="116" width="9" height="6" rx="2"/></g>
+    <text x="612" y="104" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#0e6f66">next neuron</text>
+    <g font-family="sans-serif" font-size="11" font-weight="700">
+      <rect x="250" y="168" width="186" height="24" rx="12" fill="#fdf6e7" stroke="#b7791f"/><text x="343" y="184" text-anchor="middle" fill="#8a5e16">glutamate = excite (+)</text>
+      <rect x="448" y="168" width="170" height="24" rx="12" fill="#e7f5f3" stroke="#0e7c73"/><text x="533" y="184" text-anchor="middle" fill="#0e6f66">GABA = inhibit (−)</text>
+    </g>
+  </svg>
+  <figcaption>Inside a neuron the signal is electrical; across the synapse it turns chemical. The next cell is either pushed toward firing (glutamate) or away from it (GABA).</figcaption>
+</figure>
 
-<h3>0.5.2 A few regions, by job</h3>
+<h3>0.5.2 How the nervous system is organized</h3>
+<p>Two big divisions: the <strong>central nervous system (CNS)</strong> — brain + spinal cord — and the <strong>peripheral nervous system (PNS)</strong> — all the nerves outside it that reach the body. The brain itself stacks in three rough layers: the <strong>brainstem</strong> (survival autopilot — breathing, heart rate; the gut's landing zone), the <strong>limbic system</strong> (emotion, memory, reward — amygdala, hippocampus, the dopamine circuit), and the <strong>cortex</strong> (thinking, planning, self-control). Gut signals arrive at the brainstem and climb up into the limbic system and cortex — which is exactly why your gut can reach mood and decisions.</p>
+
+<h3>0.5.3 Sympathetic vs parasympathetic — the body's gas &amp; brake</h3>
+<p>One slice of the PNS, the <em class="t">autonomic nervous system</em>, runs your organs automatically through two opposing branches. The <strong>sympathetic</strong> branch is "fight or flight" — adrenaline, faster heart, dilated pupils, and it <em>pauses digestion</em>. The <strong>parasympathetic</strong> branch is "rest and digest" — it slows the heart, calms the body, and <em>switches digestion on</em>. They constantly push against each other to hold balance, and the headline parasympathetic nerve is the <strong>vagus</strong>.</p>
+<figure>
+  <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg">
+    <title>Sympathetic versus parasympathetic effects on the organs</title>
+    <rect x="18" y="12" width="322" height="30" rx="8" fill="#fdeef0"/>
+    <text x="179" y="32" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#d6455d">SYMPATHETIC · fight or flight</text>
+    <rect x="380" y="12" width="322" height="30" rx="8" fill="#e7f5f3"/>
+    <text x="541" y="32" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="800" fill="#0e7c73">PARASYMPATHETIC · rest &amp; digest (vagus)</text>
+    <line x1="360" y1="54" x2="360" y2="238" stroke="#e6e7ea" stroke-width="1.4"/>
+    <g font-family="sans-serif" font-size="12.5">
+      <rect x="318" y="64" width="84" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="79" text-anchor="middle" font-weight="700" fill="#17181b">Pupils</text>
+      <text x="320" y="79" text-anchor="end" fill="#d6455d">dilate</text><text x="400" y="79" fill="#0e7c73">constrict</text>
+      <rect x="318" y="106" width="84" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="121" text-anchor="middle" font-weight="700" fill="#17181b">Heart</text>
+      <text x="320" y="121" text-anchor="end" fill="#d6455d">beats faster</text><text x="400" y="121" fill="#0e7c73">slows down</text>
+      <rect x="312" y="148" width="96" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="163" text-anchor="middle" font-weight="700" fill="#17181b">Digestion</text>
+      <text x="312" y="163" text-anchor="end" fill="#d6455d">pauses</text><text x="412" y="163" fill="#0e7c73">switches ON</text>
+      <rect x="312" y="190" width="96" height="22" rx="11" fill="#f1f3f6"/><text x="360" y="205" text-anchor="middle" font-weight="700" fill="#17181b">Chemistry</text>
+      <text x="312" y="205" text-anchor="end" fill="#d6455d">adrenaline ↑</text><text x="412" y="205" fill="#0e7c73">calm · ACh</text>
+    </g>
+  </svg>
+  <figcaption>The two autonomic branches do opposite things to the same organs. Digestion only runs well when the parasympathetic (vagus) side is in charge — "rest and digest."</figcaption>
+</figure>
+
+<h3>0.5.4 Cranial nerves &amp; the vagus (CN X)</h3>
+<p>Twelve pairs of <strong>cranial nerves</strong> run straight out of the brain — mostly the brainstem — to the head, neck, and (for one of them) the torso. Most are short and local: smell (I), sight (II), eye movement (III, IV, VI), face and chewing (V, VII), hearing/balance (VIII), throat and tongue (IX, XII), neck muscles (XI). The tenth is the exception. The <strong>vagus nerve (CN X)</strong> is the longest cranial nerve and the main highway of the parasympathetic system, <em>wandering</em> (that's what "vagus" means) from the brainstem down to the heart, lungs, and gut. It carries roughly <strong>75% of all parasympathetic output</strong> — and, crucially, about <strong>80% of its fibres run UP from the body to the brain</strong>, which is what makes it the spine of the entire gut–brain axis.</p>
+<div class="box plain"><span class="lab">In plain terms</span><span class="body">Of the 12 cranial nerves, the vagus (number 10) is the long, wandering one linking the brain to your heart, lungs and gut. It's the main "rest-and-digest" nerve — and it mostly carries information UP to the brain, not down.</span></div>
+
+<h3>0.5.5 A few brain regions, by job</h3>
 <div class="tbl"><table>
 <thead><tr><th>Region</th><th>Its job</th><th>Why it shows up here</th></tr></thead>
 <tbody>
@@ -173,17 +238,66 @@
 <tr><td>Prefrontal cortex</td><td>Decisions, self-control</td><td>Where "deliberate vs impulsive" choices are weighed</td></tr>
 </tbody></table></div>
 
-<h3>0.5.3 The reward circuit (the star of the show)</h3>
+<h3>0.5.6 The reward circuit (the star of the show)</h3>
 <p>Motivation lives in the <em class="t">mesolimbic dopamine pathway</em>: the <strong>VTA</strong> (ventral tegmental area) sends dopamine to the <strong>nucleus accumbens</strong>. More dopamine here = stronger "I want that." Food, sugar, alcohol, nicotine, and social rewards all push this circuit. Crucially, the VTA's dopamine neurons have a <strong>brake</strong> sitting on them — local GABA neurons. Press that brake and dopamine falls. <em>This single lever is the entire GLP-1 story in §7.</em><sup class="cit">[12]</sup></p>
 
-<h3>0.5.4 The blood–brain barrier</h3>
+<h3>0.5.7 The brain's key pathways</h3>
+<p>Three routes do most of the work in this guide. The <strong>reward pathway</strong> (mesolimbic dopamine): VTA → nucleus accumbens, with a branch to the prefrontal cortex (mesocortical). The <strong>gut→brain vagal pathway</strong>: signals ride the vagus up into the brainstem (NTS), then on to the hypothalamus, amygdala, and beyond. The <strong>HPA stress axis</strong>: the hypothalamus drives the pituitary, which drives the adrenal glands — the brain's hormonal line down to the body and gut.</p>
+<figure>
+  <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg">
+    <title>The brain's key pathways: reward, vagal gut-to-brain, and the HPA stress axis</title>
+    <defs>
+      <marker id="aI" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#4f46e5"/></marker>
+      <marker id="aT" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0e7c73"/></marker>
+      <marker id="aA" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b7791f"/></marker>
+    </defs>
+    <!-- brain outline + brainstem stalk -->
+    <path d="M120 205 C100 130 195 96 300 102 C420 96 545 122 548 215 C551 300 470 352 360 350 C255 356 142 332 122 262 C116 242 118 222 120 205 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
+    <path d="M486 330 C500 360 510 374 518 402 L546 394 C536 362 530 344 522 322 Z" fill="#f1f1f6" stroke="#cfd0db" stroke-width="2"/>
+    <!-- HPA (amber) -->
+    <path d="M332 302 L332 340" stroke="#b7791f" stroke-width="2.6" fill="none" marker-end="url(#aA)"/>
+    <path d="M332 360 L332 408" stroke="#b7791f" stroke-width="2.6" fill="none" marker-end="url(#aA)"/>
+    <!-- vagal (teal) -->
+    <path d="M520 414 L511 354" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#aT)"/>
+    <path d="M492 332 C442 312 392 300 354 296" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#aT)"/>
+    <path d="M500 326 C462 290 430 260 410 240" stroke="#0e7c73" stroke-width="2.8" fill="none" marker-end="url(#aT)"/>
+    <!-- reward (indigo) -->
+    <path d="M438 292 C380 250 318 244 270 243" stroke="#4f46e5" stroke-width="2.8" fill="none" marker-end="url(#aI)"/>
+    <path d="M440 288 C360 212 258 186 192 167" stroke="#4f46e5" stroke-width="2.4" fill="none" stroke-dasharray="6 4" marker-end="url(#aI)"/>
+    <!-- nodes -->
+    <g font-family="sans-serif" font-size="10" font-weight="700" fill="#17181b" text-anchor="middle">
+      <circle cx="168" cy="158" r="7" fill="#4f46e5"/><text x="168" y="142">Prefrontal cortex</text>
+      <circle cx="452" cy="178" r="7" fill="#6f4361"/><text x="452" y="163">Hippocampus</text>
+      <circle cx="396" cy="234" r="7" fill="#6f4361"/><text x="396" y="254">Amygdala</text>
+      <circle cx="250" cy="243" r="7" fill="#4f46e5"/><text x="250" y="263">Nucleus accumbens</text>
+      <circle cx="452" cy="298" r="7" fill="#4f46e5"/><text x="478" y="302" text-anchor="start">VTA</text>
+      <circle cx="332" cy="294" r="7" fill="#b7791f"/><text x="322" y="280" text-anchor="end">Hypothalamus</text>
+      <circle cx="332" cy="348" r="7" fill="#b7791f"/><text x="346" y="352" text-anchor="start">Pituitary</text>
+      <circle cx="508" cy="340" r="7" fill="#0e7c73"/><text x="520" y="328" text-anchor="start">Brainstem · NTS</text>
+    </g>
+    <g font-family="sans-serif" font-size="10" fill="#71757e">
+      <text x="528" y="420" text-anchor="middle">↑ from gut / body</text>
+      <text x="332" y="424" text-anchor="middle" fill="#b7791f">↓ to adrenal glands</text>
+    </g>
+  </svg>
+  <div class="legend">
+    <span><i style="background:#4f46e5"></i>Reward pathway (VTA → accumbens · cortex)</span>
+    <span><i style="background:#0e7c73"></i>Gut → brain (vagal)</span>
+    <span><i style="background:#b7791f"></i>HPA stress axis</span>
+  </div>
+  <figcaption>The three routes this guide keeps returning to. Reward drives craving (§7); the vagal line carries gut signals up; the HPA axis is the brain's hormonal reach down to the body and gut.</figcaption>
+</figure>
+
+<h3>0.5.8 The blood–brain barrier</h3>
 <p>The brain is walled off from the bloodstream by the <em class="t">blood–brain barrier</em> — a tight seal that keeps most molecules out. But a few spots, the <strong>circumventricular organs (CVOs)</strong>, are deliberately leaky so the brain can sample the blood. Remember this wall and its few open windows — it's exactly how the GLP-1 drugs get in (§6).<sup class="cit">[7-8]</sup></p>
 
 <div class="box plain"><span class="lab">In plain terms</span><span class="body">The brain runs on chemicals that either excite (glutamate) or calm (GABA) neurons. Dopamine is the "want it" chemical, made in a reward circuit (VTA → accumbens). The brain is sealed behind a barrier with a few open windows. That's 90% of what you need.</span></div>
 <div class="box analogy"><span class="lab">Teaching analogy</span><span class="body">Think of the brain as a city of switchboards. Glutamate is "go," GABA is "stop." Dopamine is the hype-man in the reward district shouting "you want this!" — and there's a volume knob (the GABA brake) on him. The city is walled, with a few unguarded gates (the CVOs).</span></div>
-<div class="box key"><span class="lab">Carry these forward</span><span class="body">(1) GABA = brake, glutamate = gas. (2) Dopamine in the VTA→accumbens circuit = craving. (3) The brain is walled off except at the CVOs. The gut–brain axis and the GLP-1 drugs are just clever ways of reaching these three things.</span></div>
+<div class="box key"><span class="lab">Carry these forward</span><span class="body">(1) GABA = brake, glutamate = gas. (2) Dopamine in the VTA→accumbens circuit = craving. (3) The autonomic system balances sympathetic "fight-or-flight" against parasympathetic "rest-and-digest" — and the vagus (CN X) is the parasympathetic star, mostly carrying signals UP. (4) The brain is walled off except at the CVOs. The gut–brain axis and the GLP-1 drugs are just clever ways of reaching these.</span></div>
 <div class="check"><span class="lab">Check yourself</span>
 <div class="qa"><div class="q"><b>Q</b> Which neurotransmitter is the brake, which is the accelerator? <span class="toggle">show</span></div><div class="a">GABA inhibits (brake); glutamate excites (accelerator).</div></div>
+<div class="qa"><div class="q"><b>Q</b> Sympathetic vs parasympathetic, in one line? <span class="toggle">show</span></div><div class="a">Sympathetic = fight-or-flight (pauses digestion); parasympathetic = rest-and-digest (turns digestion on), led by the vagus.</div></div>
+<div class="qa"><div class="q"><b>Q</b> Which cranial nerve is the vagus, and what's special about it? <span class="toggle">show</span></div><div class="a">CN X (the 10th) — the longest, the main parasympathetic nerve, with ~80% of its fibres running up to the brain.</div></div>
 <div class="qa"><div class="q"><b>Q</b> Name the reward circuit and its chemical. <span class="toggle">show</span></div><div class="a">The mesolimbic pathway, VTA → nucleus accumbens, using dopamine.</div></div>
 <div class="qa"><div class="q"><b>Q</b> What are CVOs and why will they matter later? <span class="toggle">show</span></div><div class="a">Circumventricular organs — leaky spots in the blood–brain barrier where GLP-1 drugs enter the brain.</div></div>
 </div>
