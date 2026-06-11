@@ -405,34 +405,14 @@
 <div id="frameView" style="display:block"><iframe id="modeFrame" title="Reading view" src="teaching-guide-app.html"></iframe></div>
 
 <div id="slidesView">
-  <div class="swrap">
-    <div class="sintro">The 26-slide deck — scroll through here, or open <code>Gut-Brain-Axis-Deck-Depth.pptx</code> to present.</div>
-    <img src="slides/slide-01.jpg" alt="Slide 1" loading="lazy">
-    <img src="slides/slide-02.jpg" alt="Slide 2" loading="lazy">
-    <img src="slides/slide-03.jpg" alt="Slide 3" loading="lazy">
-    <img src="slides/slide-04.jpg" alt="Slide 4" loading="lazy">
-    <img src="slides/slide-05.jpg" alt="Slide 5" loading="lazy">
-    <img src="slides/slide-06.jpg" alt="Slide 6" loading="lazy">
-    <img src="slides/slide-07.jpg" alt="Slide 7" loading="lazy">
-    <img src="slides/slide-08.jpg" alt="Slide 8" loading="lazy">
-    <img src="slides/slide-09.jpg" alt="Slide 9" loading="lazy">
-    <img src="slides/slide-10.jpg" alt="Slide 10" loading="lazy">
-    <img src="slides/slide-11.jpg" alt="Slide 11" loading="lazy">
-    <img src="slides/slide-12.jpg" alt="Slide 12" loading="lazy">
-    <img src="slides/slide-13.jpg" alt="Slide 13" loading="lazy">
-    <img src="slides/slide-14.jpg" alt="Slide 14" loading="lazy">
-    <img src="slides/slide-15.jpg" alt="Slide 15" loading="lazy">
-    <img src="slides/slide-16.jpg" alt="Slide 16" loading="lazy">
-    <img src="slides/slide-17.jpg" alt="Slide 17" loading="lazy">
-    <img src="slides/slide-18.jpg" alt="Slide 18" loading="lazy">
-    <img src="slides/slide-19.jpg" alt="Slide 19" loading="lazy">
-    <img src="slides/slide-20.jpg" alt="Slide 20" loading="lazy">
-    <img src="slides/slide-21.jpg" alt="Slide 21" loading="lazy">
-    <img src="slides/slide-22.jpg" alt="Slide 22" loading="lazy">
-    <img src="slides/slide-23.jpg" alt="Slide 23" loading="lazy">
-    <img src="slides/slide-24.jpg" alt="Slide 24" loading="lazy">
-    <img src="slides/slide-25.jpg" alt="Slide 25" loading="lazy">
-    <img src="slides/slide-26.jpg" alt="Slide 26" loading="lazy">
+  <div class="sviewer">
+    <div class="sbar">
+      <button id="sPrev" class="snav">‹ Prev</button>
+      <span id="sCount">1 / 26</span>
+      <button id="sNext" class="snav">Next ›</button>
+      <span class="shint">Use the ← → arrow keys, or click the slide, to advance · open the .pptx to present</span>
+    </div>
+    <img id="curSlide" src="slides/slide-01.jpg" alt="Slide 1">
   </div>
 </div>
 
@@ -453,6 +433,24 @@
     }
     btns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode'), b.getAttribute('data-src')); }); });
     setMode('guide','teaching-guide-app.html'); // default to the Teaching Guide on open
+  })();
+  // slide viewer: one slide at a time with prev/next + arrow keys
+  (function(){
+    var N=26, i=0, img=document.getElementById('curSlide'), cnt=document.getElementById('sCount'),
+        prev=document.getElementById('sPrev'), next=document.getElementById('sNext'), sv=document.getElementById('slidesView');
+    if(!img) return;
+    function pad(n){return (n<10?'0':'')+n;}
+    function show(k){ i=Math.max(0,Math.min(N-1,k)); img.src='slides/slide-'+pad(i+1)+'.jpg'; img.alt='Slide '+(i+1);
+      cnt.textContent=(i+1)+' / '+N; prev.disabled=(i===0); next.disabled=(i===N-1); }
+    prev.addEventListener('click', function(){show(i-1);});
+    next.addEventListener('click', function(){show(i+1);});
+    img.addEventListener('click', function(){show(i+1);});
+    document.addEventListener('keydown', function(e){
+      if(!sv || sv.style.display==='none') return;
+      if(e.key==='ArrowRight'||e.key===' '){ show(i+1); e.preventDefault(); }
+      else if(e.key==='ArrowLeft'){ show(i-1); e.preventDefault(); }
+    });
+    show(0);
   })();
 </script>
 </body>
