@@ -21,17 +21,21 @@ function statRow(s,y,items){ items.forEach((it,i)=>{const x=0.6+i*(12.1/items.le
   s.addText(it[1],{x:x+0.2,y:y+0.92,w:w-0.4,h:0.7,fontFace:BF,fontSize:12.5,color:INK,align:"center",margin:0,lineSpacingMultiple:1.02});}); }
 // 2x2 or row cards with colored edge
 function edgeCards(s,startY,cards,cols){
-  cols=cols||2; const cw=(cols===2?5.85:3.85);
-  cards.forEach((c,i)=>{const x=0.6+(i%cols)*(cw+0.3), y=startY+Math.floor(i/cols)*2.05;
-    card(s,x,y,cw,1.85); s.addShape(p.shapes.RECTANGLE,{x,y,w:0.13,h:1.85,fill:{color:c[2]}});
-    s.addText(c[0],{x:x+0.3,y:y+0.16,w:cw-0.5,h:0.45,fontFace:BF,fontSize:15.5,bold:true,color:INK,margin:0});
-    s.addText(c[1],{x:x+0.3,y:y+0.62,w:cw-0.5,h:1.15,fontFace:BF,fontSize:12.5,color:GREY,margin:0,lineSpacingMultiple:1.03});});
+  cols=cols||2; const cw=(cols===2?5.85:3.85), ch=1.9, gap=0.24;
+  cards.forEach((c,i)=>{const x=0.6+(i%cols)*(cw+0.3), y=startY+Math.floor(i/cols)*(ch+gap);
+    card(s,x,y,cw,ch); s.addShape(p.shapes.RECTANGLE,{x,y,w:0.13,h:ch,fill:{color:c[2]}});
+    const titleSize = c[3] || 14.6, bodySize = c[4] || 11.6;
+    s.addText(c[0],{x:x+0.3,y:y+0.15,w:cw-0.55,h:0.42,fontFace:BF,fontSize:titleSize,bold:true,color:INK,margin:0,fit:"shrink"});
+    s.addText(c[1],{x:x+0.3,y:y+0.58,w:cw-0.55,h:1.22,fontFace:BF,fontSize:bodySize,color:GREY,margin:0,lineSpacingMultiple:0.96,fit:"shrink"});});
 }
-function dataTable(s,x,y,w,colW,rows){
+function dataTable(s,x,y,w,colW,rows,opts={}){
+  const rowH = opts.rowH || (rows.length>=8 ? 0.54 : rows.length>=6 ? 0.49 : 0.56);
+  const bodySize = opts.bodySize || (rows.length>=8 ? 10.8 : rows.length>=6 ? 11.3 : 12.0);
+  const headSize = opts.headSize || 12.2;
   const td=rows.map((r,ri)=>r.map((c,ci)=>{
-    if(ri===0) return {text:c,options:{fill:{color:ci===0?INK:TEALD},color:WHITE,bold:true,fontFace:BF,fontSize:13,valign:"middle"}};
-    return {text:c,options:{fill:{color:ri%2?WHITE:"FAF6F0"},color:ci===0?TEALD:INK,bold:ci===0,fontFace:BF,fontSize:12.5,valign:"middle"}};}));
-  s.addTable(td,{x,y,w,colW,border:{pt:1,color:LINE},margin:[3,6,3,6],rowH:0.42});
+    if(ri===0) return {text:c,options:{fill:{color:ci===0?INK:TEALD},color:WHITE,bold:true,fontFace:BF,fontSize:headSize,valign:"middle",fit:"shrink"}};
+    return {text:c,options:{fill:{color:ri%2?WHITE:"FAF6F0"},color:ci===0?TEALD:INK,bold:ci===0,fontFace:BF,fontSize:bodySize,valign:"middle",breakLine:false,fit:"shrink"}};}));
+  s.addTable(td,{x,y,w,colW,border:{pt:1,color:LINE},margin:[2,5,2,5],rowH});
 }
 let s;
 
@@ -98,9 +102,9 @@ s.addText([{text:"~80% of vagal fibers carry signals UP",options:{bold:true,colo
 s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.2,w:6.0,h:1.4,fill:{color:"FCF4E3"},rectRadius:0.1});
 s.addText([{text:"“Gut feeling” is literal — ",options:{bold:true,color:GOLD}},{text:"the gut streams real-time data the brain blends into mood, appetite and alertness.",options:{}}],
   {x:0.85,y:4.35,w:5.5,h:1.1,fontFace:BF,fontSize:15.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.1});
-card(s,7.0,1.9,5.7,3.9,CREAM);
-s.addImage({path:"fig-vagus-highway.png",x:7.18,y:2.14,w:5.34,h:3.0});
-s.addText("Gut-to-brain highway",{x:7.35,y:5.28,w:5.0,h:0.28,fontFace:BF,fontSize:11.5,italic:true,color:GREY,align:"center",margin:0});
+card(s,7.0,1.82,5.7,4.08,CREAM);
+s.addImage({path:"fig-vagus-highway.png",x:7.25,y:2.08,w:5.2,h:2.93});
+s.addText("Gut-to-brain highway",{x:7.35,y:5.2,w:5.0,h:0.34,fontFace:BF,fontSize:11.2,italic:true,color:GREY,align:"center",margin:0});
 
 /* 7 Vagus pathways depth */
 s=p.addSlide(); s.background={color:WHITE};
@@ -166,9 +170,9 @@ edgeCards(s,1.95,[
 /* 13 MICROBIOME MAP */
 s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"The microbiome–gut–brain map","From what you eat, to messengers, to molecular keys");
-card(s,0.75,1.75,11.8,5.25,CREAM);
-s.addImage({path:"fig-microbiome-map.png",x:2.05,y:1.9,w:9.2,h:5.18});
-s.addShape(p.shapes.RECTANGLE,{x:0.75,y:6.66,w:11.8,h:0.34,fill:{color:WHITE,transparency:12},line:{color:WHITE,transparency:100}});
+card(s,0.75,1.72,11.8,5.28,CREAM);
+s.addImage({path:"fig-microbiome-map.png",x:2.0,y:1.93,w:9.3,h:5.02});
+s.addShape(p.shapes.RECTANGLE,{x:0.75,y:6.6,w:11.8,h:0.4,fill:{color:WHITE,transparency:8},line:{color:WHITE,transparency:100}});
 source(s,"Original recreation of the microbiome–gut–brain axis figure (Microbial Biotechnology, 2024).");
 
 /* 14 WHEN IT BREAKS */
@@ -243,18 +247,18 @@ s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"How the drug gets in","It skips the brain's bouncer");
 s.addText([{text:"Semaglutide barely crosses the blood–brain barrier",options:{bold:true,color:RUSTD}},{text:" (brain:plasma <0.01). It slips in through ",options:{}},{text:"circumventricular organs (CVOs)",options:{bold:true,color:TEALD}},{text:" — the area postrema & median eminence — where the barrier is deliberately leaky. With a 5–7 day half-life it parks there at supraphysiological levels. Its energy effects need Adcyap1+ neurons in the area postrema/NTS.",options:{}}],
   {x:0.6,y:1.85,w:6.2,h:3.2,fontFace:BF,fontSize:16,color:INK,margin:0,lineSpacingMultiple:1.2});
-card(s,7.2,1.95,5.5,4.3,CREAM);
-s.addImage({path:"fig-bbb-cvo.png",x:7.4,y:2.35,w:5.1,h:2.87});
-s.addText("Leaky CVO windows let circulating signals reach brain circuits.",{x:7.45,y:5.45,w:5.0,h:0.46,fontFace:BF,fontSize:11.4,italic:true,color:RUSTD,align:"center",margin:0,lineSpacingMultiple:1.05});
+card(s,7.15,1.82,5.6,4.55,CREAM);
+s.addImage({path:"fig-bbb-cvo.png",x:7.42,y:2.12,w:5.05,h:2.84});
+s.addText("Leaky CVO windows let circulating signals reach brain circuits.",{x:7.45,y:5.18,w:5.0,h:0.55,fontFace:BF,fontSize:11.1,italic:true,color:RUSTD,align:"center",margin:0,lineSpacingMultiple:1.0,fit:"shrink"});
 
 /* 21 REWARD FLOW */
 s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"What it does to craving","Turning down the dopamine");
 s.addText("In the reward hub, GLP-1 receptors sit mostly on the BRAKES (VTA GABA neurons). The drug presses them, dopamine drops in the nucleus accumbens, and the pull of whatever you craved fades.",
   {x:0.6,y:1.8,w:12,h:0.95,fontFace:BF,fontSize:17,color:INK,margin:0,lineSpacingMultiple:1.1});
-card(s,2.65,2.75,8.0,3.95,CREAM);
-s.addImage({path:"fig-reward-circuit.png",x:3.15,y:2.95,w:7.0,h:3.94});
-s.addShape(p.shapes.RECTANGLE,{x:2.65,y:6.24,w:8.0,h:0.46,fill:{color:CREAM},line:{color:CREAM,transparency:100}});
+card(s,2.65,2.78,8.0,3.82,CREAM);
+s.addImage({path:"fig-reward-circuit.png",x:3.12,y:3.02,w:7.06,h:3.42});
+s.addShape(p.shapes.RECTANGLE,{x:2.65,y:6.33,w:8.0,h:0.27,fill:{color:CREAM},line:{color:CREAM,transparency:100}});
 s.addText("Caveat (Zhu 2025): in mice, dopamine activity & appetite recovered during repeated dosing — possible tolerance.",
   {x:0.6,y:6.92,w:12,h:0.5,fontFace:BF,fontSize:13.2,italic:true,color:GREY,align:"center",margin:0});
 
@@ -346,12 +350,14 @@ s.addText([{text:"Two ideas:  ",options:{bold:true,color:GOLD}},{text:"a low-dos
 /* 25f OBESITY LOOP */
 s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"Obesity & type-2 diabetes","The axis breaking in a self-amplifying loop");
-[["High-fat diet",RUST],["Gut dysbiosis",GOLD],["Leaky gut → LPS",GOLD],["Body-wide inflammation",RUST],["Vagus deaf + leptin resistance",PLUM],["Stay hungry → eat more",GREEN]].forEach((c,i)=>{const x=0.6+i*2.08; card(s,x,2.4,1.9,1.5,WHITE); s.addShape(p.shapes.RECTANGLE,{x,y:2.4,w:1.9,h:0.12,fill:{color:c[1]}});
-  s.addText(c[0],{x:x+0.1,y:2.62,w:1.7,h:1.18,fontFace:BF,fontSize:12.5,bold:true,color:INK,align:"center",valign:"middle",margin:0,lineSpacingMultiple:1.0});
-  if(i<5) s.addText("→",{x:x+1.88,y:2.7,w:0.24,h:0.9,fontFace:BF,fontSize:18,bold:true,color:GREY,align:"center",valign:"middle",margin:0});});
-s.addText("↻ loops back to more high-fat diet",{x:0.6,y:4.05,w:12,h:0.4,fontFace:BF,fontSize:13,italic:true,color:GREY,align:"center",margin:0});
-s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.65,w:12.1,h:1.55,fill:{color:"EEF0FF"},line:{color:"4F46E5",width:1},rectRadius:0.1});
-s.addText([{text:"GLP-1 RAs interrupt the loop at multiple nodes at once",options:{bold:true,color:"3730A3"}},{text:" — bypassing the deafened vagus (via CVOs), calming inflammation, restoring leptin sensitivity, curbing cravings. ",options:{}},{text:"But they work AROUND the broken axis, not repair it",options:{bold:true,color:RUSTD}},{text:" (de Lartigue 2026) — a key reason weight returns off-drug.",options:{}}],{x:0.85,y:4.78,w:11.6,h:1.35,fontFace:BF,fontSize:14.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.1});
+const loopBoxes = [["High-fat diet",RUST],["Gut dysbiosis",GOLD],["Leaky gut → LPS",GOLD],["Body-wide inflammation",RUST],["Vagus deaf + leptin resistance",PLUM],["Stay hungry → eat more",GREEN]];
+loopBoxes.forEach((c,i)=>{const x=0.62+i*2.05; card(s,x,2.32,1.82,1.42,WHITE); s.addShape(p.shapes.RECTANGLE,{x,y:2.32,w:1.82,h:0.12,fill:{color:c[1]}});
+  s.addText(c[0],{x:x+0.12,y:2.57,w:1.58,h:0.86,fontFace:BF,fontSize:11.2,bold:true,color:INK,align:"center",valign:"middle",margin:0,lineSpacingMultiple:0.94,fit:"shrink"});
+  if(i<5) s.addText("→",{x:x+1.83,y:2.68,w:0.2,h:0.55,fontFace:BF,fontSize:16,bold:true,color:GREY,align:"center",valign:"middle",margin:0});});
+s.addShape(p.shapes.LINE,{x:11.62,y:3.96,w:-10.2,h:0,line:{color:RUST,width:1.4,dash:"dash",beginArrowType:"none",endArrowType:"triangle"}});
+s.addText("loops back to more high-fat diet",{x:0.6,y:3.98,w:12,h:0.34,fontFace:BF,fontSize:12.2,italic:true,color:GREY,align:"center",margin:0});
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.62,w:12.1,h:1.55,fill:{color:"EEF0FF"},line:{color:"4F46E5",width:1},rectRadius:0.1});
+s.addText([{text:"GLP-1 RAs interrupt the loop at multiple nodes at once",options:{bold:true,color:"3730A3"}},{text:" — bypassing the deafened vagus (via CVOs), calming inflammation, restoring leptin sensitivity, curbing cravings. ",options:{}},{text:"But they work AROUND the broken axis, not repair it",options:{bold:true,color:RUSTD}},{text:" (de Lartigue 2026) — a key reason weight returns off-drug.",options:{}}],{x:0.85,y:4.76,w:11.6,h:1.25,fontFace:BF,fontSize:13.8,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.02,fit:"shrink"});
 
 /* 25g MASH */
 s=p.addSlide(); s.background={color:WHITE};
