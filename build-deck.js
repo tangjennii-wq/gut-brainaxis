@@ -185,7 +185,8 @@ s=p.addSlide(); s.background={color:DARK};
 s.addText("THE HEADLINE CASE",{x:0.6,y:0.5,w:11,h:0.35,fontFace:BF,fontSize:13,bold:true,color:GOLD,charSpacing:3,margin:0});
 s.addText("Parkinson's may start in the gut",{x:0.6,y:0.86,w:12,h:0.9,fontFace:HF,fontSize:30,bold:true,color:WHITE,margin:0});
 s.addText("α-synuclein — the Parkinson's protein — shows up in gut nerves years before the brain; constipation often precedes the tremor by a decade. The 'body-first' idea: it begins in the gut and climbs the vagus, prion-style.",
-  {x:0.6,y:1.95,w:7.0,h:2.0,fontFace:BF,fontSize:16.5,color:"E7DDD1",margin:0,lineSpacingMultiple:1.2});
+  {x:0.6,y:1.95,w:7.0,h:1.9,fontFace:BF,fontSize:16.5,color:"E7DDD1",margin:0,lineSpacingMultiple:1.15});
+s.addImage({path:"fig-parkinsons-spread.png",x:0.6,y:4.0,w:3.74,h:2.1});
 card(s,7.9,1.95,4.8,4.0,"33302B");
 s.addText("The evidence",{x:8.15,y:2.15,w:4.3,h:0.5,fontFace:BF,fontSize:15,bold:true,color:GOLD,margin:0});
 s.addText([{text:"Kim 2019:  ",options:{bold:true,color:"F2C879"}},{text:"α-synuclein injected into the mouse gut marched to the brain — blocked by cutting the vagus.",options:{}}],

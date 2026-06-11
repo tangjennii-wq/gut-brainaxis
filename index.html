@@ -27,6 +27,10 @@
   #modebar button.active{background:var(--rust);border-color:var(--rust);color:#fff}
   #frameView{display:none}
   #frameView iframe{width:100%;height:calc(100vh - 52px);border:0;display:block;background:var(--bg)}
+  #slidesView{display:none;background:var(--bg)}
+  #slidesView .swrap{max-width:1080px;margin:0 auto;padding:22px 18px 64px}
+  #slidesView .sintro{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:13px;color:var(--muted);text-align:center;margin:2px 0 16px}
+  #slidesView img{width:100%;display:block;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);margin:0 0 16px}
   @media(max-width:560px){#modebar .mlabel{display:none} #modebar button{font-size:12px;padding:5px 11px}}
   /* nav */
   nav{position:sticky;top:50px;z-index:50;background:rgba(251,247,242,.92);backdrop-filter:blur(8px);
@@ -106,6 +110,7 @@
   <button data-mode="guide" data-src="teaching-guide-app.html" class="active">📘 Teaching Guide</button>
   <button data-mode="depth" data-src="gut-brain-axis-indepth.html">🔬 In-Depth (Learner)</button>
   <button data-mode="tour">📖 Visual Tour</button>
+  <button data-mode="slides">📊 Slides</button>
 </div>
 
 <div id="tourView" style="display:none">
@@ -209,6 +214,11 @@
     </div>
   </div>
 
+  <figure class="art-figure">
+    <img src="fig-four-channels.png" alt="Generated illustration of the four gut-to-brain communication channels">
+    <figcaption>Companion art: the four parallel channels from gut to brain.</figcaption>
+  </figure>
+
   <p style="margin-top:22px">The illustration below is a recreation of the classic "microbiome–gut–brain axis" map: on the left, all the things that shape <em>which</em> microbes you carry; in the middle, the channels they use to reach the brain; on the right, the actual chemical keys they make.</p>
 
   <figure class="art-figure">
@@ -235,6 +245,11 @@
   <h3>The headline case: Parkinson's may start in the gut</h3>
   <p>This is the most dramatic example of the axis running in reverse. The protein clumps that define <strong>Parkinson's disease</strong> show up in the gut's nerves years before the brain — and constipation often precedes the tremor by a decade. The "body-first" hypothesis says the disease can <strong>begin in the gut and crawl up the vagus nerve into the brain</strong>, prion-style.</p>
   <p>Two lines of evidence are hard to ignore. In mice, injecting the rogue protein into the gut wall sent it marching up to the brain in sequence — <em>unless the vagus was cut first</em>, which blocked it. And in huge Swedish and Danish registries, people who'd had their vagus nerve surgically cut decades earlier had a <strong>~40–47% lower</strong> risk of Parkinson's. Cut the wire, slow the spread.</p>
+
+  <figure class="art-figure">
+    <img src="fig-parkinsons-spread.png" alt="Generated illustration of a misfolded protein spreading from the gut up the vagus nerve to the brain">
+    <figcaption>Companion art: the rogue protein climbing from gut to brain.</figcaption>
+  </figure>
 
   <h3>IBS rarely travels alone — the whole-body web</h3>
   <p>Here's a clinical pattern that surprises people: many of the conditions that cluster <em>with</em> IBS aren't in the gut at all. Because the gut–brain axis is a shared crossroads — nerves, hormones, immune signals and metabolism — one underlying problem can surface as pain, fatigue, mood, bladder, pelvic, or even heart-rate symptoms. Often it's <strong>one process wearing many specialist labels.</strong></p>
@@ -384,16 +399,51 @@
 
 <div id="frameView" style="display:block"><iframe id="modeFrame" title="Reading view" src="teaching-guide-app.html"></iframe></div>
 
+<div id="slidesView">
+  <div class="swrap">
+    <div class="sintro">The 26-slide deck — scroll through here, or open <code>Gut-Brain-Axis-Deck-Depth.pptx</code> to present.</div>
+    <img src="slides/slide-01.jpg" alt="Slide 1" loading="lazy">
+    <img src="slides/slide-02.jpg" alt="Slide 2" loading="lazy">
+    <img src="slides/slide-03.jpg" alt="Slide 3" loading="lazy">
+    <img src="slides/slide-04.jpg" alt="Slide 4" loading="lazy">
+    <img src="slides/slide-05.jpg" alt="Slide 5" loading="lazy">
+    <img src="slides/slide-06.jpg" alt="Slide 6" loading="lazy">
+    <img src="slides/slide-07.jpg" alt="Slide 7" loading="lazy">
+    <img src="slides/slide-08.jpg" alt="Slide 8" loading="lazy">
+    <img src="slides/slide-09.jpg" alt="Slide 9" loading="lazy">
+    <img src="slides/slide-10.jpg" alt="Slide 10" loading="lazy">
+    <img src="slides/slide-11.jpg" alt="Slide 11" loading="lazy">
+    <img src="slides/slide-12.jpg" alt="Slide 12" loading="lazy">
+    <img src="slides/slide-13.jpg" alt="Slide 13" loading="lazy">
+    <img src="slides/slide-14.jpg" alt="Slide 14" loading="lazy">
+    <img src="slides/slide-15.jpg" alt="Slide 15" loading="lazy">
+    <img src="slides/slide-16.jpg" alt="Slide 16" loading="lazy">
+    <img src="slides/slide-17.jpg" alt="Slide 17" loading="lazy">
+    <img src="slides/slide-18.jpg" alt="Slide 18" loading="lazy">
+    <img src="slides/slide-19.jpg" alt="Slide 19" loading="lazy">
+    <img src="slides/slide-20.jpg" alt="Slide 20" loading="lazy">
+    <img src="slides/slide-21.jpg" alt="Slide 21" loading="lazy">
+    <img src="slides/slide-22.jpg" alt="Slide 22" loading="lazy">
+    <img src="slides/slide-23.jpg" alt="Slide 23" loading="lazy">
+    <img src="slides/slide-24.jpg" alt="Slide 24" loading="lazy">
+    <img src="slides/slide-25.jpg" alt="Slide 25" loading="lazy">
+    <img src="slides/slide-26.jpg" alt="Slide 26" loading="lazy">
+  </div>
+</div>
+
 <script>
   function t(id,msg){var el=document.getElementById(id); if(el) el.innerHTML=msg;}
   // mode switcher: flip between the visual tour, the teaching guide, and the in-depth reference
   (function(){
     var tour=document.getElementById('tourView'), frame=document.getElementById('frameView'),
+        slides=document.getElementById('slidesView'),
         ifr=document.getElementById('modeFrame'), btns=document.querySelectorAll('#modebar button');
     function setMode(m,src){
       btns.forEach(function(b){b.classList.toggle('active', b.getAttribute('data-mode')===m);});
-      if(m==='tour'){ frame.style.display='none'; tour.style.display='block'; }
-      else { tour.style.display='none'; frame.style.display='block'; if(src && ifr.getAttribute('src')!==src) ifr.setAttribute('src',src); }
+      tour.style.display = (m==='tour')?'block':'none';
+      frame.style.display = (m==='guide'||m==='depth')?'block':'none';
+      if(slides) slides.style.display = (m==='slides')?'block':'none';
+      if((m==='guide'||m==='depth') && src && ifr.getAttribute('src')!==src) ifr.setAttribute('src',src);
       window.scrollTo(0,0);
     }
     btns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode'), b.getAttribute('data-src')); }); });
