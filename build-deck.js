@@ -291,6 +291,98 @@ s.addText([{text:"Gill et al. (JAMA Psychiatry 2026):  ",options:{bold:true,colo
 s.addText("Probiotics nudged risk & patience; semaglutide nudged effort. Same reward dashboard, same hidden hand reaching for it from the gut.",
   {x:0.7,y:5.4,w:11.6,h:1.2,fontFace:HF,fontSize:18,italic:true,color:GOLD,margin:0,lineSpacingMultiple:1.15});
 
+/* 25a CLINICAL APPS DIVIDER */
+s=p.addSlide(); s.background={color:DARK};
+s.addShape(p.shapes.OVAL,{x:10.2,y:-1.4,w:5,h:5,fill:{color:TEALD,transparency:60}});
+s.addText("PART THREE · CLINICAL APPLICATIONS",{x:0.7,y:1.7,w:11,h:0.4,fontFace:BF,fontSize:14,bold:true,color:GOLD,charSpacing:3,margin:0});
+s.addText("Putting the axis to work",{x:0.7,y:2.15,w:12,h:1.0,fontFace:HF,fontSize:42,bold:true,color:WHITE,margin:0});
+s.addText("From overlapping disorders, to who's most at risk, to how we treat it — and how obesity, diabetes, the liver, and the brain all connect through one axis.",{x:0.7,y:3.5,w:10,h:1.6,fontFace:BF,fontSize:18,color:"E7DDD1",margin:0,lineSpacingMultiple:1.25});
+
+/* 25b CLINICAL WEB */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"The clinical web","IBS rarely travels alone");
+s.addText("The conditions that cluster with IBS often aren't in the gut — they share its machinery (central sensitization, autonomic & immune dysfunction). Co-occurrence with IBS, far above chance:",{x:0.6,y:1.8,w:12,h:0.9,fontFace:BF,fontSize:15.5,color:INK,margin:0,lineSpacingMultiple:1.1});
+edgeCards(s,2.55,[
+ ["GI overlaps","Functional dyspepsia (8× IBS odds) · GERD · functional constipation/diarrhea — >⅓ of DGBI overlap with another.",TEAL],
+ ["Pain & fatigue","Fibromyalgia (~49% have IBS) · chronic fatigue/ME (~51%) · TMJ (~64%) · migraine.",RUST],
+ ["Pelvic & bladder","Endometriosis (2–3× IBS risk) · interstitial cystitis (30–75% have IBS).",PLUM],
+ ["Autonomic & mood","POTS (vagal withdrawal) · anxiety & depression (3× odds).",GREEN]],2);
+source(s,"One process, many specialist labels — gastroenterologist, rheumatologist, urologist, gynaecologist.");
+
+/* 25c CONVERGENCE */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"The clinical web · why","One axis, a convergence zone");
+edgeCards(s,1.95,[
+ ["Central sensitization","Repeated gut signals lower pain thresholds across organs — so IBS patients get fibromyalgia, migraine, pelvic pain above chance.",TEAL],
+ ["Mucosal immune activation","Gut mast-cell/eosinophil cytokines reach the brain → fatigue, mood, headache: a gut process with body-wide effects.",RUST],
+ ["Autonomic dysregulation","Sympatho-vagal imbalance hits gut, heart (POTS), bladder (IC), and muscle (fibromyalgia) at once.",PLUM],
+ ["Bidirectional amplification","Distress → CRH → mast cells → leaky gut → inflammation → brain → more distress: a self-reinforcing loop.",GREEN]],2);
+
+/* 25d VULNERABLE POPS */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"Who's most affected","High-vulnerability groups across the lifespan");
+dataTable(s,0.6,1.95,12.1,[3.2,5.0,3.9],[
+ ["Population","Why vulnerable","How it shows up"],
+ ["Newborns (C-section)","Microbiome, nerves & stress system forming at once","Immune issues; later DGBI; neurodev. risk"],
+ ["Women (reproductive age)","Hormones tune gut sensitivity & the stress axis","IBS ~2× vs men; worse symptoms"],
+ ["Autistic children","↓ diversity, ↓ butyrate-makers, barrier-gene variants","GI symptoms in 47–80%"],
+ ["IBD patients","Self-amplifying inflammation ↔ dysbiosis loop","2–3× anxiety/depression; mood predicts flares"],
+ ["Trauma / PTSD","Stress hormones prime a pro-inflammatory gut","Anxiety, depression, somatic symptoms"],
+ ["The elderly","'Inflammaging' — diversity ↓, pathobionts ↑","Cognitive decline; Alzheimer's / Parkinson's"],
+ ["Critically ill (ICU)","Antibiotics + stress wipe microbiome in hours","Sepsis; multi-organ failure"]]);
+source(s,"Shared fingerprint across most: ↓ butyrate-makers (Faecalibacterium, Coprococcus), ↑ pro-inflammatory Eggerthella.");
+
+/* 25e IBS TREATMENT */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"Treating IBS","A tiered, gut–brain ladder");
+dataTable(s,0.6,1.95,12.1,[2.2,5.9,4.0],[
+ ["Tier","What it is","Headline evidence"],
+ ["1 · Strong","Diet (low-FODMAP) · gut–brain neuromodulators (low-dose amitriptyline) · CBT / gut-directed hypnotherapy · subtype-specific drugs","Low-FODMAP ~57% vs 38%; amitriptyline NNT ~4; hypnotherapy ≤80% get ≥50% relief"],
+ ["2 · Emerging","Mast-cell drugs (ebastine, ketotifen) · GLP-1 RAs · specific probiotic strains","GLP-1 (ROSE-010) cut IBS pain (OR 2.30); probiotics NNT ~7"],
+ ["3 · Experimental","Fecal transplant · vagus-nerve stimulation","Promising but trials-only for now"]]);
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.9,w:12.1,h:1.2,fill:{color:"FCF4E3"},rectRadius:0.1});
+s.addText([{text:"Two ideas:  ",options:{bold:true,color:GOLD}},{text:"a low-dose 'antidepressant' is first-line for IBS PAIN (it quiets central sensitization, not mood); and GLP-1 RAs sit at a unique crossroads — vagus, barrier, mast cells, microbiome, brain inflammation all at once.",options:{}}],{x:0.85,y:5.0,w:11.6,h:1.0,fontFace:BF,fontSize:14.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.05});
+
+/* 25f OBESITY LOOP */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"Obesity & type-2 diabetes","The axis breaking in a self-amplifying loop");
+[["High-fat diet",RUST],["Gut dysbiosis",GOLD],["Leaky gut → LPS",GOLD],["Body-wide inflammation",RUST],["Vagus deaf + leptin resistance",PLUM],["Stay hungry → eat more",GREEN]].forEach((c,i)=>{const x=0.6+i*2.08; card(s,x,2.4,1.9,1.5,WHITE); s.addShape(p.shapes.RECTANGLE,{x,y:2.4,w:1.9,h:0.12,fill:{color:c[1]}});
+  s.addText(c[0],{x:x+0.1,y:2.62,w:1.7,h:1.18,fontFace:BF,fontSize:12.5,bold:true,color:INK,align:"center",valign:"middle",margin:0,lineSpacingMultiple:1.0});
+  if(i<5) s.addText("→",{x:x+1.88,y:2.7,w:0.24,h:0.9,fontFace:BF,fontSize:18,bold:true,color:GREY,align:"center",valign:"middle",margin:0});});
+s.addText("↻ loops back to more high-fat diet",{x:0.6,y:4.05,w:12,h:0.4,fontFace:BF,fontSize:13,italic:true,color:GREY,align:"center",margin:0});
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.65,w:12.1,h:1.55,fill:{color:"EEF0FF"},line:{color:"4F46E5",width:1},rectRadius:0.1});
+s.addText([{text:"GLP-1 RAs interrupt the loop at multiple nodes at once",options:{bold:true,color:"3730A3"}},{text:" — bypassing the deafened vagus (via CVOs), calming inflammation, restoring leptin sensitivity, curbing cravings. ",options:{}},{text:"But they work AROUND the broken axis, not repair it",options:{bold:true,color:RUSTD}},{text:" (de Lartigue 2026) — a key reason weight returns off-drug.",options:{}}],{x:0.85,y:4.78,w:11.6,h:1.35,fontFace:BF,fontSize:14.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.1});
+
+/* 25g MASH */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"The liver node · MASH","The amplifier in the gut–liver–brain axis");
+statRow(s,2.0,[["~30%","of adults have fatty liver (MASLD); ~20% progress to inflamed MASH",RUST],["63% vs 34%","MASH resolved — semaglutide vs placebo (ESSENCE, NEJM 2025)",TEAL],["FDA","approved semaglutide for MASH with fibrosis (Aug 2025)",GOLD]]);
+s.addText("The liver gets ~70% of its blood from the gut (portal vein) — so dysbiosis-driven LPS, endogenous alcohol, and bile-acid shifts hit it first. The inflamed liver then BROADCASTS inflammation outward — even to the brain (linked to early Alzheimer's markers). GLP-1 RAs help here too, by calming the same axis.",{x:0.6,y:4.3,w:12.1,h:1.8,fontFace:BF,fontSize:15.5,color:INK,margin:0,lineSpacingMultiple:1.2});
+
+/* 25h SIDE EFFECTS */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"Side effects","The shadow of the same mechanism");
+dataTable(s,0.6,1.95,12.1,[3.2,3.6,5.3],[
+ ["Side effect","Axis node","Same pathway as the benefit?"],
+ ["Nausea / vomiting","Area postrema (CVO)","Yes — the very CVO access that enables central appetite suppression"],
+ ["Bloating / slowed emptying","Vagus + ENS","Yes — slowed emptying also lowers post-meal glucose"],
+ ["Gallstones","Bile-acid axis","Indirect — ↓ CCK stalls the gallbladder; rapid weight loss adds risk"],
+ ["Muscle (lean-mass) loss","Hypothalamus + reward","Yes — the flip side of eating less; needs protein + resistance training"]]);
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.9,w:12.1,h:1.1,fill:{color:"FCF4E3"},rectRadius:0.1});
+s.addText([{text:"Why titrate slowly:  ",options:{bold:true,color:GOLD}},{text:"gradual dosing lets the same circuits adapt (tachyphylaxis) — long-acting agents cause less nausea but more diarrhea than short-acting.",options:{}}],{x:0.85,y:5.0,w:11.6,h:0.9,fontFace:BF,fontSize:14.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.05});
+
+/* 25i FORMULATIONS */
+s=p.addSlide(); s.background={color:WHITE};
+titleBlock(s,"Formulations","Shot, pill, and beyond");
+dataTable(s,0.6,1.95,12.1,[3.0,3.0,3.0,3.1],[
+ ["","SC semaglutide","Oral semaglutide","Orforglipron (oral)"],
+ ["Bioavailability","~100%","0.4–1% (needs SNAC)","High (small molecule)"],
+ ["Dosing rules","None","Fasting; ≤120 mL water; wait 30 min","None (tablet)"],
+ ["Needle?","Yes","No","No"],
+ ["~Max weight loss","~15% (2.4 mg)","~15% (25 mg)","~14.7% (phase 2)"]]);
+s.addShape(p.shapes.ROUNDED_RECTANGLE,{x:0.6,y:4.7,w:12.1,h:1.3,fill:{color:"EEF0FF"},line:{color:"4F46E5",width:1},rectRadius:0.1});
+s.addText([{text:"The point:  ",options:{bold:true,color:"3730A3"}},{text:"same molecule, different delivery — what matters is sustained GLP-1R activation reaching the brain's leaky windows (CVOs), not the route. Next up: dual/triple agonists (tirzepatide, survodutide, retatrutide) for even greater effect.",options:{}}],{x:0.85,y:4.82,w:11.6,h:1.1,fontFace:BF,fontSize:14.5,color:INK,valign:"middle",margin:0,lineSpacingMultiple:1.05});
+
 /* 25 TAKEAWAYS */
 s=p.addSlide(); s.background={color:WHITE};
 titleBlock(s,"In a nutshell","Takeaways for the dinner table");
